@@ -1,0 +1,190 @@
+prompt: |-
+        - Overview:
+        Your goal is to find the optimal next actions for each agent in a multi-agent planning task. Find actions for each agent as best as you can. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. Below is the detailed description of the actions each agent can use for solving the task. You can assign them to Agent_0 and/or Agent_1 as required. Remember to output 1 action only per agent.
+
+        {tool_descriptions}
+
+        Here are some examples of allocating optimal next actions to the agents in a given task:
+
+        Example 1:
+        Task:
+        Move all objects from sofa to bedroom
+
+        House description:
+        living_room_0: chair_0, chair_1, chair_2, chair_3, table_0, couch_0, couch_1, table_1, table_2, table_3
+        closet_0: shelves_0
+        bedroom_0: bed_0, chest_of_drawers_0, chest_of_drawers_1
+        kitchen_1: cabinet_0, table_4, chair_4, chair_5, chair_6, chair_7
+        bedroom_1: bed_1, chest_of_drawers_2, chest_of_drawers_3
+        bedroom_2: bed_2, chest_of_drawers_4, chest_of_drawers_5, wardrobe_0, wardrobe_1
+        laundryroom/mudroom_0: washer_dryer_0, washer_dryer_1, shelves_1, shelves_2
+        bathroom_0: toilet_0
+        bathroom_2: toilet_1
+        bathroom_1: toilet_2
+        kitchen_0: fridge_0
+        garage_0: fridge_1
+
+        Objects in the house:
+        cherry_0: couch_0
+        banana_0: agent_1
+        apple_0: bed_1
+        toy_fire_truck_0: bed_0
+
+        Task progress:
+        Agent 0 moved the apple_0 from couch_0 to bedroom. Agent 0 is now ready for next steps.
+        Agent 1 picked up banana_0 from couch_1. Agent 1 is currently moving it to the bedroom_1.
+
+        Agent's current observations (if available):
+        Agent_0_observation: Successful execution!
+        Agent_1_observation: Action Rearrange[banana_0, bedroom_1] is still in progress.
+
+        Thought: Based on the task and the list of objects in the house, the current task-relevant objects are cherry_0 located on the couch_0 in the living room. The desired location for this object is the bedroom. Since there are multiple bedrooms, I will pick one of them. Agent 0 successfully executed its last task and is ready for next steps so I will ask Agent 0 to rearrange it to the desired location. Since Agent 1 is still rearranging banana, I will reassign this action back to Agent 1.
+        Agent_0_Action: Rearrange[cherry_0, bedroom_1]
+        Agent_1_Action: Rearrange[banana_0, bedroom_1]
+        Assigned!
+
+
+        Example 2:
+        Task:
+        Move pillow to bed and then move apple to kitchen counter.
+
+        House description:
+        living_room_0: table_0, couch_0, chair_2, shelves_1, chair_5, chair_6, table_7, chair_7, chair_8, chair_9, chair_10, chair_11, chair_12, table_9, table_10, stand_0, chest_of_drawers_2
+        laundryroom/mudroom_0: washer_dryer_0, washer_dryer_1, shelves_0
+        bathroom_1: bathtub_0, table_11
+        bedroom_1: table_1, chair_1, bed_0, table_4, table_5, chair_4, stool_0, bench_0, table_12, chest_of_drawers_3
+        kitchen_0: cabinet_0, cabinet_1, cabinet_2, counter_0, chair_2, cabinet_3, cabinet_4, cabinet_5, chair_13, chair_14, chair_15, counter_1, cabinet_6, fridge_0, cabinet_7, cabinet_8
+        bedroom_0: chair_0, table_2, table_3, bed_1, bench_2, chest_of_drawers_0, chest_of_drawers_1
+        bathroom_0: chair_3, table_8, bench_1
+        hallway_0: table_6
+        entryway/foyer/lobby_0: bench_3
+
+        Objects in the house:
+        pillow_0: bed_0
+        pillow_1: agent_0
+        apple_0: chair_2
+        pen_0: table_6
+        laptop_0: table_1
+
+        Task progress:
+        Agent 0 moved the pillow_0 from chair to bed_0 and is currently carrying rearranging pillow_1.
+        Agent 1 is currently waiting.
+
+        Agent's current observations (if available):
+        Agent_0_observation: Action Rearrange[pillow_0, bed_0] is still in progress.
+        Agent_1_observation: Wait[]
+
+        Thought: Based on the task and the list of objects in the house, the task-relevant objects are pillow_0, pillow_1 and apple_0, located on bed_0, agent_0 and chair_2 respectively. The task requires moving pillows first to the desired location of bed in bedroom. Since pillow_0 is already on bed_0, I will focus on pillow_1 and apple_0. Since Agent_0 is still rearranging the pillow_1 to the bed_0, I will reassign this action back to the Agent_0. Since both pillows need to be moved to bed before rearranging apple, I will ask Agent 1 to wait and assign wait action to Agent 1.
+        Agent_0_Action: Rearrange[pillow_0, bed_0]
+        Agent_1_Action: Wait[]
+        Assigned!
+
+
+        Example 3:
+        Task:
+        Move all towels from the kitchen to the bathroom.
+
+        House description:
+        living_room_0: couch_0, table_0, chair_0, chair_1, chair_2, table_1, chest_of_drawers_0, chest_of_drawers_1
+        bathroom_0: toilet_0, table_2
+        kitchen_0: chair_2, cabinet_0, cabinet_1, cabinet_2, cabinet_3, fridge_0, cabinet_4
+
+        Objects in the house:
+        hand_towel_0: table_2
+        hand_towel_1: bathroom_0
+        bath_towel_0: bathroom_0
+        sponge_0: chair_2
+        pen_0: table_0
+        stuffed_toy_0: table_1
+
+        Task progress:
+        Agent 0 moved the hand_towel_0 from chair to table_2. Agent 0 moved bath_towel_0 to bathroom_0.
+        Agent 1 moved the hand_towel_1 to the bathroom_0.
+
+        Agent's current observations (if available):
+        Agent_0_observation: Successful execution!
+        Agent_1_observation: Successful execution!
+
+        Thought: Based on the task and the list of objects in the house, the task-relevant objects are hand_towel_0, hand_towel_1 and bath_towel_0, located on table_2, bathroom_0 and bathroom_0 respectively. Since the task is to move all towels to the bathroom and all towels are in the bathroom already based on the task progress, the task is complete.
+        Final Thought: Exit!
+
+
+        Strictly follow the above format while solving given task.
+
+        Task:
+        {input}
+
+        House description:
+        {house_description}
+
+        Objects in the house:
+        {all_objects}
+
+        Task progress: {summary}
+
+        Agent's current observations (if available): {agent_obs}
+
+        Thought:
+
+# This is crucial, it's when the LLM stops generating text and waits for the
+# environment to respond
+stopword       : "Assigned!"
+
+# End of the interaction.
+end_expression : "Final Thought:"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true
+
+prompt_summarizer: |-
+        - Overview:
+        You are an expert in summarizing agent activities towards accomplishing a desired task based on the provided history of the agent's actions. Given a sequence of actions representing the states/actions of two agents, summarize the overall activity performed by both the agents in a coherent and concise manner. The agent actions may include "standing," "walking," "picking up <object>," "placing on <location>, opening <object>, closing <object>, waiting" etc.
+
+        Your task is to generate a summary sentence that captures the essence of the activities of two agents.
+
+        Example 1:
+        Task: Put the apple in the cabinet. Then, place bottle in the fridge.
+
+        Agent_0_History: standing, walking, waiting.
+        Agent_1_History: walking, picking up apple_0, walking, opening cabinet_0, placing apple_0 in cabinet_0.
+
+        Task progress summary:
+        Agent 0: Agent 0 was moving but is currently waiting.
+        Agent 1: Agent 0 picked an apple and placed it in cabinet_0.
+        Done!
+
+        Example 2:
+        Task: Put all toys in the bedroom.
+
+        Agent_0_History: standing, walking, picking up toy_vehicle_0, walking, placing toy_vehicle_0 on bed_0.
+        Agent_1_History: standing, walking, picking up toy_fruits_0, walking, placing toy_fruits_0 on bed_0, walking, picking up toy_animal_1, walking.
+
+        Task progress summary:
+        Agent 0: Agent 0 moved toy_vehicle_0 to bed_0.
+        Agent 1: Agent 1 moved toy_fruits_0 to bed_0. Agent 1 is currently holding toy_animal_1 and walking somewhere to place it.
+        Done!
+
+        Example 3:
+        Task: Put picture frame and spectacles on the table in bedroom.
+
+        Agent_0_History: Idle.
+        Agent_1_History: Idle.
+
+        Task progress summary:
+        Agent 0: Agent 0 is waiting and ready to start collaborating.
+        Agent 1: Agent 1 is waiting and ready to start collaborating."
+        Done!
+
+        Ensure that the summary is grammatically correct and logically coherent based on the sequence of actions described by the tags.
+
+        Task: {input}
+        Agent_0_History: {agent0_actions}
+        Agent_1_History: {agent1_actions}
+        Task progress summary:
+
+stopword_summarizer : "Done!"
+end_expression_summarizer : "Done!"

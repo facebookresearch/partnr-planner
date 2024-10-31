@@ -1,0 +1,10 @@
+save: False
+agent_names: ['agent_0']  # list of all agents to log
+camera_prefixes: ['articulated_agent_jaw']
+save_path: 'data/trajectories/'
+# root of dir where to log data; is considered the
+# prefix when saving trajectories for multiple scenes
+save_options: ["rgb", "depth", "panoptic", "pose"]  # modalities to log during execution
+  # rgb: accesses agent_N_articulated_agent_{camer_prefixes}_rgb camera
+  # depth: accesses agent_N_articulated_agent_{camer_prefixes}_depth camera
+  # pose: logs agent_N_articulated_agent_{camer_prefixes}_rgb camera pose

@@ -1,0 +1,9 @@
+[submodule "third_party/habitat-lab"]
+	path = third_party/habitat-lab
+	url = https://github.com/facebookresearch/habitat-lab
+[submodule "third_party/semantic_exploration"]
+	path = third_party/semantic_exploration
+	url = https://github.com/jimmytyyang/semantic_exploration
+[submodule "third_party/transformers-CFG"]
+	path = third_party/transformers-CFG
+	url = https://github.com/MatthewChang/transformers-CFG

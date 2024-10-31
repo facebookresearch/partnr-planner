@@ -1,0 +1,62 @@
+explore:
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.ExploreSkill"
+      _partial_                : True
+
+    name                       : 'Explore'
+    description                : 'Doing exploration towards a target object or receptacle, you need to provide the name of the place you want to explore.'
+    max_skill_steps            : 500
+    force_end_on_timeout       : True
+
+    dist_thresh                : 0.2
+    turn_thresh                : 0.3
+    forward_velocity           : 10.0
+    turn_velocity              : 10.0
+    navmesh_offset             : [[0.0,0.0]]
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+
+    # For exploration/semantic map
+    MAP_SIZE_CM: 2500
+    MAP_RESOLUTION: 5 # full map is 500 cells, 1 cell is 5 cm
+    GLOBAL_DOWNSCALING: 2 # local map is 250 cells
+    VISION_RANGE: 125 # the max of vision is 250/2=125 cell
+    HFOV: 55
+    DU_SCALE: 1
+    NUM_SEM_CATEGORIES: 17
+    VISUALIZE: True
+    DETECTION_MODEL: "detectron2" # In the current stage, we only clear up the code for owlvit
+    OBS_DILATION_SELEM_RADIUS: 3 # if the cell is an obstacle, then the surrounding of it will be obstacle too
+    GOAL_DILATION_SELEM_RADIUS: 1 # same a above
+    MIN_OBS_DILATION_SELEM_RADIUS: 1 # dilate the obstacle so that there is a path
+    AGENT_CELL_RADIUS: 1
+    GOAL_TOLERANCE: 0.01
+    CONTINUOUS_ANGLE_TOLERANCE: 30.0
+    COLLISION_THRESHOLD: 0.8
+    TURN_ANGLE: 9.6
+    MIN_DEPTH: 0.0
+    MAX_DEPTH: 10.0
+    ENV_FRAME_WIDTH: 640
+    ENV_FRAME_HEIGHT: 480
+    FRAME_WIDTH: 160 # downsize of the frame to reduce the burden
+    FRAME_HEIGHT: 120
+    PLANNER: "frontier"
+    EXP_NAME: spot_sem_exp
+    BASE_ANGULAR_VEL: 10
+    BASE_LIN_VEL: 10
+    DUMP_LOCATION: "./tmp/"
+    PLANNER_STEP_SIZE: 15 # how large the planner sets the goal
+
+    # For storing the map
+    DEBUG_MODE: False
+    PREBUILD_MAP_NAME: "save_map.pkl"
+    PREBUILD_MAP_DIR: ""
+
+    # For detection2
+    sem_pred_prob_thr: 0.9
+    visualize: 2
+    sem_gpu_id: -2

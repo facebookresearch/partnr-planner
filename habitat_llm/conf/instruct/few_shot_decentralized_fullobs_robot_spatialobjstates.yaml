@@ -1,0 +1,285 @@
+prompt: |-
+        - Overview:
+        Solve the given planning problem as best as you can. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. Below is the detailed description of the actions you can use for solving the task. You can assign them to Agent_{id} as required. There will be another agent working in the same house trying to acomplish the same task. Your role is to finish the task together by collaborating.
+
+        {agent_descriptions}
+
+        Here are some examples:
+
+        Example 1:
+        Task: Move all objects from sofa to sink and then turn on the lamp in the living room.
+
+
+        Thought: First I should ask the agent to find the objects that are on the sofa.
+        Agent_{id}_Action: FindObjectTool[Objects on the sofa]
+        Assigned!
+
+
+        Agent_{id}_observation: - cherry_0 on Sofa in living_room_0
+        - banana_0 in Sofa in living_room_0
+
+
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[sink]
+        Assigned!
+
+
+        Agent_{id}_observation: sink_0 in kitchen_0
+
+
+        Thought: Now that both task relevant objects and receptacles have been found, I will enquire the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+
+
+        Agent_{id}_Observation: The agent walked to cherry_0, picked it and placed it on sink_0, and now is standing.
+
+
+        Thought: Since the other agent already moved the cherry_0, I will ask my agent to rearrange the remaining objects.
+        Agent_{id}_Action: Rearrange[banana_0, on, sink_0, None, None]
+        Assigned!
+
+
+        Agent_{id}_Observation: Successful execution!
+
+        Thought: Now that all objects from the sofa have been rearranged to the sink, the lamp in living room needs to be turned on. Since I cannot turn on the lamp myself, I will wait for the other agent to finish this part of the task and will keep monitoring the lamp state to determine if this part of the task is done.
+        Agent_{id}_Action: FindObjectTool[lamp in the living room]
+        Assigned!
+
+        Agent_{id}_Observation: - lamp_0 in living_room_0. It has the following states, is_powered_on: True.
+        - lamp_1 in living_room_0. It has the following states, is_powered_on: False.
+
+        Thought: Looks like the other agent turned one of the lamps in the living room on. Also, all the objects from the sofa have been moved to the sink. Thus the task is complete and I am done!
+        Final Thought: Exit!
+
+
+
+        Example 2:
+        Task: Fill the jug and wash the apple. Then move the filled jug to the table in living room.
+
+
+        Thought: First I should ask the agent to find the jug and apple.
+        Agent_{id}_Action: FindObjectTool[jug, apple]
+        Assigned!
+
+
+        Agent_{id}_observation: - jug_0 on table_10 in living_room. It has the following states, is_filled: False.
+        - apple_0 on counter_0 in kitchen. It has the following states, is_clean: False.
+
+
+        Thought: Now that the agent has found task relevant objects jug and apple, I should find a faucet where the jug can be filled up and apple can be washed.
+        Agent_{id}_Action: FindReceptacleTool[faucet]
+        Assigned!
+
+
+        Agent_{id}_observation: - counter_10 in kitchen with components: faucet.
+        - cabinet_0 in bathroom_0 with components: faucet.
+
+
+        Thought: Now that both task relevant objects and receptacles have been found, I will find the actions of the other agent so that I can ask my agent to focus on the complementary part of the task.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+
+
+        Agent_{id}_Observation: The agent is walking with apple_0.
+
+
+        Thought: The agent has found task-relevant objects jug and apple and its receptacle counter with faucet where they can be filled and washed respectively. Since the other agent is moving the apple, I will ask my agent to rearrange the jug to the the location with faucent where it can be filled up.
+        Agent_{id}_Action: Rearrange[jug_0, on, counter_10, None, None]
+        Assigned!
+
+
+        Agent_{id}_Observation: Successful execution!
+
+
+        Thought: The agent has moved the jug near the faucet, while the other agent was moving the apple. However the agent doesnt have the ability to fill up the jug or wash the apple based on the actions available on the agent. So the agent must wait for the other agent to finish both these tasks. So I will ask my agent to wait.
+        Agent_{id}_Action: Wait[]
+        Assigned!
+
+        Agent_{id}_Observation: Successful execution!
+
+        Thought: The agent is waiting for the other agent to fill the jug and wash the apple. I should therefore ask the agent to query and monitor the states of these objects to determine when these tasks are done.
+        Agent_{id}_Action: FindObjectTool[jug, apple]
+        Assigned!
+
+
+        Agent_{id}_observation: - jug_0 on counter_10 in kitchen. It has the following states, is_filled: False.
+        - apple_0 on counter_10 in kitchen. It has the following states, is_clean: True.
+
+
+        Thought: Looks like the other agent has washed the apple. I will wait for the other agent to finish filling the jug now.
+        Agent_{id}_Action: Wait[]
+        Assigned!
+
+        Agent_{id}_Observation: Successful execution!
+
+
+        Thought: I will ask my agent to check again on the status of filling the jug.
+        Agent_{id}_Action: FindObjectTool[jug]
+        Assigned!
+
+
+        Agent_{id}_observation: - jug_0 on counter_10 in kitchen. It has the following states, is_filled: True.
+
+        Thought: Looks like the jug is filled and can now be moved to the table in living room. I will first identify the tables in the living room for this purpose.
+        Agent_{id}_Action: FindReceptacleTool[table in living room]
+        Assigned!
+
+
+        Agent_{id}_observation: table_9, table_10 in living_room.
+
+        Thought: The target receptacle for the filled jug can be one of the tables in the living room. I will find the actions of the other agent to see if the other agent is already moving the filled jug to the living room.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+
+
+        Agent_{id}_Observation: Agent is walking.
+
+        Thought: Since the other agent is walking without the jug, I will rearrange the filled jug to its desired location on the table_10 in living room.
+        Agent_{id}_Action: Rearrange[jug_0, on, table_10, None, None]
+        Assigned!
+
+        Agent_{id}_Observation: Successful execution!
+
+        Thought: Looks like the agent moved the filled jug to the table in living room. I will check the status of task-relevant objects one last time to verify the task completion status.
+        Agent_{id}_Action: FindObjectTool[jug, apple]
+        Assigned!
+
+
+        Agent_{id}_observation: - jug_0 on table_10 in living_room. It has the following states, is_filled: True.
+        - apple_0 on counter_10 in kitchen. It has the following states, is_clean: True.
+
+        Thought: Looks like the jug has been filled and moved to the table in living room and the apple is washed. Thus all parts of the task are complete and so I am done!
+        Final Thought: Exit!
+
+
+
+        Example 3:
+        Task: Move bowl and cup to the table in living room. Then move the basket to the bedroom.
+
+
+        Thought: First I should ask the agent to find the bowl, cup and basket
+        Agent_{id}_Action: FindObjectTool[bowl, cup, basket]
+        Assigned!
+
+
+        Agent_{id}_observation: - bowl_0 on Sofa in living_room
+        - cup_1 on counter_0 in kitchen
+        - basket_2 on floor_living_room in living_room
+
+
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[table in living room]
+        Assigned!
+
+
+        Agent_{id}_observation: table_0, table_1, table_2, table_3 in living_room.
+
+
+        Thought: Now that both task relevant objects and receptacles have been found, I will find the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+
+
+        Agent_{id}_Observation: Agent is walking.
+
+
+        Thought: Since the other agent is walking, I will assume that it is trying to move bowl_0. I will do the next part of the task of rearranging cup_1. Since there are many tables in the living room, I will rearrange the cup on any one of them.
+        Agent_{id}_Action: Rearrange[cup_1, on, table_0, None, None]
+        Assigned!
+
+
+        Agent_{id}_Observation: Successful execution!
+
+
+        Thought: Agent successfully transferred the target. So I will check again the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+
+
+        Agent_{id}_Observation: Agent is holding bowl_0 and walking.
+
+
+        Thought: Since the other agent still seems to be moving bowl_0, I will proceed to the next part of the task of rearranging the basket to the bedroom. I will first find receptacles in the bedroom for this purpose.
+        Agent_{id}_Action: FindReceptacleTool[furniture in bedroom]
+
+        Agent_{id}_observation: - bed_0, table_10, chair_10, lamp_0 in bedroom_0.
+        - bed_1, chest_of_drawers_0, chair_9, chair_8, lamp_1 in bedroom_1.
+
+
+        Thought: I will now ask my agent to rearrange the basket to one of the furnitures in one of the bedrooms.
+        Agent_{id}_Action: Rearrange[basket_2, on, chest_of_drawers_0, None, None]
+        Assigned!
+
+        Agent_{id}_Observation: Successful execution!
+
+
+        Thought: My agent successfuly rearranged the cup and the basket. I will check if the other agent finished moving the bowl to the table in the living room by querying the location of the bowl.
+        Agent_{id}_Action: FindObjectTool[bowl]
+
+        Agent_{id}_observation: - bowl_0 on table_1 in the living_room.
+
+        Thought: Since the bowl, cup, and basket were all rearranged to their desired locations, the task is complete and I am done!
+        Final Thought: Exit!
+
+
+
+        Example 4:
+        Task: Go on the kitchen table and pick up plate and place it next to drinkware on chair
+
+
+        Thought: First I should ask the agent to find plate on the kitchen table.
+        Agent_{id}_Action: FindObjectTool[plate on kitchen table]
+        Assigned!
+
+
+        Agent_{id}_observation: - plate_0 on table_0 in ktichen
+
+
+        Thought: Now that the agent has found the plate on the kitchen table, I will find the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+
+
+        Agent_{id}_Observation: Agent is standing.
+
+
+        Thought: Since the other agent is standing, I will take care of moving the plate to the chair, next to the drinkware. First I will find the chair with the drinkware.
+        Agent_{id}_Action: FindObjectTool[drinkware on the chair]
+        Assigned!
+
+
+        Agent_{id}_observation: - drinkware_0 on chair_0 in kitchen
+
+
+        Thought: Now that the drinkware is found, I will move the plate to the chair next to drinkware.
+        Agent_{id}_Action: Rearrange[plate_0, on, chair_0, next_to, drinkware_0]
+        Assigned!
+
+
+        Agent_{id}_Observation: Successful execution!
+
+
+        Thought: Agent successfully transferred the the object. Since all task-relevant objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+
+
+        Task: {input}
+
+
+        Thought:
+
+# This is crucial, it's when the LLM stops generating text and waits for the
+# environment to respond
+stopword       : "Assigned!"
+
+# End of the interaction.
+end_expression : "Final Thought:"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true

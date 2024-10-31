@@ -1,0 +1,42 @@
+# @package habitat.task
+
+defaults:
+  - /habitat/task: task_config_base
+  - /habitat/task/actions@actions.agent_0_arm_action: arm_action
+  - /habitat/task/actions@actions.agent_0_base_velocity: base_velocity
+  - /habitat/task/actions@actions.agent_0_rearrange_stop: rearrange_stop
+  - /habitat/task/measurements:
+    - articulated_agent_force
+    - force_terminate
+    - articulated_agent_colls
+    - zero
+    - num_steps
+    - did_violate_hold_constraint
+    - gfx_replay_measure
+  - /habitat/task/lab_sensors:
+    - relative_resting_pos_sensor
+    - target_start_sensor
+    - goal_sensor
+    - joint_sensor
+    - end_effector_sensor
+    - is_holding_sensor
+    - end_effector_sensor
+    - target_start_gps_compass_sensor
+    - target_goal_gps_compass_sensor
+  - _self_
+
+
+type: RearrangeEmptyTask-v0
+reward_measure: "zero"
+success_measure: "zero"
+success_reward: 100.0
+slack_reward: -0.01
+end_on_success: True
+constraint_violation_ends_episode: False
+constraint_violation_drops_object: True
+task_spec: rearrange_easy
+
+measurements:
+  force_terminate:
+    max_accum_force: -1
+    max_instant_force: -1

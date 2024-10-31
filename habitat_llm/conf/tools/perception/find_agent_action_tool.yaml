@@ -1,0 +1,8 @@
+# The tag below must match file name!
+find_agent_action_tool:
+  _target_   : habitat_llm.tools.perception.FindAgentActionTool
+  _recursive_: False
+  skill_config:
+    description: 'Should be used to find current and past state history of other agent.'
+    name: FindAgentActionTool
+    prompt: FAAT_FEW_SHOT

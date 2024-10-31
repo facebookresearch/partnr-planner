@@ -1,0 +1,8 @@
+# The tag below must match file name!
+query_map_tool:
+  _target_   : habitat_llm.tools.perception.QueryMapTool
+  _recursive_: False
+  llm_config  : ${agent.llm}
+  skill_config:
+    description: 'Useful to know the exact location of a receptacle by querying the map'
+    name: QueryMapTool

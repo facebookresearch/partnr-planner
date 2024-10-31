@@ -1,0 +1,17 @@
+defaults:
+  - /llm: openai
+
+  - /tools/motor_skills:
+    - nn_nav
+    - nn_pick
+    - nn_place
+  - /tools/perception:
+    - find_receptacle_tool
+    - find_object_tool
+  - /tools/general:
+    - active_user_feedback_tool
+
+  #- /llm/instruct: zero_shot
+  - /llm/instruct: few_shot
+
+env: habitat

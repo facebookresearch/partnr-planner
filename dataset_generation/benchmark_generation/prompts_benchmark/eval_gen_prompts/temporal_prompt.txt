@@ -1,0 +1,261 @@
+Source: system
+
+You will be given an instruction describing a task to perform in a house and a set of propositions that define whether the task was done successfully. The task instruction may say that certain propositions should be completed before others ("then", "after", "finally"). Your job is to write python code that groups the propositions in the order in which they must be completed.
+
+The propositions are well-defined python functions that return a boolean value.
+
+You will be given a list of propositions where index i corresponds to the ith proposition. To solve the task, define the variable proposition_order, which groups propositions together that can be completed in any order. Each proposition group appearing in proposition_order must be satisfied before the group that comes after it. For example,
+
+proposition_order = [
+    [0, 1]
+]
+
+means that propositions 0 and 1 can be completed in any order. This example
+
+proposition_order = [
+    [0],
+    [1]
+]
+
+means that the proposition 0 must be completed before proposition 1. This example
+
+proposition_order = [
+    [0, 1],
+    [2]
+]
+
+means that propositions 0 and 1 can be completed in either order, but proposition 2 must be completed after.
+
+Start by assuming that propositions can be completed in any order. Order matters if the instruction includes time ordering words such as "then", "finally", or "after". In this case, propositions should be in multiple groups.
+
+Double check that the index for each proposition is included in proposition_order.
+
+<step> Source: user
+
+Instruction: "Bring an apple to the kitchen table, then bring an orange to the kitchen counter."
+
+propositions = [
+    is_on_top(["apple_1"], ["table_4"]),
+    is_on_top(["orange_1"], ["counter_0"])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0],
+    [1]
+]
+
+<step> Source: user
+
+Instruction: "Put the toy vehicle and the water bottle in the living room. Next, return the dish to the kitchen."
+
+propositions = [
+    is_in_room(["toy_truck_1"], ["living_room_1"]),
+    is_in_room(["cup_0"], ["living_room_1"]),
+    is_in_room(["bowl_2"], ["kitchen"])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1],
+    [2]
+]
+
+<step> Source: user
+
+Instruction: "Put an apple on the bench in the entryway. Also move the broom to the closet."
+
+propositions = [
+    is_on_top(["apple_0", "apple_1"], ["bench_2"]),
+    is_inside(["broom_0"], ["closet_0"])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1]
+]
+
+<step> Source: user
+
+Instruction: "Bring me the toy truck from the bedroom and put it in the living room. Then put two apples on the kitchen table."
+
+propositions = [
+    is_in_room(["toy_truck_1"], ["living_room_1"]),
+    is_on_top(["apple_1"], ["table_1"]),
+    is_on_top(["apple_2"], ["table_1"])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0],
+    [1, 2]
+]
+
+<step> Source: user
+
+Instruction: "Bring the dishes back to the kitchen counter. After that, put the cushions on the bed."
+
+propositions = [
+    is_on_top(["plate_1"], ["counter_1", "counter_2", "counter_3"]),
+    is_on_top(["fork_1"], ["counter_1", "counter_2", "counter_3"]),
+    is_on_top(["spoon_0"], ["counter_1", "counter_2", "counter_3"]),
+    is_on_top(["cushion_0"], ["bed_1", "bed_2"]),
+    is_on_top(["cushion_1"], ["bed_1", "bed_2"]),
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1, 2],
+    [3, 4]
+]
+
+<step> Source: user
+
+Instruction: "Bring the dishes back to the kitchen counter. Put the cushion on the bed. Then, move the cushions to the kitchen."
+
+propositions = [
+    is_on_top(["plate_1"], ["counter_1", "counter_2", "counter_3"]),
+    is_on_top(["fork_1"], ["counter_1", "counter_2", "counter_3"]),
+    is_on_top(["cushion_0"], ["bed_1", "bed_2"]),
+    is_on_top(["cushion_1"], ["bed_1", "bed_2"]),
+    is_in_room(["cushion_0"], ["bedroom_0"]),
+    is_in_room(["cushion_1"], ["bedroom_0"]),
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1, 2, 3],
+    [4, 5]
+]
+
+<step> Source: user
+
+Instruction: "Move the clothes from the bedroom to the washer. After that, Put the cushion on the bed. Finally, put the book in the living room."
+
+propositions = [
+    is_on_top(["shirt_1"], ["washer_dryer_1"]),
+    is_on_top(["shirt_2"], ["washer_dryer_1"]),
+    is_on_top(["pants_1"], ["washer_dryer_1"]),
+    is_on_top(["cushion_1"], ["bed_1", "bed_2"]),
+    is_in_room(["book_1"], ["living_room_1"])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1, 2],
+    [3],
+    [4]
+]
+
+<step> Source: user
+
+Instruction: "First, move the spoon and kettle from the kitchen to the living room and place them next to each other. Then, place the toy food in the kitchen cabinet."
+
+propositions = [
+    is_on_top(['spoon_0'], ['table_1', 'table_2', 'table_3', 'table_4', 'table_5']),
+    is_on_top(['kettle_0'], ['table_1', 'table_2', 'table_3', 'table_4', 'table_5']),
+    is_next_to(['spoon_0'], ['kettle_0']),
+    is_inside(['toy_food_0'], ['cabinet_0'])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1, 2],
+    [3]
+]
+
+<step> Source: user
+
+Instruction: "First, move the phone stand from the bedroom to the living room and place it on the table next to the lamp. Then, move the file sorter from the living room to the bedroom and place it on the table next to the phone stand."
+
+propositions = [
+    is_on_top(['phone_stand_0'], ['table_1', 'table_2', 'table_3']),
+    is_next_to(['phone_stand_0'], ['lamp_0']),
+    is_on_top(['file_sorter_0'], ['table_6']),
+    is_next_to(['file_sorter_0'], ['phone_stand_0'])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1],
+    [2, 3]
+]
+
+<step> Source: user
+
+Instruction: "Help me move the candle and hand towel to the kitchen counter. Place them next to each other. Then, place
+the spatula and c-clamp on the bedside table next to each other."
+
+propositions = [
+    is_on_top(['candle_0'], ['counter_0']),
+    is_on_top(['hand_towel_0'], ['counter_0']),
+    is_next_to(['candle_0'], ['hand_towel_0']),
+    is_on_top(['spatula_0'], ['table_6']),
+    is_on_top(['c-clamp_0'], ['table_6']),
+    is_next_to(['spatula_0'], ['c-clamp_0'])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1, 2],
+    [3, 4, 5]
+]
+
+<step> Source: user
+
+Instruction: "First, move the dog bowl, then the placemat, and finally a plush toy from the living room to the bench in the hallway. Place them next to each other."
+
+propositions = [
+    is_on_top(['dog_bowl_0'], ['bench_0']),
+    is_on_top(['placemat_0'], ['bench_0']),
+    is_next_to(['placemat_0'], ['dog_bowl_0']),
+    is_on_top(['plush_toy_0'], ['bench_0']),
+    is_next_to(['plush_toy_0'], ['placemat_0'])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0],
+    [1, 2],
+    [3, 4]
+]
+
+<step> Source: user
+
+Instruction: "Move the toaster and the bread from the pantry to the kitchen and turn the toaster on, then fill the kettle."
+
+propositions = [
+    is_in_room(['toaster_0'], ['kitchen_0']),
+    is_in_room(['bread_0'], ['kitchen_0']),
+    is_powered_on(['toaster_0']),
+    is_filled(['kettle_0'])
+]
+
+<step> Source: assistant
+
+proposition_order = [
+    [0, 1, 2],
+    [3]
+]
+
+<step> Source: user
+
+Instruction: "{INSTRUCTION}"
+
+{PROPOSITIONS}
+
+<step> Source: assistant
+Destination: user
+
+proposition_order = [

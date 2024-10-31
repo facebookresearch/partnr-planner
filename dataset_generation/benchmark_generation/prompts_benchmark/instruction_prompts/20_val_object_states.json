@@ -1,0 +1,632 @@
+[
+    {
+        "instruction": "Move the kettle and the jug from the dining room to the kitchen and fill the kettle with water, then turn on the kettle. Finally clean the dining room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "jug"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            }
+        ],
+        "initial_furniture_state": [
+            {
+                "name": "all tables in dining room are dirty",
+                "furniture_classes": ["table"],
+                "allowed_regions": ["dining_room_0"],
+                "object_states": {
+                    "is_clean": false
+                }
+            }
+        ],
+        "scene_id": "102344529",
+        "episode_id": 0
+    },
+    {
+        "instruction": "Clean the bench in the garage. Move the book and lamp to the garage from the kitchen. Place the lamp on the bench in the garage and turn it on. Place the book next to it. ",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "chair_2"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            }
+        ],
+        "initial_furniture_state": [
+            {
+                "name": "all chairs in kitchen are dirty",
+                "furniture_classes": ["chair"],
+                "allowed_regions": ["kitchen_0"],
+                "object_states": {
+                    "is_clean": false
+                }
+            }
+        ],
+        "scene_id": "102344529",
+        "episode_id": 1
+    },
+    {
+        "instruction": "Move all of the toy fruits from the lounge room to the kitchen, and wash them in the sink. Also clean the lounge counter.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "toy_fruits"
+                ],
+                "furniture_names": [
+                    "counter_1"
+                ],
+                "allowed_regions": [
+                    "lounge_0"
+                ]
+            }
+        ],
+        "scene_id": "102344529",
+        "episode_id": 2
+    },
+    {
+        "instruction": "Dust off the shelves in the tv room. Clean all of the toys in the tv room and move them to the shelves in the tv room.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_vehicle",
+                    "toy_fire_truck",
+                    "toy_animal"
+                ],
+                "furniture_names": [
+                    "table_0",
+                    "table_3",
+                    "table_4",
+                    "table_5",
+                    "table_6"
+                ],
+                "allowed_regions": [
+                    "tv_0", "tv_1"
+                ]
+            }
+        ],
+        "scene_id": "102344529",
+        "episode_id": 3
+    },
+    {
+        "instruction": "Bring the laptop and the electronic cable to the dining room counter from the mudroom and turn on the laptop. Clean the mudroom cabinets.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102344529",
+        "episode_id": 4
+    },
+    {
+        "instruction": "Let's clean up the living room. Move all of the toys from the floor to the wardrobe s in the closet and turn off the lamp on the table. Make sure that the closet wardrobe is clean.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "toy_vehicle",
+                    "toy_fire_truck",
+                    "toy_airplane",
+                    "toy_animal",
+                    "toy_bee"
+                ],
+                "furniture_names": [
+                    "floor"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102816756",
+        "episode_id": 5
+    },
+    {
+        "instruction": "Take the dirty dishes from the living room and wash them in the kitchen.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plate"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102816756",
+        "episode_id": 6
+    },
+    {
+        "instruction": "Let's move all the dirty dishes from the living room table to the kitchen, and clean them.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plate"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "bowl"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102816756",
+        "episode_id": 7
+    },
+    {
+        "instruction": "Move all the toys to the bedroom and dust off the cushion in the living room.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_vehicle",
+                    "toy_fire_truck",
+                    "toy_airplane"
+                ],
+                "furniture_names": [
+                    "table_0",
+                    "table_1",
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102816756",
+        "episode_id": 8
+    },
+    {
+        "instruction": "Move the electric kettle and the cups from the living room to the kitchen, fill the electric kettle with water, then turn it on.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102816756",
+        "episode_id": 10
+    },
+    {
+        "instruction": "Set up a workspace. Move the laptop and lamp to the bedroom. Place the lamp on the chest of drawers and turn it on.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102817140",
+        "episode_id": 11
+    },
+    {
+        "instruction": "Move all of the toy fruits to the kitchen, and rinse them under the tap.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "toy_fruits"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102817140",
+        "episode_id": 12
+    },
+    {
+        "instruction": "Dust all of the books in the living room and arrange them on the tables.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_8"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_9"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_9"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102817140",
+        "episode_id": 13
+    },
+    {
+        "instruction": "Bring the laptop and the charger to the kitchen counter and turn on the laptop.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "battery_charger"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "102817140",
+        "episode_id": 14
+    },
+    {
+        "instruction": "Take all of the glasses from the bedroom to the kitchen and wash them.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "glass"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            }
+        ],
+        "scene_id": "102817140",
+        "episode_id": 15
+    },
+    {
+        "instruction": "Let's move all the pans and kettles from the living room to the kitchen and scrub them clean.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "pan"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "kettle"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "103997895_171031182",
+        "episode_id": 16
+    },
+    {
+        "instruction": "Move all the board games to the closet and clean the table in the living room.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "board_game"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "103997895_171031182",
+        "episode_id": 17
+    },
+    {
+        "instruction": "Set up a place for meditation. Move the cushion and the candle to the living room? Place the candle on the table and turn it on?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "furniture_names": [
+                    "floor"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            }
+        ],
+        "scene_id": "103997895_171031182",
+        "episode_id": 19
+    },
+    {
+        "instruction": "Move all of the toy fruits to the kitchen, and rinse them to make a pretend salad later.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "toy_fruits"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "103997895_171031182",
+        "episode_id": 20
+    },
+    {
+        "instruction": "Bring the phone stand and the battery charger to the wardrobe and power on the phone stand.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "phone_stand"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "battery_charger"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            }
+        ],
+        "scene_id": "103997895_171031182",
+        "episode_id": 21
+    }
+]

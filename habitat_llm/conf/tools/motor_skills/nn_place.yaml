@@ -1,0 +1,23 @@
+nn_place:
+  _target_                     : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                  : False
+
+  skill_config                  :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.PlaceSkillPolicy"
+      _partial_                : True
+
+    name                       : 'Place'
+    description                : "Place an object, you need to provide the id of the place where you want to place the object, no need to provide the id of the object that you're placing, you need to navigate to the place before placing"
+
+    policy                     : "PointNavResNetPolicy"
+    action_distribution_type   : "gaussian"
+    load_ckpt_file             : "data/models/place/place_latest_sample.torchscript"
+    obs_space                  : ['articulated_agent_arm_depth', 'obj_start_sensor', 'joint', 'is_holding', 'relative_resting_position']
+    action_space               : ["arm_action", "base_velocity"]
+    max_skill_steps            : 1000
+    at_resting_threshold       : 0.01
+    placing_distance           : 0.4
+    joint_rest_state           : [0.0, -3.14, 0.0, 3.0, 0.0, 0.0, 0.0]
+    force_end_on_timeout       : True
+    thresh_for_art_state       : 0.01

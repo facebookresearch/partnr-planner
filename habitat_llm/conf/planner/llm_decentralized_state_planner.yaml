@@ -1,0 +1,19 @@
+defaults:
+  - /llm@plan_config.llm: llama
+  - /instruct@plan_config.instruct: few_shot_decentralized_state_replan_robot
+
+_target_: 'habitat_llm.planner.StateBasedLLMPlanner'
+_recursive_: False
+_partial_: True
+
+plan_config:
+    replanning_threshold: 25
+    planning_mode: "st"
+    enable_rag: False # If we want to use RAG or not
+    rag_dataset_dir: "" # The path to the rag_data_source_name folder
+    rag_data_source_name: "" # rag_data_source_name folder itself
+    example_type: "summary" # The prompting format
+    max_number_of_rag_example_added: 10 # The max number of example prompt added
+    rag_data_target_text: "Agent_0_Action: Rearrange[plate_0, on, counter_0, next_to, drinkware_0]\nAssigned!" # To find where to add RAG prompts based on the text in the prompt
+    start_example_id: 7 # the example index of the rag example
+    constrained_generation: False

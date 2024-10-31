@@ -1,0 +1,87 @@
+default_language_version:
+    python: python3
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+    - id: trailing-whitespace
+      exclude: dataset_generation/benchmark_generation/prompts_benchmark/eval_gen_prompts/
+    - id: check-added-large-files
+      args: ['--maxkb=2000']
+    - id: end-of-file-fixer
+      exclude: dataset_generation/benchmark_generation/prompts_benchmark/eval_gen_prompts/
+    - id: debug-statements
+      exclude: habitat_llm/examples/
+    - id: check-case-conflict
+    - id: check-docstring-first
+    - id: check-executables-have-shebangs
+    - id: check-merge-conflict
+    - id: check-toml
+    - id: check-yaml
+    - id: mixed-line-ending
+      args: ['--fix=lf']
+
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    - id: pretty-format-ini
+      args: [--autofix]
+    - id: pretty-format-toml
+      args: [--autofix]
+      additional_dependencies:
+      - toml-sort==0.21.0
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.11.5
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files"]
+        exclude: |
+            (?x)^(
+                third_party/
+                | outputs-lab/
+            )
+
+  - repo: https://github.com/ambv/black
+    rev: 23.1.0
+    hooks:
+    - id: black
+      exclude: third_party/|outputs_black/
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.0.277
+    hooks:
+      - id: ruff
+        args: [--fix]
+        exclude: ^third_party/
+
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+    - id: autoflake
+      args: ["--expand-star-imports", "--ignore-init-module-imports", "--in-place"]
+      exclude: third_party
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        exclude: third_party|outputs
+        additional_dependencies:
+        - flake8-bugbear==22.4.25
+        - flake8-builtins==1.5.3
+        - flake8-comprehensions==3.8.0
+        - flake8-return==1.1.3
+        - flake8-simplify==0.18.2
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.981
+    hooks:
+      - id: mypy
+        args: [--install-types, --non-interactive, --no-strict-optional, --ignore-missing-imports]
+        exclude: |
+            (?x)^(
+                third_party/
+                | outputs-lab/
+            )

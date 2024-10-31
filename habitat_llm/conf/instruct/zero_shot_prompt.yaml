@@ -1,0 +1,40 @@
+prompt: |-
+        {system_tag}You are an agent that solves multi-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. Rooms do not need to be explored more than once.
+
+        There will be another agent trying to solve the same task that you are at the same time. You may find that that agent has picked up relevant objects or is in the process of completing parts of the task. If that is the case you may want to move on to a different part of the task.
+
+        Rooms do not need to be explored more than once.
+        This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+        {agent_role_description}
+
+        Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.{eot_tag}{rag_examples}{user_tag}Task: {input}
+
+        {world_description}
+
+        Possible Actions:
+        {tool_descriptions}
+        - Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+        What is the next action to make progress towards completing the task?
+        Return your response in the following format
+
+        Thought: <reasoning for why you are taking the next action>
+        <next action call>
+        Assigned!
+
+        Here is an example:
+        Thought: Since there are no objects found I should explore a room I have not explored yet
+        Explore[<room name>]
+        Assigned!
+        {eot_tag}{assistant_tag}
+
+stopword       : "Assigned!"
+end_expression : "Done[]"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.zero_shot_action_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true

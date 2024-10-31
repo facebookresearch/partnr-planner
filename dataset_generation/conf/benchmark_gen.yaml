@@ -1,0 +1,35 @@
+# @package _global_
+defaults:
+  - /llm@generator.llm: llama3_benchmark
+  - _self_
+
+hydra:
+  job:
+    name: 'instruction_gen'
+
+generator:
+  prompt_file_task: "dataset_generation/benchmark_generation/prompts_benchmark/instruction_prompts/templated_prompt_object_states.txt"
+  # prompt_file_task: "dataset_generation/benchmark_generation/prompts_benchmark/instruction_prompts/templated_prompt.txt"
+  # prompt_file_task: "dataset_generation/benchmark_generation/prompts_benchmark/instruction_prompts/scene_and_json_oneshot_temporal.txt"
+  prompt_file_init: ""
+  # template_file: 'dataset_generation/benchmark_generation/prompts_benchmark/instruction_prompts/300_temporal_train_template.json'
+  template_file: 'dataset_generation/benchmark_generation/prompts_benchmark/instruction_prompts/30_train_object_states.json'
+
+  repeat_run_id: 0
+  add_clutter: True
+  output_length: 4000
+  generations_per_call: 5
+  calls_per_scene: 5
+
+  scene_ids:
+    - "102344049"
+    - "102817140"
+    - "106366386_174226770"
+    - "106366410_174226806"
+    - "108736824_177263559"
+
+  # Scene params
+  scene_dataset: "data/hssd-hab/hssd-hab-partnr.scene_dataset_config.json"
+
+  # output_path
+  output_path: "instruction_generation"

@@ -1,0 +1,34 @@
+nn_explore:
+
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.ExploreSkillPolicy"
+      _partial_                : True
+
+    name                       : 'Explore'
+    description                : 'Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. If you have FindRoomTool available, use FindRoomTool before to know the exact name of the room.'
+    # This threshold indicates how many steps the exploration skill can be called for
+    # The threshold for encompassed nav skill is overwritten by this number.
+    max_skill_steps            : 3000
+    force_end_on_timeout       : True
+
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False
+
+    nav_skill_config:
+      name                       : 'Navigate'
+      description                : 'Navigate towards a target object or receptacle, you need to provide the id of the place you want to navigate to.'
+      policy                     : "PointNavResNetPolicy"
+      action_distribution_type   : "gaussian"
+      load_ckpt_file             : "data/models/point_nav/point_nav_sample_version.torchscript"
+      obs_space                  : ["articulated_agent_arm_depth", "goal_to_agent_gps_compass", "humanoid_detector_sensor"]
+      action_space               : ["base_velocity"]
+      max_skill_steps            : 1200
+      nav_success_dis_threshold  : 1.5
+      force_end_on_timeout       : True

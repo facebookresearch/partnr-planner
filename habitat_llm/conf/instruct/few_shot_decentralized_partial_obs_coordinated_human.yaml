@@ -1,0 +1,149 @@
+prompt: |-
+        - Overview:
+        Solve the given planning problem as best as you can. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. Below is the detailed description of the actions you can use for solving the task. You can assign them to Agent_{id} as required. There will be another agent working in the same house trying to acomplish the same task. your role is to finish the task together by collaborating.
+
+
+        {agent_descriptions}
+
+        Here are some examples:
+
+        Example 1:
+        Task: Move all objects from the kitchen table to sink
+        Thought: First I should ask the agent to find objects on the kitchen table
+        Agent_{id}_Action: FindObjectTool[objects on kitchen table]
+        Assigned!
+        Agent_{id}_Observation: No such object yet found.
+        Thought: Since these objects are not found, I should search for them. I will ask the agent to find the kitchen table.
+        Agent_{id}_Action: FindReceptacleTool[kitchen table]
+        Assigned!
+        Agent_{id}_Observation: kitchen_table_0 found in kitchen.
+        Thought: Now that the kitchen table is found, I will navigate to it.
+        Agent_{id}_Action: Navigate[kitchen_table_0]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Now that I am near the kitchen table, I will again try to find objects on it.
+        Agent_{id}_Action: FindObjectTool[objects on kitchen table]
+        Assigned!
+        Agent_{id}_observation: - spoon_0 on kitchen_table_0
+        - pan_1 on kitchen_table_0
+        - spatula_2 on kitchen_table_0
+        Thought: Now that the agent has found objects on the kitchen table, I will find the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+        Agent_{id}_Observation: Agent is walking with while holding spoon_0.
+        Thought: Since the other agent is walking with spoon_0, I will assume it will take care of moving the pan to the sink. I will move to the next object.
+        Agent_{id}_Action: FindReceptacleTool[sink]
+        Assigned!
+        Agent_{id}_observation: sink_0 found in kitchen.
+        Thought: Now that the sink is found, I will move the pan to the sink.
+        Agent_{id}_Action: Rearrange[pan_1, on, sink_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the pan. I will check what the other agent is doing before moving the spatula.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+        Agent_{id}_Observation: Agent put spoon_0 in sink and now is standing.
+        Thought: Now that the other agent has finished its action, I will move the spatula to the sink.
+        Agent_{id}_Action: Rearrange[spatula_2, on, sink_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the the object. Assuming the other agent finished its action, all objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+        Example 2:
+        Task: Move ball, cup and phone to the chair in living room
+        Thought: First I should ask the agent to find the ball, cup and phone
+        Agent_{id}_Action: FindObjectTool[ball, cup, phone]
+        Assigned!
+        Agent_{id}_Observation: No such object yet found.
+        Thought: Since these objects are not found, I should search for them. I will ask the agent to find relevant rooms for these objects.
+        Agent_{id}_Action: FindRoomTool[room that may have ball, cup, and phone]
+        Assigned!
+        Agent_{id}_Observation: kitchen_0, living_room_0.
+        Thought: Now I know which rooms may have these objects, I should ask the agent to explore them.
+        Agent_{id}_Action: Explore[kitchen_0]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Since the the agent successufully explored the room, I will again try to find the objects.
+        Agent_{id}_Action: FindObjectTool[ball, cup, phone]
+        Assigned!
+        Agent_{id}_observation: - ball_0 on kitchen counter
+        - cup_1 on kitchen counter
+        - phone_2 on kitchen counter
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[chair in living room]
+        Assigned!
+        Agent_{id}_observation: chair_0, chair_1, chair_2, chair_3 found in living room.
+        Thought: Now that both task relevant objects and receptacles have been found, I will find the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+        Agent_{id}_Observation: Agent is walking with ball_0.
+        Thought: Since the other agent is walking with ball_0, I will do the next part of the task. Since there are many chairs, I will pick any one of them.
+        Agent_{id}_Action: Rearrange[cup_1, on, chair_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the target. So I will check again the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+        Agent_{id}_Observation: Agent is holding ball_0 and walking.
+        Thought: Since the other agent is still seems to be moving ball_0, I will proceed to the next parts of the task.
+        Agent_{id}_Action: Rearrange[phone_2, on, chair_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Assuming that the other agent finished its actions, all objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+        Example 3:
+        Task: Move pillow to bed and then move apple to kitchen counter.
+        Thought: First I should ask the agent to find the pillow and apple.
+        Agent_{id}_Action: FindObjectTool[pillow, apple]
+        Assigned!
+        Agent_{id}_Observation: No such object yet found.
+        Thought: Since these objects are not found, I should search for them. I will ask the agent to find relevant rooms for these objects.
+        Agent_{id}_Action: FindRoomTool[room that may have pillow and apple]
+        Assigned!
+        Agent_{id}_Observation: bedroom_0, living_room_0, kitchen_0.
+        Thought: Now I know which rooms may have these objects, I should ask the agent to explore them.
+        Agent_{id}_Action: Explore[living_room_0]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Since the agent successfully explored the room, I will again try to find the objects.
+        Agent_{id}_Action: FindObjectTool[pillow, apple]
+        Assigned!
+        Agent_{id}_observation: - pillow_0 on couch_0
+        - apple_1 on coffee table_2
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[bed in bedroom]
+        Assigned!
+        Agent_{id}_observation: bed_0 found in bedroom.
+        Thought: Now that both task relevant objects and receptacles have been found, I will find the actions of the other agent.
+        Agent_{id}_Action: FindAgentActionTool[]
+        Assigned!
+        Agent_{id}_Observation: Agent is walking with while holding pillow_0.
+        Thought: Since the other agent is walking with pillow_0, I will assume it will take care of moving the pillow to the bed. I will move to the next part of the task.
+        Agent_{id}_Action: FindReceptacleTool[kitchen counter]
+        Assigned!
+        Agent_{id}_observation: kitchen_counter_0 found in kitchen.
+        Thought: Now that the kitchen counter is found, I will move the apple to the kitchen counter.
+        Agent_{id}_Action: Rearrange[apple_1, on, kitchen_counter_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the apple. Assuming the other agent finished its action, all objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+        Task: {input}
+        Thought:
+
+# This is crucial, it's when the LLM stops generating text and waits for the
+# environment to respond
+stopword       : "Assigned!"
+
+# End of the interaction.
+end_expression : "Final Thought:"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true

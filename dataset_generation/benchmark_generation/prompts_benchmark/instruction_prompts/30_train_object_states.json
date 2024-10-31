@@ -1,0 +1,1388 @@
+[
+    {
+        "instruction": "Let's clean the living room. Move the hammers to the other living room table so I can clean the table they were on. Also, arrange a dumbbell on the bench in the bedroom.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "hammer",
+                    "c-clamp",
+                    "screwdriver"
+                ],
+                "furniture_names": [
+                    "table_0",
+                    "table_3"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "dumbbell",
+                    "helmet"
+                ],
+                "furniture_names": [
+                    "table_0",
+                    "table_3"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "hammer",
+                    "c-clamp",
+                    "screwdriver",
+                    "dumbbell",
+                    "helmet"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997460_171030507",
+        "episode_id": "0"
+    },
+    {
+        "instruction": "Let's organize the living room. Arrange all the books to the tables, while I clean the couch. After all this, let's arrange the folders next to the books.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 3,
+                "object_classes": [
+                    "folder",
+                    "pencil_case",
+                    "laptop_cover"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "book",
+                    "folder",
+                    "pencil_case",
+                    "laptop_cover",
+                    "lamp"
+                ],
+                "exclude_existing_objects": true,
+                "number": "3",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997460_171030507",
+        "episode_id": "1"
+    },
+    {
+        "instruction": "Let's prepare for gardening. Move the plant containers and basket from the living room to the kitchen. Then place the hammers next to the basket. Finally dust the hammers.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "basket"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "hammer",
+                    "scissors"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plant_container",
+                    "basket",
+                    "hammer",
+                    "scissors"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997460_171030507",
+        "episode_id": "2"
+    },
+    {
+        "instruction": "Let's clean the shelves. Put the books on the floor. Then, clean each book and clean the shelves. Finally arrange the books back back on the shelves after cleaning.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "shelves_0",
+                    "shelves_1",
+                    "shelves_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "book"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997460_171030507",
+        "episode_id": "3"
+    },
+    {
+        "instruction": "Let's make smoothies. Move the jug and toy fruits to the kitchen, and wash them. Place 2 glasses on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "jug"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fruits"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "glass"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "jug",
+                    "toy_fruits",
+                    "glass"
+                ],
+                "exclude_existing_objects": true,
+                "number": "5",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997460_171030507",
+        "episode_id": "4"
+    },
+    {
+        "instruction": "Move the kettle from the living room to the kitchen counter, fill it with water and turn it on. After that, place the cups on the counter next to the kettle.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "kettle",
+                    "cup"
+                ],
+                "exclude_existing_objects": true,
+                "number": "5",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997460_171030507",
+        "episode_id": "5"
+    },
+    {
+        "instruction": "Once I dust the shelves in the living room, let's arrange all of the books on them.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_1",
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "book"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997424_171030444",
+        "episode_id": "6"
+    },
+    {
+        "instruction": "Let's make coffee. Move the electric kettle and a can to the kitchen counter? I'll fill the kettle with water and turn it on. Place two mugs on the living room table while the coffee brews.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "office_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "can"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "office_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cup"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "electric_kettle",
+                    "can",
+                    "cup"
+                ],
+                "exclude_existing_objects": true,
+                "number": "3",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997424_171030444",
+        "episode_id": "7"
+    },
+    {
+        "instruction": "Move the tray and ingredients (bottle and can) to the kitchen counter? I will clean the oven so we can cook with it next.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "tray"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bottle"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "can"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "tray",
+                    "bottle",
+                    "can"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997424_171030444",
+        "episode_id": "8"
+    },
+    {
+        "instruction": "Let's clean the office. Move the sponge and soap dispenser to the office. I'll clean the table with them. Also, let's move the towels to the bathroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "sponge"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "soap_dispenser"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "bath_towel"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "sponge",
+                    "soap_dispenser",
+                    "bath_towel"
+                ],
+                "exclude_existing_objects": true,
+                "number": "3",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997424_171030444",
+        "episode_id": "9"
+    },
+    {
+        "instruction": "Let's clean the kitchen. Move the dishes to the kitchen, while I wipe down the counters.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plate",
+                    "bowl",
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plate",
+                    "bowl",
+                    "cup"
+                ],
+                "exclude_existing_objects": true,
+                "number": "3",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997424_171030444",
+        "episode_id": "10"
+    },
+    {
+        "instruction": "Let's organize the closet. Move all the cans to the kitchen counter, while I clean cabinet? Then arrange the cans back on the cabinet once I'm done?",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "can"
+                ],
+                "furniture_names": [
+                    "cabinet_6"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "can"
+                ],
+                "exclude_existing_objects": true,
+                "number": "5",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997424_171030444",
+        "episode_id": "11"
+    },
+    {
+        "instruction": "Move the basket and bottle next to the washing machine. I'll turn on the washing machine.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "basket"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bottle"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "basket",
+                    "bottle"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": "12"
+    },
+    {
+        "instruction": "Move all the toys on the couches to a nearby table. Let's also dust them because they are dirty.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "furniture_names": [
+                    "couch_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "action_figure"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "toy_vehicle",
+                    "toy_animal",
+                    "action_figure"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": "13"
+    },
+    {
+        "instruction": "Move all of the plates from the dining table to the kitchen and I'll clean the table.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plate"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plate"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": "14"
+    },
+    {
+        "instruction": "Let me clean the shoes in the chest of drawers. They can all be moved to the entryway once clean.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "shoe"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0",
+                    "chest_of_drawers_1",
+                    "chest_of_drawers_2",
+                    "chest_of_drawers_3",
+                    "chest_of_drawers_4",
+                    "chest_of_drawers_5",
+                    "chest_of_drawers_6"
+                ],
+                "allowed_regions": [
+                    "bedroom_0",
+                    "bedroom_1",
+                    "bedroom_2"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "shoe"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": "15"
+    },
+    {
+        "instruction": "Move the laptop and the mouse pad to the living room. I'll turn on the laptop once its there.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "mouse_pad"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "laptop",
+                    "mouse_pad"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": "16"
+    },
+    {
+        "instruction": "Move all of the dirty dishes to the kitchen. I'll wipe down the dining table with the sponge.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plate",
+                    "cup",
+                    "bowl"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sponge"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plate",
+                    "cup",
+                    "bowl",
+                    "sponge"
+                ],
+                "exclude_existing_objects": true,
+                "number": "5",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": "17"
+    },
+    {
+        "instruction": "Let's clean up after dinner. Can we put all the dirty dishes in the kitchen so that I can clean them? As I clean the dishes, put them on the kitchen table.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plate",
+                    "bowl",
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_1",
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plate",
+                    "bowl",
+                    "cup"
+                ],
+                "exclude_existing_objects": true,
+                "number": "1",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997919_171031233",
+        "episode_id": "18"
+    },
+    {
+        "instruction": "Clean the spatula and place the casserole and spatula on the kitchen table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "casserole"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "casserole",
+                    "spatula"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997919_171031233",
+        "episode_id": "19"
+    },
+    {
+        "instruction": "It's time to go to bed. Let's turn off all the lamps in the living room. Also bring a book from the living room and a filled glass of water from the kitchen to the bedroom.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "lamp"
+                ],
+                "furniture_names": [
+                    "table_1",
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "object_states": {
+                    "is_powered_on": true
+                }
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "glass"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "lamp",
+                    "book",
+                    "glass"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997919_171031233",
+        "episode_id": "20"
+    },
+    {
+        "instruction": "Help me set up for a party. Move 3 filled water bottles and a filled pitcher from the kitchen table to the fridge for chilled water. Set a vase on the living room table and 4 bowls for snacks on the living room table.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "bottle"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "pitcher"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 4,
+                "object_classes": [
+                    "bowl"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "bottle",
+                    "pitcher",
+                    "vase",
+                    "bowl"
+                ],
+                "exclude_existing_objects": true,
+                "number": "3",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997919_171031233",
+        "episode_id": "21"
+    },
+    {
+        "instruction": "Place the toy fruits and vase on the large oak table. I will clean the bed.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fruits"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "toy_fruits",
+                    "vase"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997919_171031233",
+        "episode_id": "22"
+    },
+    {
+        "instruction": "Place the hammer on the toilet while I scrub the toilet.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "hammer"
+                ],
+                "furniture_names": [
+                    "toilet_0"
+                ],
+                "allowed_regions": [
+                    "bathroom_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "hammer"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "103997919_171031233",
+        "episode_id": "23"
+    },
+    {
+        "instruction": "Begin by moving all the books from the living room to the bedroom. Then, dust each book and arrange them on the chest of drawers.",
+        "initial_state": [
+            {
+                "number": 5,
+                "object_classes": [
+                    "book"
+                ],
+                "furniture_names": [
+                    "table_1",
+                    "table_2",
+                    "table_3",
+                    "table_4"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "book"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736851_177263586",
+        "episode_id": "24"
+    },
+    {
+        "instruction": "Clear up the dining table by bringing the items to the kitchen. I will wash them one by one.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plate",
+                    "bowl",
+                    "cup"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plate",
+                    "bowl",
+                    "cup"
+                ],
+                "exclude_existing_objects": true,
+                "number": "5",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736851_177263586",
+        "episode_id": "25"
+    },
+    {
+        "instruction": "Move the dirty bath towels from the bedroom to the laundry room. I will clean them.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "bath_towel"
+                ],
+                "furniture_names": [
+                    "bed_1"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "object_states": {
+                    "is_clean": false
+                }
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "bath_towel"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736851_177263586",
+        "episode_id": "26"
+    },
+    {
+        "instruction": "Please bring a filled water bottle, laptop cover, mousepad and a backpack to the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "bottle"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop_cover"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "mouse_pad"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "backpack"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "bottle",
+                    "laptop_cover",
+                    "mouse_pad",
+                    "backpack"
+                ],
+                "exclude_existing_objects": true,
+                "number": "2",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736851_177263586",
+        "episode_id": "27"
+    },
+    {
+        "instruction": "Fill the jug with water and then empty it. Store the jug in the kitchen cabinet when you are done.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "furniture_names": [
+                    "table_0",
+                    "table_1",
+                    "table_2",
+                    "table_3",
+                    "table_4"
+                ],
+                "allowed_regions": [
+                    "dining_room_0",
+                    "living_room_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "jug"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_1"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "plant_container",
+                    "jug"
+                ],
+                "exclude_existing_objects": true,
+                "number": "4",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736851_177263586",
+        "episode_id": "28"
+    },
+    {
+        "instruction": "Let's setup for dinner. Fill the pitcher on the kitchen counter with water and put it in the fridge so that we can have chilled water with dinner. Also, wipe the dinner table and take two plates, two bowls, and two glasses from the kitchen cabinet and set them on the table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "pitcher"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ],
+                "allowed_regions": [
+                    "kitchen_1"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "plate"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "bowl"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "glass"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ]
+            },
+            {
+                "name": "common sense",
+                "excluded_object_classes": [
+                    "pitcher",
+                    "plate",
+                    "bowl",
+                    "glass"
+                ],
+                "exclude_existing_objects": true,
+                "number": "5",
+                "common_sense_object_classes": true,
+                "location": "on",
+                "furniture_names": []
+            }
+        ],
+        "scene_id": "108736851_177263586",
+        "episode_id": "29"
+    }
+]

@@ -1,0 +1,19 @@
+defaults:
+  - /agent/@agents.agent_0.config: oracle_rearrange_agent_motortoolsonly
+  - /agent/@agents.agent_1.config: oracle_rearrange_object_states_agent
+
+  - /planner/@agents.agent_1.planner: llm_planner
+  - /planner/@agents.agent_0.planner: llm_decentralized_state_planner
+
+
+type: "decentralized"
+truncate_length: 50  # max characters in file name, long files names can raise OS errors
+replan_thresh: 25  # max number of times the LLM is allowed to plan to finish the task
+save_video: True
+output_dir: ${hydra:runtime.output_dir}
+
+agents:
+  agent_0:
+    uid: 0
+  agent_1:
+    uid: 1

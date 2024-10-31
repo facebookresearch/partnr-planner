@@ -1,0 +1,7 @@
+WANDB:
+  project : habitat-llm
+  resume  : allow
+  mode    : online
+  name    : test_1
+  group   : tests
+  entity  : sergioarnaud

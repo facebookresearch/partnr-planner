@@ -1,0 +1,5 @@
+type: concept_graph
+world_model_data_path: data/datasets/partnr_episodes/conceptgraphs
+partial_obs: True
+update_mode: obs  # can be "gt" or "obs"
+include_objects: False

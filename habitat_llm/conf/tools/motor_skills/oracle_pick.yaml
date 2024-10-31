@@ -1,0 +1,20 @@
+oracle_pick:
+  _target_                     : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                  : False
+
+  skill_config                  :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OraclePickSkill"
+      _partial_                : True
+
+    name                       : 'Pick'
+    description                : 'Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])'
+
+    max_skill_steps            : 25
+    force_end_on_timeout       : True
+
+    wait_time_for_obj_to_grasp : 10    # in steps
+    thresh_for_art_state         : 0.01  # Threshold to determine whether the receptacle is closed
+    grasping_distance          : 2.0   # Distance threshold of picking up the object
+
+    enable_exploration         : False # Disable exploration

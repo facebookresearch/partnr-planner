@@ -1,0 +1,8 @@
+# The tag below must match file name!
+find_object_tool:
+  _target_   : habitat_llm.tools.perception.FindObjectTool
+  _recursive_: False
+  skill_config:
+    description: 'Used to find the exact name/names of the object/objects of interest. If you want to find names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])'
+    name: FindObjectTool
+    prompt: FOT_FEW_SHOT

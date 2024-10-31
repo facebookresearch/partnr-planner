@@ -1,0 +1,35 @@
+oracle_fill:
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+  skill_config                :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleFillSkill"
+      _partial_                : True
+
+    name                       : 'Fill'
+    description                : 'Used for navigating to and filling an object. You need to provide the name of the object to be filled. Example (Fill[cup_1]) will fill the cup_1 with water if it is already near a faucet.'
+    max_skill_steps            : 1000
+    force_end_on_timeout       : True
+    sim_freq                   : 120 # Hz
+    oracle_fill_in_place_skill_config:
+      name                       : 'FillInPlace'
+      description                : 'Used for filling an object. You need to provide the name of the object to fill.'
+      max_skill_steps            : 1000
+      force_end_on_timeout       : True
+      sim_freq                   : 120 # Hz
+      oracle_skill_duration_range: [10, 15]
+    nav_skill_config:
+      name                       : 'Navigate'
+      description                : 'Navigate towards a target object or receptacle, you need to provide the id of the place you want to navigate to.'
+      max_skill_steps            : 600
+      force_end_on_timeout       : True
+
+      dist_thresh                : 0.2
+      turn_thresh                : 0.45
+      forward_velocity           : 10.0
+      turn_velocity              : 10.0
+      navmesh_offset             : [[0.0,0.0]]
+      sim_freq                   : 120 # Hz
+      enable_backing_up          : False
+      # Disable exploration
+      enable_exploration         : False

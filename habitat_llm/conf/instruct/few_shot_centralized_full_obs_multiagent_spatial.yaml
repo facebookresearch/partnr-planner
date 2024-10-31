@@ -1,0 +1,209 @@
+prompt: |-
+        {system_tag}
+        - Overview:
+        Solve the given multi-agent planning problem as best as you can. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. Below is the detailed description of the actions you can use for solving the task. You can assign them to Agent_0 and/or Agent_1 as required.
+
+        {tool_descriptions}
+        {eot_tag}
+
+        {user_tag}
+        Here are some examples:
+
+        Example 1:
+        Task: Move all objects from sofa to sink
+        {eot_tag}
+        {assistant_tag}
+        Thought: First I should ask one agent to find the objects that are on the sofa. In parallel, I should ask the other to find the sink.
+        Agent_0_Action: FindObjectTool[Objects on the sofa]
+        Agent_1_Action: FindReceptacleTool[sink]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: - cherry_0 in Sofa
+        - banana_0 in Sofa
+        Agent_1_Observation: sink_0
+        {eot_tag}
+        {assistant_tag}
+        Thought: Now that both agents have found the task relevant objects and receptacles, I will come up with a task plan.
+        Agent_0_Action: Rearrange[cherry_0, on, sink_0, None, None]
+        Agent_1_Action: Rearrange[banana_0, on, sink_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Successful execution!
+        Agent_1_Observation: Action "Rearrange[banana_0, on, sink_0, None, None]" is still in progress.
+        {eot_tag}
+        {assistant_tag}
+        Thought: Agent 0 successfully transferred the target. Agent 1 is still executing the previous action, so I will reassign the same action to it.
+        Agent_0_Action: Wait[]
+        Agent_1_Action: Rearrange[banana_0, on, sink_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Waiting
+        Agent_1_Observation: Successful execution!
+        {eot_tag}
+        {assistant_tag}
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+        {eot_tag}
+
+        {user_tag}
+        Example 2:
+        Task: Move pillow to bed and then move apple to kitchen counter
+        {eot_tag}
+        {assistant_tag}
+        Thought: First I should ask one agent to find the pillow. In parallel, I should ask the other to find bed.
+        Agent_0_Action: FindObjectTool[pillow]
+        Agent_1_Action: FindReceptacleTool[bed]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: - pillow_0 in sofa
+        - pillow_1 in couch
+        Agent_1_Observation: bed_0, bed_1
+        {eot_tag}
+        {assistant_tag}
+        Thought: Now that both agents have found the task relevant objects and receptacles, I will come up with a task plan. Since there are many beds, I will pick any one of them.
+        Agent_0_Action: Rearrange[pillow_0, on, bed_0, None, None]
+        Agent_1_Action: Rearrange[pillow_1, on, bed_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Successful execution!
+        Agent_1_Observation: Action "Rearrange[pillow_1, on, bed_0, None, None]" is still in progress.
+        {eot_tag}
+        {assistant_tag}
+        Thought: Agent 0 successfully transferred the target. Agent 1 is still executing the previous action, so I will reassign the same action to it.
+        Agent_0_Action: Wait[]
+        Agent_1_Action: Rearrange[pillow_1, on, bed_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Waiting
+        Agent_1_Observation: Successful execution!
+        {eot_tag}
+        {assistant_tag}
+        Thought: Now that both pillows have been successfully moved, I will move on to the next part of the task. I should ask one agent to find the apple. In parallel, I should ask the other to find kitchen counter.
+        Agent_0_Action: FindObjectTool[apple]
+        Agent_1_Action: FindReceptacleTool[kitchen counter]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: - apple_0 in sofa
+        Agent_1_Observation: counter_0, counter_1, counter_2 are in kitchen
+        {eot_tag}
+        {assistant_tag}
+        Thought: Now that both agents have found the task relevant objects and receptacles, I will come up with a task plan. Since there are multiple counters in kitchen, I will pick any one of them.
+        Agent_0_Action: Rearrange[apple_0, on, counter_0, None, None]
+        Agent_1_Action: Wait[]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Successful execution!
+        Agent_1_Observation: Waiting
+        {eot_tag}
+        {assistant_tag}
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+        {eot_tag}
+
+        {user_tag}
+        Example 3:
+        Task: Move bowl, cup and basket to the chair in living room
+        {eot_tag}
+        {assistant_tag}
+        Thought: First I should ask one agent to find bowl, cup and basket. In parallel, I should ask the other to find the chair in living room.
+        Agent_0_Action: FindObjectTool[bowl, cup, basket]
+        Agent_1_Action: FindReceptacleTool[chair in living room]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: - bowl_0 in Sofa
+        - cup_1 in Sofa
+        - basket_2 in Sofa
+        Agent_1_Observation: chair_0, chair_1, chair_2, chair_3 found in living room.
+        {eot_tag}
+        {assistant_tag}
+        Thought: Now that both agents have found the task relevant objects and receptacles, I will come up with a task plan. Since there are many chairs, I will pick any one of them.
+        Agent_0_Action: Rearrange[bowl_0, on, chair_0, None, None]
+        Agent_1_Action: Rearrange[cup_1, on, chair_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Successful execution!
+        Agent_1_Observation: Action "Rearrange[banana_0, on, sink_0, None, None]" is still in progress.
+        {eot_tag}
+        {assistant_tag}
+        Thought: Agent 0 successfully transferred the target. So I will assign next action to it. Agent 1 is still executing the previous action, so I will reassign the same action to it.
+        Agent_0_Action: Rearrange[basket_2, on, chair_0, None, None]
+        Agent_1_Action: Rearrange[cup_1, on, chair_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Action "Rearrange[basket_2, on, chair_0, None, None]" is still in progress.
+        Agent_1_Observation: Successful execution!
+        {eot_tag}
+        {assistant_tag}
+        Thought: Agent 1 successfully transferred the target. Agent 0 is still executing the previous action, so I will reassign the same action to it.
+        Agent_0_Action: Rearrange[basket_2, on, chair_0, None, None]
+        Agent_1_Action: Wait[]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Successful execution!
+        Agent_1_Observation: Waiting
+        {eot_tag}
+        {assistant_tag}
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+        {eot_tag}
+
+        {user_tag}
+        Example 4:
+        Task: Go on the kitchen table and pick up plate and place it next to drinkware on chair
+        {eot_tag}
+        {assistant_tag}
+        Thought: First I should ask one agent to find plate on the kitchen table, and other agent to find the drinkware on chair.
+        Agent_0_Action: FindObjectTool[plate on kitchen table]
+        Agent_1_Action: FindObjectTool[drinkware on chair]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_observation: - plate_0 on kitchen_table_0
+        Agent_1_observation: - drinkware_0 on chair_0
+        {eot_tag}
+        {assistant_tag}
+        Thought: Now that both the task relevant objects and receptacles have been found I will ask one agent to move the palte next to the drinkware.
+        Agent_0_Action: Rearrange[plate_0, on, chair_0, next_to, drinkware_0]
+        Agent_1_Action: Wait[]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Agent_0_Observation: Successful execution!
+        Agent_1_Observation: Successful execution!
+        {eot_tag}
+        {assistant_tag}
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+        {eot_tag}
+
+        {user_tag}
+        Task: {input}
+        {eot_tag}
+        {assistant_tag}
+        Thought:
+
+# This is crucial, it's when the LLM stops generating text and waits for the
+# environment to respond
+stopword       : "Assigned!"
+
+# End of the interaction.
+end_expression : "Final Thought:"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true

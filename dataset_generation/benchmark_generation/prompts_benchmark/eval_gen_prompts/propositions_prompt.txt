@@ -1,0 +1,260 @@
+Source: system
+
+You will be given an instruction describing a household task and a description of the initial state of the house. You will define a list of python functions that must be satisfied for the task to be marked complete.
+
+You can call the following functions:
+- is_on_top(object_names: str, furniture_name: str)  # any object in object_names is on top of a furniture
+- is_inside(object_names: str, furniture_name: str)  # any object in object_names is inside of a furniture
+- is_in_room(object_names: str, room_name: str)      # any object in object_names is in a room
+- is_on_floor(object_names: str)                     # any object in object_names is on the floor
+- is_next_to(objects_a: str, objects_b: str)         # any object in objects_a is next to any object in objects_b
+- is_clean(object_names: str)                        # any object in object_names is clean
+- is_dirty(object_names: str)                        # any object in object_names is dirty
+- is_filled(object_names: str)                       # any object in object_names is filled, like with a liquid
+- is_empty(object_names: str)                        # any object in object_names is empty
+- is_powered_on(object_names: str)                   # any object in object_names is powered on
+- is_powered_off(object_names: str)                  # any object in object_names is powered off
+
+Objects in object_names can be expressed as it appears in the objects list ("stuffed_toy_1") or as an OR of object names ("stuffed_toy_1 or stuffed_toy_2").
+A furniture_name can be expressed as it appears in the furniture list (e.g. "table") or as it appears in the furniture-room relation ("table in living_room").
+
+Only use the functions listed above.
+Each function should test a single objects/furniture/room relation.
+If the instruction is ambiguous such that multiple objects could be used to satisfy a function (an OR relationship), then include all possible objects.
+Define as many functions as necessary.
+Write each function on its own line.
+It is essential to wrap each function in delimiters [FN] and [/FN].
+End your functions with the token [END].
+
+Let's see some examples. Suppose the initial state is:
+
+Objects:
+    * pants_1
+    * shirt_1
+    * shirt_2
+    * shirt_3
+Furniture:
+    * washer_dryer
+    * table
+Rooms:
+    * laundryroom
+Object-Furniture-Room Relations:
+    * pants_1 on table in laundryroom
+    * shirt_1 on table in laundryroom
+    * shirt_2 on floor in laundryroom
+Furniture-Room Relations:
+    * washer_dryer in laundryroom
+    * table in laundryroom
+
+Instruction "Put the pants on the table" means
+
+    [FN] is_on_top("pants_1", "table in laundryroom") [/FN]
+
+Instruction "Put the pants in the washer" means
+
+    [FN] is_inside("pants_1", "washer_dryer in laundryroom") [/FN]
+
+Instruction "Put a shirt in the washer" means
+
+    [FN] is_inside("shirt_1 or shirt_2 or shirt_3", "washer_dryer in laundryroom") [/FN]
+
+Instruction "Put all the shirts in the washer" means
+
+    [FN] is_inside("shirt_1", "washer_dryer in laundryroom") [/FN]
+    [FN] is_inside("shirt_2", "washer_dryer in laundryroom") [/FN]
+    [FN] is_inside("shirt_3", "washer_dryer in laundryroom") [/FN]
+
+Instruction "Put a shirt on the floor next to the pants" means
+
+    [FN] is_on_floor("shirt_1 or shirt_2 or shirt_3") [/FN]
+    [FN] is_next_to("shirt_1 or shirt_2 or shirt_3", "pants_1") [/FN]
+
+Instruction "Bring a shirt to the laundryroom" means
+
+    [FN] is_in_room("shirt_1 or shirt_2 or shirt_3", "laundryroom") [/FN]
+
+<step> Source: user
+
+Objects:
+    * casserole_0
+    * squeezer_0
+Furniture:
+    * cabinet
+    * table
+Rooms:
+    * bathroom
+    * hallway
+    * kitchen
+    * living_room
+Object-Furniture-Room Relations:
+    * casserole_0 on cabinet in kitchen
+    * squeezer_0 on cabinet in kitchen
+Furniture-Room Relations:
+    * table in bathroom
+    * table in hallway
+    * table in living_room
+
+Instruction: "Get the casserole and squeezer from the kitchen and put them on the table in the living room."
+
+<step> Source: assistant
+
+[FN] is_on_top("casserole_0", "table in living_room") [/FN]
+[FN] is_on_top("squeezer_0", "table in living_room") [/FN]
+[END]
+
+<step> Source: user
+
+The initial state is:
+Objects:
+    * toy_truck_1
+    * stuffed_toy_1
+    * stuffed_toy_2
+Furniture:
+    * table
+    * bed
+    * cabinet
+Rooms:
+    * bedroom
+    * other_room
+    * living_room
+Object-Furniture-Room Relations:
+    * toy_truck_1 on bed in bedroom
+    * stuffed_toy_1 on floor in bedroom
+    * stuffed_toy_2 on floor in other_room
+Furniture-Room Relations:
+    * table in living_room
+
+Instruction: "Bring a toy from the bedroom and put it in the living room."
+
+<step> Source: assistant
+
+[FN] is_in_room("toy_truck_1 or stuffed_toy_1", "living_room") [/FN]
+[END]
+
+<step> Source: user
+
+The initial state is:
+Objects:
+    * cushion_1
+    * fork_1
+    * plate_1
+Furniture:
+    * bed
+    * couch
+    * counter
+Rooms:
+    * bedroom
+    * living_room
+Object-Furniture-Room Relations:
+    * cushion_1 on couch in living_room
+    * fork_1 on couch in living_room
+    * plate_1 on couch in living_room
+Furniture-Room Relations:
+    * bed in bedroom
+    * couch in living_room
+    * counter in kitchen
+
+Instruction: "Bring the dishes back to the kitchen counter. After that, put the cushion on the bed."
+
+<step> Source: assistant
+
+[FN] is_on_top("plate_1", "counter in kitchen") [/FN]
+[FN] is_on_top("fork_1", "counter in kitchen") [/FN]
+[FN] is_on_top("cushion_1", "bed in bedroom") [/FN]
+[END]
+
+<step> Source: user
+
+The initial state is:
+Objects:
+    * candle_0
+    * fork_0
+    * toy_food_0
+Furniture:
+    * counter
+    * table
+Rooms:
+    * bedroom
+    * kitchen
+    * living_room
+Object-Furniture-Room Relations:
+    * candle_0 on table in living_room
+    * fork_0 on counter in kitchen
+    * toy_food_0 on counter in kitchen
+Furniture-Room Relations:
+    * table in bedroom
+    * counter in kitchen
+    * table in living_room
+
+Instruction: "Put the toy food on the table where the candle is, and place the fork on the table beside the toy food."
+
+<step> Source: assistant
+
+[FN] is_on_top("toy_food_0", "table in living_room") [/FN]
+[FN] is_on_top("fork_0", "table in living_room") [/FN]
+[FN] is_next_to("fork_0", "toy_food_0") [/FN]
+[END]
+
+<step> Source: user
+
+Objects:
+    * toy_airplane_0
+    * toy_airplane_1
+Furniture:
+    * table
+Rooms:
+    * hallway
+    * living_room
+Object-Furniture-Room Relations:
+    * toy_airplane_0 on table in hallway
+    * toy_airplane_1 on table in hallway
+Furniture-Room Relations:
+    * table in bathroom
+    * table in hallway
+    * table in living_room
+
+Instruction: "Bring a toy airplane to the living room and put it in on the table."
+
+<step> Source: assistant
+
+[FN] is_on_top("toy_airplane_0 or toy_airplane_1", "table in living_room") [/FN]
+[END]
+
+<step> Source: user
+
+Objects:
+    * kettle_0 (empty, dirty)
+Furniture:
+    * table
+Rooms:
+    * living_room
+Object-Furniture-Room Relations:
+    * kettle_0 on table in living_room
+    * toy_airplane_0 on table in hallway
+    * toy_airplane_1 on table in hallway
+Furniture-Room Relations:
+    * table in living_room
+
+Instruction: "First, make sure the kettle is clean. Then, fill the kettle with water and turn it on."
+
+<step> Source: assistant
+
+[FN] is_clean("kettle_0") [/FN]
+[FN] is_filled("kettle_0") [/FN]
+[FN] is_powered_on("kettle_0") [/FN]
+[FN] is_on_top("toy_airplane_0 or toy_airplane_1", "table in living_room") [/FN]
+[END]
+
+{TEMPLATE_EXAMPLE}
+
+<step> Source: user
+
+The initial state is:
+{INIT_STATE}
+
+Instruction: "{INSTRUCTION}"
+
+<step> Source: assistant
+Destination: user
+
+[FN]

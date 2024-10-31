@@ -1,0 +1,18 @@
+defaults:
+
+  - /tools/motor_skills@tools.motor_skills:
+    - oracle_nav
+    - oracle_pick
+    - oracle_place
+    - oracle_open
+    - oracle_close
+    - oracle_rearrange
+    - oracle_power_on_in_place
+    - oracle_power_off_in_place
+    - oracle_clean_in_place
+    - oracle_fill_in_place
+    - oracle_pour_in_place
+    - oracle_explore
+    - wait
+
+env: habitat

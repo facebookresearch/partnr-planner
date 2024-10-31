@@ -1,0 +1,22 @@
+# @package _global_
+
+defaults:
+  - /examples/planner_multi_agent_demo_config
+  - override /evaluation: centralized_evaluation_runner_motortoolsonly_multiagent
+  - override /planner@evaluation.planner: llm_centralized_motortoolsonly
+  - override /instruct@evaluation.planner.plan_config.instruct: zero_shot_centralized
+
+
+agent_asymmetry: False
+world_model:
+  partial_obs: True
+
+evaluation:
+  planner:
+    plan_config:
+      constrained_generation: True
+      objects_response: True
+      prompt_w_updatedobjects_only: False
+      replanning_threshold: 100
+      llm:
+        inference_mode: "rlm"

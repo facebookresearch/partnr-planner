@@ -1,0 +1,18 @@
+llm:
+  _target_    : habitat_llm.llm.mock.MockLLM
+  _partial_   : True
+
+# System, User, Assistant and end of turn tags
+system_tag : ""
+user_tag : ""
+assistant_tag : ""
+eot_tag : ""
+
+generation_params:
+  responses:
+   - 'Action: Navigate[receptacle_aabb_sink_kitchen_counter]'
+   - 'Action: Navigate[receptacle_aabb_middle_topfrl_apartment_refrigerator]'
+   - 'Action: Open[receptacle_aabb_middle_topfrl_apartment_refrigerator]'
+   - 'Action: Pick[nothing]'  # TODO: pick up a random object
+   - 'Action: Place[nothing]' # TODO: pick up a random object
+   - 'Final Thought: Exit!'

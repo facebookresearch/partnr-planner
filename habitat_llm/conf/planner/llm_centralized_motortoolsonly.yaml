@@ -1,0 +1,16 @@
+defaults:
+  - /llm@plan_config.llm: llama
+  - /instruct@plan_config.instruct: few_shot_centralized_full_obs_multiagent_motoronly
+
+_target_: 'habitat_llm.planner.CentralizedLLMPlanner'
+_recursive_: False
+_partial_: True
+
+plan_config:
+    replanning_threshold: 100
+    planning_mode: "cot"
+    constrained_generation: True
+    objects_response: True
+    objects_response_include_states: False
+    example_type: "react" # The prompting format
+    centralized: True

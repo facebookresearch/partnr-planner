@@ -1,0 +1,26 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - /training@             : base_train
+  - /habitat_conf          : oracle_spot_kinematic
+  - /habitat_conf/task     : rearrange_easy
+  #- habitat_conf: sandbox
+  #- habitat_conf/task: sandbox
+  - /world_model@world_model: gt_graph
+  - /trajectory@trajectory : trajectory_logger
+
+  #- agent/llm: openai
+  - /agent                 : oracle_rearrange_agent_with_explore
+  - /wandb_conf@                : own
+  - override /hydra/output : output
+
+device      : cpu
+instruction : ''
+world_model:
+  partial_obs : False
+dry_run: False
+
+hydra:
+  job:
+    name: 'habitat_llm'

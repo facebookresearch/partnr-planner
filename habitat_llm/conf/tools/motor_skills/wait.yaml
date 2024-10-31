@@ -1,0 +1,15 @@
+wait:
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.WaitSkill"
+      _partial_                : True
+
+    name                       : 'Wait'
+    description                : 'Used to make agent stay idle for some time. Example (Wait[])'
+    default_wait_time          : 1 #mins (Currently not used in the skill)
+    max_skill_steps            : 1000000
+    force_end_on_timeout       : True
+    sim_freq                   : 120 # Hz

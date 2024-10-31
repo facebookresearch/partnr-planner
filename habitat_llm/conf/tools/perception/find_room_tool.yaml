@@ -1,0 +1,9 @@
+# The tag below must match file name!
+find_room_tool:
+  _target_   : habitat_llm.tools.perception.FindRoomTool
+  _recursive_: False
+  skill_config:
+    description: 'Used to know the exact name of a room in the house. A room is a region
+    in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])'
+    name: FindRoomTool
+    prompt: FindRoomPrompt

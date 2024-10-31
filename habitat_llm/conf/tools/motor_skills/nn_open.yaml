@@ -1,0 +1,24 @@
+nn_open:
+  _target_                     : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                  : False
+
+  skill_config                  :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OpenSkillPolicy"
+      _partial_                : True
+
+    name                       : 'Open'
+    description                : 'Used for opening an articulated entity. You must provide the name of the furniture you want to open. '
+
+    policy                     : "PointNavResNetPolicy"
+    action_distribution_type   : "gaussian"
+    load_ckpt_file              : "data/models/open/open_latest_sample.torchscript"
+    obs_space                  : ['articulated_agent_arm_depth', 'obj_start_sensor', 'joint', 'is_holding', 'relative_resting_position']
+    action_space               : ["arm_action", "base_velocity"]
+    max_skill_steps            : 350
+    at_resting_threshold       : 0.01
+    joint_rest_state           : [0.0, -3.14, 0.0, 3.0, 0.0, 0.0, 0.0]
+    threshold_for_ao_state         : 0.01  # Threshold to determine whether the receptacle is closed
+    force_end_on_timeout       : True
+    max_dis_interact_art       : 2.0  # the max distance for opening the door
+    ee_to_art_obj_threshold    : 0.5

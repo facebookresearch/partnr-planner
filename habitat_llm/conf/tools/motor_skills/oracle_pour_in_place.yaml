@@ -1,0 +1,20 @@
+oracle_pour_in_place:
+
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OraclePourInPlaceSkill"
+      _partial_                : True
+
+    name                       : 'Pour'
+    description                : 'Used for pouring from one container to another. This skill will pour into the specified container from whichever container is currently held by the agent.'
+    max_skill_steps            : 1000
+    force_end_on_timeout       : True
+
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False

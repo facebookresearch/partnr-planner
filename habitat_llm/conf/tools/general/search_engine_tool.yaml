@@ -1,0 +1,3 @@
+# The tag below must match file name!
+search_engine_tool:
+  _target_: habitat_llm.tools.general.SearchEngineTool

@@ -1,0 +1,20 @@
+oracle_clean_in_place:
+
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleCleanInPlaceSkill"
+      _partial_                : True
+
+    name                       : 'Clean'
+    description                : 'Used for cleaning an object. You need to provide the name of the object to clean.'
+    max_skill_steps            : 1000
+    force_end_on_timeout       : True
+
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False

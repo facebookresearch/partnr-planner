@@ -1,0 +1,18 @@
+defaults:
+
+  - /tools/motor_skills@tools.motor_skills:
+    - oracle_nav
+    - oracle_pick
+    - oracle_place
+    - oracle_open
+    - oracle_close
+    - oracle_rearrange
+    - oracle_explore
+    - wait
+  - /tools/perception@tools.perception:
+    - find_receptacle_tool
+    - find_object_tool
+    - find_agent_action_tool
+    - find_room_tool
+
+env: habitat

@@ -1,0 +1,114 @@
+Source: system
+
+You will be given a task to perform in a house, and a set of propositions that define whether the task was done successfully. The task is performed by a human and robot. The task instruction may imply constraints such that certain groups of propositions should be satisfied by the same argument or unique arguments. Your job is to write python code that defines these constraints.
+
+The propositions are well-defined python functions that return a boolean value.
+
+You will be given a list of propositions where index i corresponds to the ith proposition. To solve the task, define the variable tie_constraints, which is a list of constraints which can be empty. The constraints you can use are:
+
+SameArgConstraint(
+    proposition_indices: List[int],  # the indices of propositions that this constraint applies to
+    arg_name: str,  # the index of the argument that should be matched on
+)
+
+DifferentArgConstraint(
+    proposition_indices: List[int],  # the indices of propositions that this constraint applies to
+    arg_name: str,  # the index of the argument that should be matched on
+)
+
+Here are some examples:
+
+SameArgConstraint([0, 1], 0)  # means that propositions at index 0 and 1 must have a matching value in the first argument.
+DifferentArgConstraint([0, 1], 0)  # means that propositions at index 0 and 1 must have different values in the first argument.
+SameArgConstraint([0, 1], 1)  # means that propositions at index 0 and 1 must have a matching value in the second argument.
+
+If no constraints apply to the given instruction, just write an empty list.
+
+<step> Source: user
+
+Instruction: "Bring an apple and an orange to a table in the kitchen."
+
+propositions = [
+    is_on_top(["apple_1"], ["table_3", "table_4"]),
+    is_on_top(["orange_1"], ["table_3", "table_4"])
+]
+
+<step> Source: assistant
+
+tie_constraints = [
+    SameArgConstraint([0, 1], 1)
+]
+
+<step> Source: user
+
+Instruction: "Put the toy vehicle in the living room and return the dish to the kitchen."
+
+propositions = [
+    is_in_room(["toy_truck_1"], ["living_room_1"]),
+    is_in_room(["bowl_2"], ["kitchen"])
+]
+
+<step> Source: assistant
+
+tie_constraints = [
+]
+
+<step> Source: user
+
+Instruction: "Place the book on the shelf in the bedroom. Place the picture frame next to it."
+
+propositions = [
+    is_on_top(["book_1"], ["shelves_0", "shelves_1"]),
+    is_on_top(["picture_frame_0"], ["shelves_0", "shelves_1"]),
+    is_next_to(["picture_frame_0"], ["book_1"])
+]
+
+<step> Source: assistant
+
+tie_constraints = [
+    SameArgConstraint([0, 1], 1)
+]
+
+<step> Source: user
+
+Instruction: "Place each candle on its own table in the living room."
+
+propositions = [
+    is_on_top(["candle_0"], ["table_0", "table_2", "table_6"]),
+    is_on_top(["candle_1"], ["table_0", "table_2", "table_6"]),
+    is_on_top(["candle_2"], ["table_0", "table_2", "table_6"])
+]
+
+<step> Source: assistant
+
+tie_constraints = [
+    DifferentArgConstraint([0, 1, 2], 1)
+]
+
+<step> Source: user
+
+Instruction: "Move the clothes from the bedroom to the washer. After that, Put the cushion on the bed. Finally, put the book in the living room."
+
+propositions = [
+    is_on_top(["shirt_1"], ["washer_dryer_1"]),
+    is_on_top(["shirt_2"], ["washer_dryer_1"]),
+    is_on_top(["pants_1"], ["washer_dryer_1"]),
+    is_on_top(["cushion_1"], ["bed_1", "bed_2"]),
+    is_in_room(["book_1"], ["living_room_1"])
+]
+
+<step> Source: assistant
+
+tie_constraints = [
+]
+
+<step> Source: user
+
+Instruction: "{INSTRUCTION}"
+
+{PROPOSITIONS}
+
+<step> Source: assistant
+Destination: user
+
+tie_constraints = [

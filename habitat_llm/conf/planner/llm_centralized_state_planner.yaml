@@ -1,0 +1,11 @@
+defaults:
+  - /llm@plan_config.llm: llama
+  - /instruct@plan_config.instruct: few_shot_centralized_state_replan_llama
+
+_target_: 'habitat_llm.planner.CentralizedStateBasedLLMPlanner'
+_recursive_: False
+_partial_: True
+
+plan_config:
+    replanning_threshold: 15
+    planning_mode: "st"

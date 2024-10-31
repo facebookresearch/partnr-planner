@@ -1,0 +1,22 @@
+# @package habitat.task
+
+defaults:
+  - rearrange_easy_multi_agent
+
+# Config the action spaces for the use of neural network skills
+actions:
+  # Arm and base actions are needed for neural network skills
+  agent_0_arm_action:
+    grip_controller: MagicGraspAction
+    type: "ArmAction"
+    arm_controller: "ArmRelPosKinematicAction"
+    arm_joint_mask: [1,1,0,1,1,1,1]
+    arm_joint_dimensionality: 7
+    grasp_thresh_dist: 0.475
+    disable_grip: True
+    delta_pos_limit: 0.10
+    ee_ctrl_lim: 0.015
+  agent_0_base_velocity:
+    allow_dyn_slide: True
+    lin_speed: 10.0
+    ang_speed: 10.0

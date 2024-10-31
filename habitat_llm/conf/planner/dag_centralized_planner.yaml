@@ -1,0 +1,5 @@
+
+plan_config: "Empty"
+_target_: 'habitat_llm.planner.ScriptedCentralizedPlanner'
+_recursive_: True
+_partial_: True

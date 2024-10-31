@@ -1,0 +1,11 @@
+prompt: ""
+stopword       : "<end_act>\n"
+# End of the interaction.
+end_expression : "End of planning"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.finetuned_actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true

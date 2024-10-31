@@ -1,0 +1,248 @@
+prompt: |-
+        {system_tag}
+        - Overview:
+        Your goal is to find the optimal next action for an agent collaborating with another agent in a multi-agent planning task. Find action for the agent as best as you can. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. Below is the detailed description of different actions that the agent can use for solving the task. You can assign them to Agent_{id} as required. Remember to assign only 1 action to your agent. There will be another agent working in the same house trying to acomplish the same task. Your role is to enable Agent_{id} to finish the task together by collaborating with its partner agent.
+
+        You should account for the task progress, locations of objects in the house, the partner agent's previous and current actions, and your agent's observations to determine the next optimal action for your agent. The optimal action should be aimed at enabling faster and more efficient task completion. So avoid doing tasks that the partner agent is doing and instead focus on tasks that are left over and can be done in parallel. You should also evaluate task progress and exit the task with a final thought if the task requirements are already satisfied.
+
+        {tool_descriptions}
+        {eot_tag}
+
+        {user_tag}
+        Here are some examples of allocating optimal next actions to the agents in a given task:
+
+        Example 1:
+        Task:
+        Move all objects from sofa to bedroom and place them next to the toy truck.
+
+        House description:
+        living_room_0: chair_0, chair_1, chair_2, chair_3, table_0, couch_0, couch_1, table_1, table_2, table_3
+        closet_0: shelves_0
+        bedroom_0: bed_0, chest_of_drawers_0, chest_of_drawers_1
+        kitchen_1: cabinet_0, table_4, chair_4, chair_5, chair_6, chair_7
+        bedroom_1: bed_1, chest_of_drawers_2, chest_of_drawers_3
+        bedroom_2: bed_2, chest_of_drawers_4, chest_of_drawers_5, wardrobe_0, wardrobe_1
+        laundryroom/mudroom_0: washer_dryer_0, washer_dryer_1, shelves_1, shelves_2
+        bathroom_0: toilet_0
+        bathroom_2: toilet_1
+        bathroom_1: toilet_2
+        kitchen_0: fridge_0
+        garage_0: fridge_1
+
+        Objects in the house:
+        cherry_0: couch_0
+        apple_0: agent_1
+        banana_0: couch_0
+        toy_fire_truck_0: bed_1
+
+        Task progress:
+        Agent 0 is walking somewhere.
+        Agent 1 is moving with apple_0 to rearrange it.
+
+        Your agent's observations of the last executed action (if available):
+        Agent_0_observation: Unexpected failure! - Failed to pick! This object is with another agent.
+        {eot_tag}
+        {assistant_tag}
+        Thought: Based on the task and the list of objects in the house, the current task-relevant objects are cherry_0, banana_0, apple_0 located on the couch_0, couch_0, and agent_1 respectively. The desired location for these objects is on the bed, specifically next to the toy truck based on the task description. So I will choose the bed where toy truck is located as target location for these objects. I will use the exact name of the bed provided in house description. Based on the object locations provided in the object list and the task progress summary, Agent 1 is currently rearranging apple_0. Agent 0's previous action execution failed because Agent 1 was already rearranging that object. So I will ask my Agent 0 to rearrange one of the other task-relevant objects cherry_0 or banana_0.
+        Agent_0_Action: Rearrange[cherry_0, on, bed_1, next_to, toy_fire_truck_0]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Example 2:
+        Task:
+        Move pillows to bed and then move apple to kitchen counter.
+
+        House description:
+        living_room_0: table_0, couch_0, chair_2, shelves_1, chair_5, chair_6, table_7, chair_7, chair_8, chair_9, chair_10, chair_11, chair_12, table_9, table_10, stand_0, chest_of_drawers_2
+        laundryroom/mudroom_0: washer_dryer_0, washer_dryer_1, shelves_0
+        bathroom_1: bathtub_0, table_11
+        bedroom_1: table_1, chair_1, bed_0, table_4, table_5, chair_4, stool_0, bench_0, table_12, chest_of_drawers_3
+        kitchen_0: cabinet_0, cabinet_1, cabinet_2, counter_0, chair_2, cabinet_3, cabinet_4, cabinet_5, chair_13, chair_14, chair_15, counter_1, cabinet_6, fridge_0, cabinet_7, cabinet_8
+        bedroom_0: chair_0, table_2, table_3, bed_1, bench_2, chest_of_drawers_0, chest_of_drawers_1
+        bathroom_0: chair_3, table_8, bench_1
+        hallway_0: table_6
+        entryway/foyer/lobby_0: bench_3
+
+        Objects in the house:
+        pillow_0: bed_0
+        pillow_1: bed_0
+        apple_0: chair_2
+        pen_0: table_6
+        laptop_0: table_1
+
+        Task progress:
+        Agent 0 rearranged the pillow_1 from couch_1 to bed_0.
+        Agent 1 rearranged the pillow_0 from chair_0 to bed_0.
+
+        Your agent's observations of the last executed action (if available):
+        {eot_tag}
+        {assistant_tag}
+        Thought: Based on the task and the list of objects in the house, the task-relevant objects are pillow_0, pillow_1 and apple_0, located on bed_0, bed_0 and chair_2 respectively. The task requires rearranging pillows first to the desired location of bed in bedroom. After that, apple needs to be rearranged to counter. Based on the object locations provided in the object list and the task progress summary, pillow_0 and pillow_1 have been rearranged to bed_0. Since the apple should be rearranged after pillows, I can now ask my Agent 0 to rearrange apple_0.
+        Agent_0_Action: Rearrange[apple_0, on, counter_0, None, None]
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Example 3:
+        Task:
+        Move all towels from the kitchen to the bathroom.
+
+        House description:
+        living_room_0: couch_0, table_0, chair_0, chair_1, chair_2, table_1, chest_of_drawers_0, chest_of_drawers_1
+        bathroom_0: toilet_0, table_2
+        kitchen_0: chair_2, cabinet_0, cabinet_1, cabinet_2, cabinet_3, fridge_0, cabinet_4
+
+        Objects in the house:
+        hand_towel_0: table_2
+        hand_towel_1: bathroom_0
+        bath_towel_0: table_2
+        sponge_0: chair_2
+        pen_0: table_0
+        stuffed_toy_0: table_1
+
+        Task progress:
+        Agent 0 rearranged the hand_towel_0 from chair to table_2 and bath_towel_0 to table_2.
+        Agent 1 rearranged the hand_towel_1 to the bathroom_0.
+
+        Your agent's observations of the last executed action (if available):
+        Agent_0_observation: Successful execution!
+        {eot_tag}
+        {assistant_tag}
+        Thought: Based on the task and the list of objects in the house, the task-relevant objects are hand_towel_0, hand_towel_1 and bath_towel_0, located on table_2, bathroom_0 and table_2 respectively. The task requires moving all towels to the bathroom. Based on the object locations in the list of objects and the task progress, all towels are in the bathroom already and were moved to the bathroom by agent 0 and agent 1. So the task is complete.
+        Final Thought: Exit!
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Example 4:
+        Task: Put book on the shelves and apple on the counter.
+
+        House description:
+        living_room_0: couch_0, couch_1, table_1, table_2
+        bedroom_0: bed_0, table_3, shelves_0
+        kitchen_1: cabinet_0, table_3, chair_1, chair_2, chair_3, chair_4, counter_0
+        laundryroom/mudroom_0: washer_dryer_0, washer_dryer_1, shelves_1
+        bathroom_0: toilet_0
+
+        Objects in the house:
+        book_0: shelves_0
+        apple_0: counter_0
+        stuffed_toy_0: bed_0
+        kettle_0: table_1
+
+        Task progress summary:
+        Agent 0 rearranged book_0 to shelves_0 multiple times.
+        Agent 1 hasn't taken any actions for the task yet and is currently waiting.
+
+        Your agent's observations of the last executed action (if available):
+        Agent_0_observation: Successful execution!
+        {eot_tag}
+        {assistant_tag}
+        Thought: Based on the task and the list of objects in the house, the task-relevant objects are book_0 and apple_0, located on shelves_0 and counter_0 respectively. The task requires putting book on the shelves and apple on the counter. Based on the task progress summary, agent 0 has rearranged book on the shelves multiple times. So I should re-verify the location of the task-relevant objects from the list of the objects. Based on the list of objects, book is already on shelves and apple is on the counter. Since this was the requirement of the task, the task is complete.
+        Final Thought: Exit!
+        Assigned!
+        {eot_tag}
+        {user_tag}
+        Task:
+        {input}
+
+        House description:
+        {house_description}
+
+        Objects in the house:
+        {all_objects}
+
+        {summary}
+
+        Your agent's observations of the last executed action (if available): {agent0_obs}
+        {eot_tag}
+        {assistant_tag}
+        Thought:
+
+# This is crucial, it's when the LLM stops generating text and waits for the
+# environment to respond
+stopword       : "Assigned!"
+
+# End of the interaction.
+end_expression : "Final Thought:"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true
+
+prompt_summarizer: |-
+        {system_tag}
+        - Overview:
+        You are a task-summarizer. You are thus an expert in summarizing agent activities towards accomplishing a desired task based on the provided history of the agent actions.
+
+        Given a sequence of actions representing the previous states/actions of two agents, summarize the overall activity performed by both the agents in a SINGLE sentence. The summary should be coherent and concise. The agent previous actions may include "standing," "walking," "picking up <object>," "placing on <location>, opening <object>, closing <object>, waiting" etc. Your goal is to generate a summary sentence that captures the progress the agents have made in accomplishing a given task. Use only past tense to represent task progress.
+
+        Ensure that the summary is grammatically correct, concise i.e., a single sentence, and logically coherent. The summary should strictly be task-relevant and based on the sequence of actions of the agents and provided task description.
+        {eot_tag}
+
+        {user_tag}
+        Example 1:
+        Task: Put the apple in the cabinet. Then, place bottle in the fridge.
+
+        Agent_0_History: standing, walking, waiting, picking up bottle_0.
+        Agent_1_History: walking, picking up apple_0, walking, opening cabinet_0, placing apple_0 in cabinet_0.
+        {eot_tag}
+        {assistant_tag}
+        Task progress summary:
+        Agent 0: Agent 0 picked up the bottle_0.
+        Agent 1: Agent 0 picked an apple and placed it in cabinet_0.
+        Done!
+        {eot_tag}
+
+        {user_tag}
+        Example 2:
+        Task: Put all toys in the bedroom.
+
+        Agent_0_History: standing, walking, picking up toy_vehicle_0, walking, placing toy_vehicle_0 on bed_0, walking.
+        Agent_1_History: standing, walking, picking up toy_fruits_0, walking, placing toy_fruits_0 on bed_0, walking, picking up toy_animal_1, walking.
+        {eot_tag}
+        {assistant_tag}
+        Task progress summary:
+        Agent 0: Agent 0 rearranged toy_vehicle_0 to bed_0 and is currently walking somewhere.
+        Agent 1: Agent 1 rearranged toy_fruits_0 to bed_0 and is currently moving with toy_animal_1 to rearrange it.
+        Done!
+        {eot_tag}
+
+        {user_tag}
+        Example 3:
+        Task: Put picture frame and spectacles on the table in bedroom.
+
+        Agent_0_History: Idle.
+        Agent_1_History: Idle.
+        {eot_tag}
+        {assistant_tag}
+        Task progress summary:
+        Agent 0: Agent 0 hasn't taken any actions for the task yet and is currently waiting.
+        Agent 1: Agent 1 hasn't taken any actions for the task yet and is currently waiting.
+        Done!
+        {eot_tag}
+
+        {user_tag}
+        Example 4:
+        Task: Put book on the shelves and apple in the fridge.
+
+        Agent_0_History: standing, walking, picking up book_0, walking, placing book_0 on shelves_0, walking, picking up book_0, walking, placing book_0 on shelves_0
+        Agent_1_History: standing, walking, waiting.
+        {eot_tag}
+        {assistant_tag}
+        Task progress summary:
+        Agent 0: Agent 0 rearranged book_0 to shelves_0 multiple times.
+        Agent 1: Agent 1 hasn't taken any actions for the task yet and is currently waiting.
+        Done!
+        {eot_tag}
+
+        {user_tag}
+        Task: {input}
+        Agent_0_History: {agent0_actions}
+        Agent_1_History: {agent1_actions}
+        {eot_tag}
+        {assistant_tag}
+
+stopword_summarizer : ["Done!", "{eot_tag}"]
+end_expression_summarizer : "Done!"

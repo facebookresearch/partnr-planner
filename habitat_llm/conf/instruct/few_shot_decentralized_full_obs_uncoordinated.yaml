@@ -1,0 +1,114 @@
+prompt: |-
+        - Overview:
+        Solve the given planning problem as best as you can. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. Below is the detailed description of the actions you can use for solving the task. You can assign them to Agent_{id} as required.
+
+        {tool_descriptions}
+
+        Here are some examples:
+
+        Example 1:
+        Task: Move all objects from the kitchen table to sink
+        Thought: First I should ask the agent to find objects on the kitchen table
+        Agent_{id}_Action: FindObjectTool[objects on kitchen table]
+        Assigned!
+        Agent_{id}_observation: - plate_0 on kitchen_table_0
+        - bowl_1 on kitchen_table_0
+        - cup_2 on kitchen_table_0
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[sink]
+        Assigned!
+        Agent_{id}_observation: sink_0
+        Thought: Now that both task relevant objects and receptacles have been found, I will assign action to the agent.
+        Agent_{id}_Action: Rearrange[plate_0, on, sink_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the target. I will assign next action to the agent.
+        Agent_{id}_Action: Rearrange[bowl_1, on, sink_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the target. I will assign next action to the agent.
+        Agent_{id}_Action: Rearrange[cup_2, on, sink_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+        Example 2:
+        Task: Move pillow to bed and then move apple to kitchen counter
+        Thought: First I should the agent to find the pillow.
+        Agent_{id}_Action: FindObjectTool[pillow]
+        Assigned!
+        Agent_{id}_observation: - pillow_0 in sofa
+        - pillow_1 in couch
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[bed]
+        Assigned!
+        Agent_{id}_observation: bed_0, bed_1
+        Thought: Now that both task relevant objects and receptacles have been found, I will assign action to the agent. Since there are many beds, I will pick any one of them.
+        Agent_{id}_Action: Rearrange[pillow_0, on, bed_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the target. I will assign next action to the agent.
+        Agent_{id}_Action: Rearrange[pillow_1, on, bed_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Now that both pillows have been successfully moved, I will move on to the next part of the task. I should ask the agent to find the apple.
+        Agent_{id}_Action: FindObjectTool[apple]
+        Assigned!
+        Agent_{id}_observation: - apple_0 in sofa
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[kitchen counter]
+        Assigned!
+        Agent_{id}_observation: counter_0, counter_1, counter_2 are in kitchen
+        Thought: Now that both task relevant objects and receptacles have been found, I will assign action to the agent. Since there are multiple counters in kitchen, I will pick any one of them.
+        Agent_{id}_Action: Rearrange[apple_0, on, counter_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+        Example 3:
+        Task: Move bowl, cup and basket to the chair in living room
+        Thought: First I should ask one agent to find the bowl, cup and basket
+        Agent_{id}_Action: FindObjectTool[bowl, cup, basket]
+        Assigned!
+        Agent_{id}_observation: - bowl_0 on Sofa
+        - cup_1 on Sofa
+        - basket_2 on Sofa
+        Thought: Now that the agent has found task relevant objects, I will ask it to find task relevant target receptacles.
+        Agent_{id}_Action: FindReceptacleTool[chair in living room]
+        Assigned!
+        Agent_{id}_observation: chair_0, chair_1, chair_2, chair_3 found in living room.
+        Thought: Now that both task relevant objects and receptacles have been found, I will assign action to the agent. Since there are many chairs, I will pick any one of them.
+        Agent_{id}_Action: Rearrange[bowl_0, on, chair_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the target. So I will assign next action to it.
+        Agent_{id}_Action: Rearrange[cup_1, on, chair_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: Agent successfully transferred the target. So I will assign next action to it.
+        Agent_{id}_Action: Rearrange[basket_2, on, chair_0, None, None]
+        Assigned!
+        Agent_{id}_Observation: Successful execution!
+        Thought: All objects were successfully moved, so I am done!
+        Final Thought: Exit!
+
+        Strictly follow the above format while solving given task.
+
+        Task: {input}
+        Thought:
+
+# This is crucial, it's when the LLM stops generating text and waits for the
+# environment to respond
+stopword       : "Assigned!"
+
+# End of the interaction.
+end_expression : "Final Thought:"
+
+# The parser is a function that maps LLM output to a tuple of (agent, action, action_input)
+actions_parser:
+  _target_     : habitat_llm.llm.instruct.utils.actions_parser
+
+  # It's a function so we do partial initialization
+  _partial_    : true

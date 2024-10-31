@@ -1,0 +1,6749 @@
+[
+    {
+        "instruction": "Help me clean up the toys in bedroom .  Place all the toy food, pencil case, file sorter, and toy vehicle on the table.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "pencil_case"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "file_sorter"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 251
+    },
+    {
+        "instruction": "Please move the vase and plant from the living room table to the other living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 252
+    },
+    {
+        "instruction": "Help me move the laptop and spoon from the bedroom to the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chair_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chair_2"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 253
+    },
+    {
+        "instruction": "Bring  bread to the dining table.  Move  toy vehicle to the dining table.  Move  candle to the dining table?  Move  plant container to the bedroom stand.  Move  credit card to the bedroom stand.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "bread"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "credit_card"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 254
+    },
+    {
+        "instruction": "Help me move the electric kettle, kettle, candle, and sponge from the kitchen to the living room? Place them on the side table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sponge"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 255
+    },
+    {
+        "instruction": "Help me tidy up the toys in bedroom.  Place the toy airplane, toy pineapple, and toy cactus on the chair in another bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_airplane"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_pineapple"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_cactus"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 256
+    },
+    {
+        "instruction": "Move the electric kettle and kettle from the kitchen to the living room and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 257
+    },
+    {
+        "instruction": "Help me move the candle and lamp from the table to the living room chair?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 258
+    },
+    {
+        "instruction": "Help me set up a cozy living room.  Place an electric kettle, a kettle, a candle, and a plant container on a new table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 259
+    },
+    {
+        "instruction": "Help me make tea in the living room.  Place the electric kettle and kettle on the table.  Also bring spoons from the chest of drawers in the bedroom to the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 260
+    },
+    {
+        "instruction": "Move the laptop, lamp, phone, and clock from the table in the bedroom to the table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "clock"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 261
+    },
+    {
+        "instruction": "Please move the plant and plant container from the bedroom to the kitchen and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 262
+    },
+    {
+        "instruction": "Help me set up a snack in the dining room.  Place the tomato, bread, and can on the table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "tomato"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "bread"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "can"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 263
+    },
+    {
+        "instruction": "Help me set up a play area in the living room.  Place  toy vehicles,  toy swing, and  carrying case on the table.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_swing"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "carrying_case"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 264
+    },
+    {
+        "instruction": "Help me bring the plants from bedroom  to the living room and place it on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 265
+    },
+    {
+        "instruction": "Please bring the toy vehicles and toy food from the bedroom to the living room and place them on the tables.  Also, bring the pencil case from the bedroom to the living room.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "pencil_case"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 266
+    },
+    {
+        "instruction": "Place the plant containers on the chest of drawers that have the toy animals.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 267
+    },
+    {
+        "instruction": "Help me move the toy vehicles, toy food items, and  stuffed toy from the bedroom to the living room.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 268
+    },
+    {
+        "instruction": "Help me make tea in the living room.  Place the electric kettle and kettle on the table.  Also bring a cushion and spoon from the bedroom to the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chair_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 269
+    },
+    {
+        "instruction": "Help me create a cozy atmosphere in the living room.  Place a candle, a toy vehicle, a squeezer, and an egg on the tables?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "squeezer"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "egg"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 270
+    },
+    {
+        "instruction": "Talke the stuffed toy, toy food, and toy vehicle and place them on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 272
+    },
+    {
+        "instruction": "Bring the tomato, sushi mat, stuffed toy, and toy fire truck from the bedroom  to the table in the dining room.  Place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "tomato"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fire_truck"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 273
+    },
+    {
+        "instruction": "Bring the candle, toy vehicle, squeezer, egg, stuffed toy, and bath towel from the bedroom to the living room and place them on the table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "squeezer"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "egg"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bath_towel"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 274
+    },
+    {
+        "instruction": "Bring the candle, toy vehicle, squeezer, egg, and stuffed toy from the bedroom to the living room and place them on the table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "squeezer"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "egg"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 275
+    },
+    {
+        "instruction": "Help me create a cozy reading nook in the bedroom.  Place the candle on another chest of drawers, the lamp on another bed, and the book on another chest of drawers?  The toy vehicle can stay on the chair?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "bed_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chair_2"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 276
+    },
+    {
+        "instruction": "Bring all the toys from the bedrooms to the table in bedroom .  Place the toy vehicle and toy food on the table.  Put the toy airplane next to them.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_airplane"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 277
+    },
+    {
+        "instruction": "Help me prepare the bedroom for a guest.  Place a stuffed toy, a lamp, a plant container, and a bowl on the bed.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 278
+    },
+    {
+        "instruction": "Bring the toy vehicles and toy food from the bedroom to the table in the living room .",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            },
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 279
+    },
+    {
+        "instruction": "Move the plant and plant container from the bedroom to the living room and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 280
+    },
+    {
+        "instruction": "Put the baseball bat on another chair and the sushi mat on another table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "baseballbat"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 281
+    },
+    {
+        "instruction": "Bring the plant container, stuffed toy, and cushion from the bedroom to the living room and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 282
+    },
+    {
+        "instruction": "Put the toy vehicle and toy food on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 283
+    },
+    {
+        "instruction": "Take the apple, sushi mat, toy food, and pitcher from the kitchen to bedroom  and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "pitcher"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 284
+    },
+    {
+        "instruction": "Move the tomato and sushi mat from the counter in the kitchen to the table in the dining room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "tomato"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 285
+    },
+    {
+        "instruction": "Move the candle, book, lamp, and sponge from the chest of drawers in bedroom  to the table in bedroom ?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "bed_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sponge"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 286
+    },
+    {
+        "instruction": "Move the sushi mat, spatula, bowl, and tomato from the kitchen to the table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "tomato"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 287
+    },
+    {
+        "instruction": "Move the bowl, plant, and spoon from the living room to the dining room and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 288
+    },
+    {
+        "instruction": "Help me create a fun activity area in the living room.  Place a baseball bat, a toy pineapple, and a tennis racquet on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "baseballbat"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_pineapple"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "tennis_racquet"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 289
+    },
+    {
+        "instruction": "Move the plant, plant saucer, and tomato from the chest of drawers to the table in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_saucer"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "tomato"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 290
+    },
+    {
+        "instruction": "Move the plant and its container to the bedroom  table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 291
+    },
+    {
+        "instruction": "Help me move the bowl, spoon, and apple from the living room to the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 292
+    },
+    {
+        "instruction": "Move the bowl and spoon from the coffee table to the dining table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 293
+    },
+    {
+        "instruction": "Bring the plant, plant saucer, and clock from the bedroom to the living room and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_saucer"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "clock"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 294
+    },
+    {
+        "instruction": "Bring the candle, toy vehicle, squeezer, and egg from the bedroom and kitchen to the living room and place them on the tables?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "squeezer"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "egg"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 295
+    },
+    {
+        "instruction": "Arrange the plant, stuffed toy, and cushion on another chest of drawers in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 296
+    },
+    {
+        "instruction": "Move the candle and lamp from the bedroom to the living room and put them on the table ?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 297
+    },
+    {
+        "instruction": "Place the candle, candle holder, toy vehicle, squeezer, and egg on the living room table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle_holder"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "squeezer"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "egg"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 298
+    },
+    {
+        "instruction": "Bring the candle, plant container, and toy vehicle to the table in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "couch_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 299
+    },
+    {
+        "instruction": "Help me prepare the bedroom for a cozy evening.  Place a plant container, a stuffed toy, a cushion and a sushi mat on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 300
+    },
+    {
+        "instruction": "Move the candle, book, and lamp to another bed?  Put the apple on another chest of drawers.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "bed_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 301
+    },
+    {
+        "instruction": "Bring the toy airplane and toy pineapple from the bedroom to the living room and place them on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_airplane"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_pineapple"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 302
+    },
+    {
+        "instruction": "Move the stuffed toy, cushion, tennis racquet, and sponge from the chest of drawers to the bed in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "tennis_racquet"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sponge"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 303
+    },
+    {
+        "instruction": "Bring the plant and plant container from the chest of drawers to the table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 304
+    },
+    {
+        "instruction": "Move the lamp, scissors, and sponge from the living room to the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "scissors"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sponge"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736824_177263559",
+        "episode_id": 305
+    },
+    {
+        "instruction": "Move the toy bee and toy construction set from the living room table to the shelves in the laundary room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_construction_set"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 0
+    },
+    {
+        "instruction": "Move the basket, ladle, and both toy foods from the shelves to the closet.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "basket"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_1"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ladle"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "board_game"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 1
+    },
+    {
+        "instruction": "Move the apple to the table and set it next to the toy construction set. Let's also move the candle to the table next to the apple?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_construction_set"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 2
+    },
+    {
+        "instruction": "Move the toy fire truck to a different table in the living room, and put the credit card on the kitchen counter. Also, move the watch to the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fire_truck"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "credit_card"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "watch"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 3
+    },
+    {
+        "instruction": "Move an electronic cable, android figure, and lamp from the kitchen table to the living room table.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "android_figure"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 4
+    },
+    {
+        "instruction": "Oops, the toy food got put on the shelf in the laundary room. Can we move all of them to the kitchen cabinet?",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 5
+    },
+    {
+        "instruction": "Move the toy fire truck from the living room to the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fire_truck"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 6
+    },
+    {
+        "instruction": "Move the lamp and plant container to be on top of a chest of drawers in the bedroom. Also, put the phone and vase inside that drawer.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 7
+    },
+    {
+        "instruction": "Help me move the two toy animals from the chest of drawers to stools in the kitchen.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "screwdriver"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 8
+    },
+    {
+        "instruction": "Move the cushions from the living room couch to the bedroom bed, and move the cellphone and pencil case to the kitchen table.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "pencil_case"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 10
+    },
+    {
+        "instruction": "Let's get the toys out to play with. Put the toy animals and toy food on the bed.",
+        "initial_state": [
+            {
+                "number": 3,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "bed_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "doll"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "bed_0"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 11
+    },
+    {
+        "instruction": "Return two cups from the dining table to the kitchen cabinets. They weren't used.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cup"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ladle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 12
+    },
+    {
+        "instruction": "Bring two cups to the table where the teapot is.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "teapot"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cup"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 13
+    },
+    {
+        "instruction": "Move the apple, candle holder, spatula, and sushi mat from the living room table to the kitchen table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle_holder"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 14
+    },
+    {
+        "instruction": "Put some spectacles in the fridge. I want to learn if wearing cold spectacles is a good way to cool down. Oh, let's put a hat in there too!",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spectacles"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hat"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spectacles"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 15
+    },
+    {
+        "instruction": "Help me prepare a snack.  Bring the apple and spatula to a living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "laundryroom/mudroom_0"
+                ],
+                "furniture_names": [
+                    "shelves_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 16
+    },
+    {
+        "instruction": "Help me move the cup and the laptop to the counter, please.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cup"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 18
+    },
+    {
+        "instruction": "Help me move my laptop and lamp from the living room to the bedroom. Both in my wardrobe for now.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 19
+    },
+    {
+        "instruction": "Set the lamp and hard drive on toilets so I can clean the floors.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hard_drive"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "mouse_pad"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "screwdriver"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 20
+    },
+    {
+        "instruction": "Move the lamp and plant from the table in the living room to the next table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 21
+    },
+    {
+        "instruction": "Move the toy car to the closet. Anywhere is fine, I just want it put away.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 22
+    },
+    {
+        "instruction": "Put the toy fire truck and toy airplane inside kitchen cabinets.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fire_truck"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_airplane"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 23
+    },
+    {
+        "instruction": "Place the hat on the counter and the bottle in the kitchen fridge.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hat"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "chair_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bottle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 24
+    },
+    {
+        "instruction": "Move the cushion and plant from the living room couch to the other living room couch.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 25
+    },
+    {
+        "instruction": "Move the plate and bowl from the kitchen to the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plate"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "bowl"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "cabinet_1"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 26
+    },
+    {
+        "instruction": "Move the plant to a different chest of drawers in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 27
+    },
+    {
+        "instruction": "Move the toy animal and toy vehicle to the couch in the living room that has the cushions.",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_1"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 28
+    },
+    {
+        "instruction": "Help me tidy up the living room. Put the picture and cusion on the table that has the laptop.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "picture_frame"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 30
+    },
+    {
+        "instruction": "Make sure the plant saucer and both toy foods are on the same table. Leave the toy fire truck and toy bee as they are.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_fire_truck"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_saucer"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 31
+    },
+    {
+        "instruction": "Move the vase from the table in the living room to inside the laundry room cabinet.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 32
+    },
+    {
+        "instruction": "There are vases on two different tables. Bring the vases from the table with the most vases to the garage.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 34
+    },
+    {
+        "instruction": "Move the laptop, lamp, and candle from the kitchen table to a living room table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 35
+    },
+    {
+        "instruction": "Take the electronic cable with you. Leave in in the hallway.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "102344049",
+        "episode_id": 36
+    },
+    {
+        "instruction": "Help me organize the living room.  Place the lamp on another table, the cushion on another chair, the toy bee on another chair, and the file sorter to a new table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "file_sorter"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 85
+    },
+    {
+        "instruction": "Move the electronic cable, sushi mat, and toy pineapple from the living room to the bedroom.  Place the electronic cable on the table and the sushi mat and toy pineapple on the tables.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_pineapple"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 86
+    },
+    {
+        "instruction": "Help me rearrange the living room.  Place the lamp, ramekin, and laptop stand on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop_stand"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 87
+    },
+    {
+        "instruction": "Move the lamp and vase from the coffee table to the dining table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 88
+    },
+    {
+        "instruction": "Help me move the kettle and electric kettle from the counter in the kitchen to the counter in the entryway/foyer/lobby.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "electric_kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 89
+    },
+    {
+        "instruction": "Help me move my shoes to the bedroom.  Place them on the stool in bedroom .  Leave the phone stand on the table in bedroom .",
+        "initial_state": [
+            {
+                "number": 2,
+                "object_classes": [
+                    "shoe"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "stool_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "phone_stand"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 90
+    },
+    {
+        "instruction": "Help me move the apple, phone, and spatula from the kitchen counter to the living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 91
+    },
+    {
+        "instruction": "Help me organize the living room.  Place a phone stand another living room table, an electronic cable on another living room table, a book on another living room table, and a squeezer on another the living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "phone_stand"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "squeezer"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 92
+    },
+    {
+        "instruction": "Move the spoon and kettle from the kitchen to the living room.  Place the toy food in the kitchen cabinet.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "cabinet_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 93
+    },
+    {
+        "instruction": "Help me prepare a romantic dinner in the living room.  Place a spatula, a c-clamp, and a candle on another table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 94
+    },
+    {
+        "instruction": "Help me move the spray bottle and toy food from the living room table to a new living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spray_bottle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 95
+    },
+    {
+        "instruction": "Move the lamp and vase from the living room table to the dining room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 96
+    },
+    {
+        "instruction": "Help me tidy up the bedroom.  Move the lamp and phone from the table to the chest of drawers.  Leave the toy vehicle on the chest of drawers.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 97
+    },
+    {
+        "instruction": "Place the spatula and c-clamp inside the kitchen cabinet.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hand_towel"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 98
+    },
+    {
+        "instruction": "Move the phone stand from the bedroom to the living room and place it on the table.  Move the file sorter from the living room to the bedroom and place it on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "phone_stand"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "file_sorter"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 99
+    },
+    {
+        "instruction": "Help me set up a play area for a -year-old child in the living room.  Place a toy vehicle, toy food stuffed toy, and toy construction set on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_construction_set"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 100
+    },
+    {
+        "instruction": "Bring the toy vehicle, toy food, and toy animal from the bedroom to the living room and place them on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 101
+    },
+    {
+        "instruction": "Help me move the candle and hand towel to the kitchen?  Place the spatula and c-clamp on the bedside table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hand_towel"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 102
+    },
+    {
+        "instruction": "Help me move the spoon, casserole, and toy animal to the appropriate places.  The spoon should be on the nightstand in the bedroom, the casserole should be on another table in the living room, and the toy animal should be on another table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "casserole"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 103
+    },
+    {
+        "instruction": "Help me move the spatula from the kitchen to the bedroom.  Place the c-clamp on the chest of drawers in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 104
+    },
+    {
+        "instruction": "Help me set up a romantic dinner for two in the living room.  Place a spatula, a c-clamp, and a candle on a new table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 105
+    },
+    {
+        "instruction": "Bring the toy vehicle, toy food, and stuffed toy from the bedroom to the living room and place them on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 106
+    },
+    {
+        "instruction": "Put the baseball bat on the bedroom counter.  Put the toy construction set on the bedroom counter.  Put the phone on the bedroom counter.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "baseballbat"
+                ],
+                "allowed_regions": [
+                    "entryway/foyer/lobby_0"
+                ],
+                "furniture_names": [
+                    "counter_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_construction_set"
+                ],
+                "allowed_regions": [
+                    "entryway/foyer/lobby_0"
+                ],
+                "furniture_names": [
+                    "counter_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "entryway/foyer/lobby_0"
+                ],
+                "furniture_names": [
+                    "counter_2"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 107
+    },
+    {
+        "instruction": "Help me create a cozy atmosphere in the living room.  Move the lamp and vase from the current locations to another table in the living room.  Also, bring the toy bee from the chest of drawers in bedroom to a table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 108
+    },
+    {
+        "instruction": "Move the spatula from the kitchen counter to the bedroom table.  Place the c-clamp from the bedroom table on the chest of drawers.  Move the candle from the chest of drawers to the bedroom counter?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 109
+    },
+    {
+        "instruction": "Move the spatula and c-clamp to the entryway counter.  Place the candle on the table in the living room?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 110
+    },
+    {
+        "instruction": "Move the spatula from the kitchen counter to the bedroom table.  Place the c-clamp on the bedroom chest of drawers.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 111
+    },
+    {
+        "instruction": "Help me rearrange the dining room.  Place the lamp, vase, and ramekin on the dining table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 112
+    },
+    {
+        "instruction": "Help me move things around.  Place the electronic cable on another living room table, the toy construction set on another living room table, the plant container on another living room table, and the toy pineapple on another living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_construction_set"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_pineapple"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 113
+    },
+    {
+        "instruction": "Please put the lamp, spoon, fork, and knife on another table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "fork"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "knife"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 114
+    },
+    {
+        "instruction": "Move the lamp, vase, and ramekin from the living room to the bedroom.  Move the laptop from the living room to the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 115
+    },
+    {
+        "instruction": "Help me tidy up the living room.  Move the phone, watch, credit card, and plant to another table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "cellphone"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "watch"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "credit_card"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 116
+    },
+    {
+        "instruction": "Help me prepare a dinner table for  people in the dining room.  Place a spatula, c-clamp, and candle on the table?  Also, bring a hand towel and an apple to the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "apple"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hand_towel"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 117
+    },
+    {
+        "instruction": "Help me create a comfortable working environment in the living room.  Move the electronic cable plant container, and sushi mat from their current locations to a new table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "sushi_mat"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 118
+    },
+    {
+        "instruction": "Help me move these objects from their current locations to the specified locations.  The lamp should be on the table in the dining room, the vase should be on the table in the dining room, and the ramekin should be on the table in the dining room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 119
+    },
+    {
+        "instruction": "Put the spoon, fork, and knife to another table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spoon"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "fork"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "knife"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 120
+    },
+    {
+        "instruction": "Move the lamp, vase, and ramekin from the living room to the dining room and place them on the dining table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 121
+    },
+    {
+        "instruction": "Help me move some objects around.  Place the kettle on the table, the electronic cable on the chair and the toy vehicle on the counter.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "kettle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chair_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 122
+    },
+    {
+        "instruction": "Help me move these objects from the kitchen counter to the bedroom table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 123
+    },
+    {
+        "instruction": "Help me move some toys from the bedroom to the dining room table.  Place the toy vehicle, toy animal, and toy food on the table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_animal"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 124
+    },
+    {
+        "instruction": "Help me move the lamp and vase to the dining room table, and the toy food to the bedroom nightstand.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 125
+    },
+    {
+        "instruction": "Move the lamp, cushion, and phone stand from the living room to the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "phone_stand"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 126
+    },
+    {
+        "instruction": "Move the electronic cable from the bedroom to the dining room and place it on the table.  Move the toy bee from the chest of drawers to another bedroom.  Place the lamp from the dining room on the bedroom table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 127
+    },
+    {
+        "instruction": "Help me move the lamp and vase from the coffee table to the dining table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 128
+    },
+    {
+        "instruction": "Help me rearrange the living room.  Place the lamp and vase on another living room table.  Leave the ramekin to the dining room table.  Leave the laptop stand on the living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop_stand"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 129
+    },
+    {
+        "instruction": "Take the spatula, c-clamp, hand towel, and shoe from the counter in the kitchen to the table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hand_towel"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "shoe"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 130
+    },
+    {
+        "instruction": "Help me create a cozy reading nook in the bedroom.  Place a cushion on another chair, a lamp and a candle on the coffee table, and a toy bee on another chest of drawers?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chair_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 131
+    },
+    {
+        "instruction": "Move the lamp from the dining table to the coffee table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 132
+    },
+    {
+        "instruction": "Help me exchange these objects.  Place the baseball bat on the chest of drawers in bedroom  and the toy construction set on the table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "baseballbat"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_construction_set"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 133
+    },
+    {
+        "instruction": "Help me rearrange the living room.  Move the lamp, vase, and ramekin to different tables.  Keep the laptop on the same chair.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 134
+    },
+    {
+        "instruction": "Help me rearrange the living room.  Move the lamp, vase, and ramekin to a new table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 135
+    },
+    {
+        "instruction": "Help me prepare a romantic dinner in bedroom .  Place a spatula, c-clamp, candle, and hand towel on the nightstand next to the bed?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hand_towel"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 136
+    },
+    {
+        "instruction": "Place the toy food on the dining table.  Put the stuffed toy on another bedroom chair. Put the milk frother cup in another chest of drawers in the bedroom.  Place the electronic cable in another chest of drawers in the bedroom.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chair_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "milk_frother_cup"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_2"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 137
+    },
+    {
+        "instruction": "Help me prepare dinner.  Place the spatula and c-clamp inside the kitchen cabinet.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 138
+    },
+    {
+        "instruction": "Help me decorate the living room.  Move the lamp, vase, and statue from the dining room table to the living room table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "statue"
+                ],
+                "allowed_regions": [
+                    "dining_room_0"
+                ],
+                "furniture_names": [
+                    "table_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 139
+    },
+    {
+        "instruction": "Help me prepare a candlelit dinner in the bedroom?  Place a spatula, c-clamp, candle, and hand towel on the table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "hand_towel"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 140
+    },
+    {
+        "instruction": "Help me create a play area in the living room.  Please place a toy vehicle, a toy food, and a stuffed toy on the coffee table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "stuffed_toy"
+                ],
+                "allowed_regions": [
+                    "bedroom_2"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 141
+    },
+    {
+        "instruction": "Help me set up a dinner table in the dining room.  Place a candle, a c-clamp, and a spatula on the table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "c-clamp"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 142
+    },
+    {
+        "instruction": "Help me move these objects to the specified locations.  The electronic cable should be on the table in bedroom , the toy bee should be on the other couch in the living room, and the glass should be on the table in the living room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "electronic_cable"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "couch_1"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "glass"
+                ],
+                "allowed_regions": [
+                    "bedroom_1"
+                ],
+                "furniture_names": [
+                    "table_6"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 143
+    },
+    {
+        "instruction": "Put the spatula on the other counter.  Then, move the toy vehicle to the other table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "spatula"
+                ],
+                "allowed_regions": [
+                    "kitchen_0"
+                ],
+                "furniture_names": [
+                    "counter_0"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "cushion"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 144
+    },
+    {
+        "instruction": "Help me move the lamp and vase from the living room to the kitchen counter.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 145
+    },
+    {
+        "instruction": "Rearrange the living room to make it cozy for working.  Move the laptop, candle, spectacles, and plant to the coffee table?",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "candle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "spectacles"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 146
+    },
+    {
+        "instruction": "Put the toy vehicle on another table.  Put the plant container on another table.  Put the book on another table.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_vehicle"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "plant_container"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "book"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 147
+    },
+    {
+        "instruction": "Help me clean up the living room.  Move the lamp, vase, and ramekin to a new table.  After that, put the laptop on the chair.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "chair_0"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 148
+    },
+    {
+        "instruction": "Help me move these objects to the dining room.  The lamp should be on the table in the dining room the vase on the table in the dining room, the ramekin on the table in the dining room, and the laptop stand on the table in the dining room.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "lamp"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_3"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "vase"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_4"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "ramekin"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "laptop_stand"
+                ],
+                "allowed_regions": [
+                    "living_room_0"
+                ],
+                "furniture_names": [
+                    "table_2"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 149
+    },
+    {
+        "instruction": "Help me clean up the bedroom.  Move the toy bee and toy food to the chair, and put the shoe away in the chest of drawers.",
+        "initial_state": [
+            {
+                "number": 1,
+                "object_classes": [
+                    "toy_bee"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_6"
+                ]
+            },
+            {
+                "number": 2,
+                "object_classes": [
+                    "toy_food"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chest_of_drawers_5"
+                ]
+            },
+            {
+                "number": 1,
+                "object_classes": [
+                    "shoe"
+                ],
+                "allowed_regions": [
+                    "bedroom_0"
+                ],
+                "furniture_names": [
+                    "chair_5"
+                ]
+            }
+        ],
+        "scene_id": "108736872_177263607",
+        "episode_id": 150
+    }
+]

@@ -1,0 +1,16 @@
+defaults:
+  - ../llm@llm: llama3
+log_dir: rlm/slurm/${exp_name}/log
+exp_name: default
+base_out_dir: rlm/running_servers/${exp_name}
+out_dir: rlm/running_servers/${exp_name}/server_list
+cluster: null
+cpu_per_task: 20
+days: 1
+account: siro
+ngpus: 2 # how many gpus
+n_servers: 1 # How many servers to run
+gres: "gpu:${ngpus}"
+hydra:
+  run:
+    dir: "."

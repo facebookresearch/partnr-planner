@@ -1,0 +1,246 @@
+{
+  "predicates": {
+    "is_on_top": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "object",
+        "is_kwarg": false
+      },
+      {
+        "name": "receptacle_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      },
+      {
+        "name": "is_same_receptacle",
+        "default": false,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_inside": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "object",
+        "is_kwarg": false
+      },
+      {
+        "name": "receptacle_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      },
+      {
+        "name": "is_same_receptacle",
+        "default": false,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_in_room": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "object",
+        "is_kwarg": false
+      },
+      {
+        "name": "room_ids",
+        "default": [],
+        "entity_type": "room",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      },
+      {
+        "name": "is_same_room",
+        "default": false,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_on_floor": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "object",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_next_to": [
+      {
+        "name": "entity_handles_a",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "entity_handles_b",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      },
+      {
+        "name": "is_same_b",
+        "default": false,
+        "entity_type": null,
+        "is_kwarg": true
+      },
+      {
+        "name": "l2_threshold",
+        "default": 0.5,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_clustered": [
+      {
+        "name": "*args",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      },
+      {
+        "name": "l2_threshold",
+        "default": 0.5,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_clean": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_dirty": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_filled": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_empty": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_powered_on": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ],
+    "is_powered_off": [
+      {
+        "name": "object_handles",
+        "default": [],
+        "entity_type": "receptacle",
+        "is_kwarg": false
+      },
+      {
+        "name": "number",
+        "default": 1,
+        "entity_type": null,
+        "is_kwarg": true
+      }
+    ]
+  },
+  "affordance_to_predicates": {
+    "turned on or off": ["is_powered_on", "is_powered_off"],
+    "cleaned under a faucet if dirty": ["is_clean", "is_dirty"],
+    "cleaned with a brush if dirty": ["is_clean", "is_dirty"],
+    "filled with water": ["is_filled", "is_empty"]
+  },
+  "object_state_negations": {
+    "is_clean": "is_dirty",
+    "is_filled": "is_empty",
+    "is_powered_on": "is_powered_off",
+    "is_dirty": "is_clean",
+    "is_empty": "is_filled",
+    "is_powered_off": "is_powered_on"
+  }
+}

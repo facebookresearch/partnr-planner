@@ -1,0 +1,35 @@
+oracle_clean:
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+  skill_config                :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleCleanSkill"
+      _partial_                : True
+
+    name                       : 'Clean'
+    description                : 'Used for navigating to and cleaning an object. You need to provide the name of the object to be cleaned. Example (Clean[cup_1]) will clean the cup_1. Some objects must be near a faucet to be cleaned (like a pan or other cooking utensil), others can be cleaned anywhere (such as dusting a table).'
+    max_skill_steps            : 1000
+    force_end_on_timeout       : True
+    sim_freq                   : 120 # Hz
+    oracle_clean_in_place_skill_config:
+      name                       : 'CleanInPlace'
+      description                : 'Used for cleaning an object. You need to provide the name of the object to clean.'
+      max_skill_steps            : 1000
+      force_end_on_timeout       : True
+      sim_freq                   : 120 # Hz
+      oracle_skill_duration_range: [10, 15]
+    nav_skill_config:
+      name                       : 'Navigate'
+      description                : 'Navigate towards a target object or receptacle, you need to provide the id of the place you want to navigate to.'
+      max_skill_steps            : 600
+      force_end_on_timeout       : True
+
+      dist_thresh                : 0.2
+      turn_thresh                : 0.45
+      forward_velocity           : 10.0
+      turn_velocity              : 10.0
+      navmesh_offset             : [[0.0,0.0]]
+      sim_freq                   : 120 # Hz
+      enable_backing_up          : False
+      # Disable exploration
+      enable_exploration         : False

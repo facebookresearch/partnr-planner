@@ -1,0 +1,12 @@
+defaults:
+  - /llm@plan_config.llm: llama
+  - /instruct@plan_config.instruct: finetuned_zero_shot
+
+_target_: 'habitat_llm.planner.ThoughtlessLLMPlanner'
+_recursive_: False
+_partial_: True
+
+plan_config:
+    replanning_threshold: 15
+    planning_mode: 'thoughtless'
+    action_representation: 'actions'

@@ -1,0 +1,5 @@
+# The tag below must match file name!
+greet_user_tool:
+  _target_   : habitat_llm.tools.general.GreetUserTool
+  _recursive_: False
+  llm_config  : ${agent.llm}

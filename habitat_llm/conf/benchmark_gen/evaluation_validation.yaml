@@ -1,0 +1,15 @@
+# @package _global_
+
+defaults:
+  - /habitat_conf          : oracle_spot_kinematic_multi_agent
+  - /habitat_conf/task     : rearrange_easy_multi_agent
+  - _self_
+
+env: habitat
+
+habitat:
+  environment:
+    iterator_options:
+      cycle: False
+      shuffle: False
+      group_by_scene: False

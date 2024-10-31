@@ -1,0 +1,35 @@
+# @package _global_
+
+defaults:
+  - /examples/planner_multi_agent_demo_config
+  - override /evaluation: decentralized_evaluation_runner_multi_agent
+  - override /planner@evaluation.agents.agent_0.planner: llm_zero_shot_react_planner
+  - override /instruct@evaluation.agents.agent_0.planner.plan_config.instruct: zero_shot_prompt
+  - override /agent@evaluation.agents.agent_0.config: oracle_rearrange_agent_motortoolsonly
+  - override /planner@evaluation.agents.agent_1.planner: llm_zero_shot_react_planner
+  - override /instruct@evaluation.agents.agent_1.planner.plan_config.instruct: zero_shot_prompt
+  - override /agent@evaluation.agents.agent_1.config: oracle_rearrange_object_states_agent_motortoolsonly
+
+
+agent_asymmetry: True
+world_model:
+  partial_obs: True
+
+evaluation:
+  agents:
+    agent_0:
+      planner:
+        plan_config:
+          constrained_generation: True
+          objects_response: True
+          replanning_threshold: 50
+          llm:
+            inference_mode: "rlm"
+    agent_1:
+      planner:
+        plan_config:
+          constrained_generation: True
+          objects_response: True
+          replanning_threshold: 50
+          llm:
+            inference_mode: "rlm"

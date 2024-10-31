@@ -1,0 +1,38 @@
+oracle_explore:
+
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleExploreSkill"
+      _partial_                : True
+
+    name                       : 'Explore'
+    description                : 'Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])'
+    # This threshold indicates how many steps the exploration skill can be called for
+    # The threshold for encompassed nav skill is overwritten by this number.
+    max_skill_steps            : 2400
+    force_end_on_timeout       : True
+
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False
+
+    nav_skill_config:
+      name                       : 'Navigate'
+      description                : 'Used for navigating to an entity. You must provide the name of the entity you want to navigate to.'
+      max_skill_steps            : 1200
+      force_end_on_timeout       : True
+
+      dist_thresh                : 0.2
+      turn_thresh                : 0.45
+      forward_velocity           : 10.0
+      turn_velocity              : 10.0
+      navmesh_offset             : [[0.0,0.0]]
+      sim_freq                   : 120 # Hz
+      enable_backing_up          : False
+      # Disable exploration
+      enable_exploration         : False

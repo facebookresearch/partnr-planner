@@ -1,0 +1,13 @@
+tqdm==4.66.3
+numpy==1.22
+scipy==1.7.3
+pandas==1.3.5
+spacy==3.0.6
+en-core-web-sm@https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0-py3-none-any.whl
+torch>=2.2.0
+sentencepiece==0.1.96
+transformers>=4.38
+datasets==2.1.0
+wandb==0.12.15
+protobuf==3.20.2
+fastcoref==2.1.6

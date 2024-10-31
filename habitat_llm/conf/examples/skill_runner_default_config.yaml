@@ -1,0 +1,66 @@
+# @package _global_
+
+defaults:
+  - /training@             : base_train
+  - /habitat_conf          : oracle_spot_kinematic_multi_agent
+  - /habitat_conf/task     : rearrange_easy_multi_agent
+  - /evaluation: centralized_evaluation_runner_multi_agent
+  - /habitat/simulator/agents@habitat.simulator.agents.agent_1: human
+  - /habitat/task/actions@habitat.task.actions.agent_1_humanoid_base_velocity: humanoid_base_velocity
+  - /habitat/task/actions@habitat.task.actions.agent_1_humanoidjoint_action: humanoidjoint_action
+  - /world_model@world_model: gt_graph
+  - /trajectory@trajectory : trajectory_logger
+
+  - /wandb_conf@                : own
+  - override /hydra/output : output
+  - override /llm@evaluation.planner.plan_config.llm: mock
+  - _self_
+
+world_model:
+  partial_obs: False
+
+device      : cpu
+instruction : ''
+mode: "dataset" # cli / dataset
+env: habitat
+num_runs_per_episode: 1
+num_proc: 1
+dry_run: False
+agent_asymmetry: False
+robot_agent_uid: 0
+human_agent_uid: 1
+paths:
+  results_dir: ${hydra:runtime.output_dir}/results
+  epi_result_file_path: "${paths.results_dir}/episode_result_log.csv"
+  run_result_file_path: "${paths.results_dir}/run_result_log.csv"
+  end_result_file_path: "${paths.results_dir}/end_result_log.csv"
+
+evaluation:
+  do_print: True
+  save_video: True
+  log_data: False
+habitat:
+  task:
+    pddl_domain_def: fp
+  simulator:
+    agents:
+      agent_1:
+        radius: 0.3
+        articulated_agent_type: 'KinematicHumanoid'
+        articulated_agent_urdf: 'data/humanoids/humanoid_data/female_0/female_0.urdf'
+        motion_data_path: "data/humanoids/humanoid_data/female_0/female_0_motion_data_smplx.pkl"
+  dataset:
+    scenes_dir: 'data/hssd-hab'
+  environment:
+    iterator_options:
+      shuffle: False
+      max_scene_repeat_steps: -1
+      max_scene_repeat_episodes: -1
+      group_by_scene: False
+
+hydra:
+  job:
+    name: 'habitat_llm'
+    chdir: False
+  run:
+    dir: outputs/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}-${file_stem:${habitat.dataset.data_path}}

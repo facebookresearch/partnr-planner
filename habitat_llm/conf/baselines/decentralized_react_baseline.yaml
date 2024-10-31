@@ -1,0 +1,31 @@
+# @package _global_
+
+defaults:
+  - /examples/planner_multi_agent_demo_config
+  - override /evaluation: decentralized_evaluation_runner_multi_agent
+  - override /llm@evaluation.agents.agent_0.planner.plan_config.llm: llama
+  - override /llm@evaluation.agents.agent_1.planner.plan_config.llm: llama
+  - override /agent@evaluation.agents.agent_1.config: oracle_rearrange_object_states_agent
+  - override /instruct@evaluation.agents.agent_0.planner.plan_config.instruct: few_shot_decentralized_partial_robot_spatialobjstates_instruct
+  - override /instruct@evaluation.agents.agent_1.planner.plan_config.instruct: few_shot_decentralized_partial_human_spatialobjstates_instruct
+
+agent_asymmetry: True
+world_model:
+  partial_obs: True
+
+evaluation:
+  agents:
+    agent_0:
+      planner:
+        plan_config:
+          constrained_generation: True
+          replanning_threshold: 50
+          llm:
+            inference_mode: "rlm"
+    agent_1:
+      planner:
+        plan_config:
+          constrained_generation: True
+          replanning_threshold: 50
+          llm:
+            inference_mode: "rlm"

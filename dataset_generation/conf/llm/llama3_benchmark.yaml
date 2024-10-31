@@ -1,0 +1,56 @@
+llm:
+  _target_    : habitat_llm.llm.Llama
+  _partial_   : True
+
+# Put your host number here if you are using RLM
+host          : ""
+port          : 4449
+name          : "llama"
+
+# The default of inference mode of llama2 is hf (hugging face)
+# You can choose between "hf" and "rlm" (remote language model)
+inference_mode          : hf
+
+generation_params:
+  # The llama2 model of hf to use:
+  # meta-llama/Llama-2-7b-hf
+  # meta-llama/Llama-2-13b-hf
+  # meta-llama/Llama-2-70b-hf
+  # Note that do NOT use chat version of model since
+  # the chat text will inject the conversation to
+  # to the text, which degrades the quality
+
+  # When on AWS use following checkpoint
+  engine          : "{path to llama model}/Meta-Llama-3.1-70B-Instruct"
+
+
+  # The prompt to start the generation from.
+  prompt        : ''
+
+  # The maximum number of tokens to generate in the completion.
+  max_tokens    : 4096
+
+  # float , optional, defaults to 1.0) — The value used to modulate the next token probabilities.
+  temperature   : 0.6
+
+  # Returns the best `n` out of `best_of` completions made on server side
+  n             : 1
+  best_of       : 1
+
+  # up to 4 sequences that stop the generation
+  stop          : '\n'
+
+  # Return a list of response or not
+  batch_response: False
+
+  # If we want to do sample method of text generation or not
+  do_sample     : True
+
+  # The parameter for repetition penalty. Between 1.0 and infinity. 1.0 means no penalty. Default to 1.0.
+  repetition_penalty : 1.0
+
+  # The number of highest probability vocabulary tokens to keep for top-k-filtering. Between 1 and infinity. Default to 50.
+  top_k         : 50
+
+  # If set to float < 1, only the most probable tokens with probabilities that add up to top_p or higher are kept for generation. Default to 1.0
+  top_p         : 1

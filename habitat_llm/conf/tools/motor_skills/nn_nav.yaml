@@ -1,0 +1,20 @@
+nn_nav:
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.NavSkillPolicy"
+      _partial_                : True
+
+    name                       : 'Navigate'
+    description                : 'Navigate towards a target object or receptacle, you need to provide the id returned by one of the find functions'
+
+    policy                     : "PointNavResNetPolicy"
+    action_distribution_type   : "gaussian"
+    load_ckpt_file             : "data/models/point_nav/point_nav_sample_version.torchscript"
+    obs_space                  : ["articulated_agent_arm_depth", "goal_to_agent_gps_compass", "humanoid_detector_sensor"]
+    action_space               : ["base_velocity"]
+    max_skill_steps            : 1200
+    nav_success_dis_threshold  : 1.5
+    force_end_on_timeout       : True

@@ -1,0 +1,107 @@
+<s>[INST] <<SYS>>
+You are a system that generates tasks for robots to perform with humans.
+Do not be verbose. Answer the question with no added qualifications or caveats. Just directly provide the answer in JSON.
+<</SYS>>
+
+You will be given a description of a house with objects and furniture and your task is to provide 5 instructions for tasks that a robot and a human could be doing together in that house, using the objects and furniture.
+
+For each task, provide the initial state of objects in the house, the instruction that should be performed, and final state of the objects after the instruction is performed.
+The inital and final state will contain a list of dictionaries, each with an object type, the number of objects of that type, their location on a furniture or floor, and the region of the house where they are in e.g., bedroom.
+
+Follow the next principles:
+
+1. The instruction should be given as if the human doing the task wanted the robot to perform part of it. In some cases the task will be done together, in other cases, the human and robot will be doing different tasks.
+2. The initial and final state should contain objects of different types, and sometimes multiple objects of a type.
+3. Some of the instructions should be semantically rich, in particular they should refer to classes or groups of objects.
+4. The instructions shouldn’t be detailed and explain all the steps, but the high-level.
+5. The robot can only rearrange objects and open containers.
+6. The instruction should contain a clear goal and atleast two steps associated with the goal.
+7. Ensure that instructions are diverse from each other.
+8. All the instructions MUST contain temporal order, specified using one of the words from this list: "after", "then", "before", "finally", "first". For instance: "Fill up the kettle and then turn it on. After that, bring two cups to the dinning table."
+
+
+You will be given all the pieces of furniture in the house.
+You will also be given all the different types of objects that you can use. You can specify multiple instances of an object type.
+Make sure you instruction includes the object types and furniture present in the list below.
+
+The house has the following rooms, each with the following furniture:
+{house_furniture}
+
+
+
+You can use the following objects:
+{objects_list}
+
+
+Here is an example with two instructions:
+
+JSON_OUTPUT: [
+{{
+    "inital state": [
+        {{
+            "object_type": "lamp",
+            "how_many": 1,
+            "furniture_name": "table_10",
+            "region": "living_room_1",
+            "state" : "on"
+        }},
+        {{
+            "object_type": "plate",
+            "how_many": 2,
+            "furniture_name": "table_8",
+            "region": "living_room_1"
+        }},
+        {{
+            "object_type": "glass",
+            "how_many": 2,
+            "furniture_name": "table_8",
+            "region": "living_room_1"
+        }},
+        {{
+            "object_type": "fork",
+            "how_many": 2,
+            "furniture_name": "table_8",
+            "region": "living_room_1"
+        }},
+    ],
+
+    "final state": [
+        {{
+            "object_type": "lamp",
+            "how_many": 1,
+            "furniture_name": "table_10",
+            "region": "living_room_1",
+            "state" : "off"
+        }},
+        {{
+            "object_type": "plate",
+            "how_many": 2,
+            "furniture_name": "cabinet_2",
+            "region": "kitchen_1"
+        }},
+        {{
+            "object_type": "glass",
+            "how_many": 2,
+            "furniture_name": "counter_1",
+            "region": "kitchen_1"
+        }},
+        {{
+            "object_type": "fork",
+            "how_many": 2,
+            "furniture_name": "cabinet_5",
+            "region": "kitchen_1"
+        }}
+        ],
+    "instruction": "Help me clear the living room. After I take plates and forks, please take the glasses and put them on the kitchen counter.",
+}}
+]
+
+
+Generate a JSON list with {k} instructions like the examples above.
+Your output should only be:
+JSON_OUTPUT: result_list
+where result_list should be a JSON list with the instructions.
+Let's think through this carefully, step by step.
+…
+
+[/INST]

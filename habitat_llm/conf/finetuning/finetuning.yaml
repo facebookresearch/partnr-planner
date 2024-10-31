@@ -1,0 +1,62 @@
+
+defaults:
+  - ../llm/@llm_config: llama
+  - _self_
+
+
+run_type: "train"
+init_distrib: True
+has_thought: False
+evaluate: False
+eval_checkpoint_dir: ""
+should_clip_dataset: True
+dataset:
+  _target_: habitat_llm.finetuning.dataset.build_dataset_simple
+  path: "{base path data folders}"
+  max_val_size: 1000
+  max_train_size: 1000
+  val:
+    - "{validation_folder}"
+  train:
+    - "{train_folder}"
+
+training_arguments:
+  batch_size: 2
+  epochs: 4
+  num_steps: -1
+  seed: 42
+  lr: 2.5e-4
+  quantize_model: False
+  gradient_accumulation_steps: 4
+  instruct: False
+  gradient_checkpointing: True
+  save_steps: 1000
+  eval_steps: 500
+  checkpoint_dir: ${hydra:sweep.dir}/${hydra:sweep.subdir}/checkpoints/
+
+eval:
+  batch_size: 2
+  eval_ckpt_path_dir: null
+  max_checkpoints: 100
+  print_output: False
+llm_config:
+  name: "{path to base model}"
+
+  generation_params:
+    do_sample: False
+    temperature: 0
+    max_tokens: 5000
+
+  finetune:
+    lora:
+      rank: 64
+      alpha: 128
+      dropout: 0.01
+
+      target_modules:
+        - "q_proj"
+        - "v_proj"
+
+wandb:
+  name: "finetuning_experiment"
+  project: "partnr"

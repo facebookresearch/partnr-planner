@@ -1,0 +1,20 @@
+defaults:
+
+  - /tools/motor_skills@tools.motor_skills:
+    # This yaml will be sequentially changed to use
+    # neural network skills
+    - nn_nav # neural network point nav skill
+    - nn_pick # neural network pick skill
+    - nn_place # neural network place skill
+    - nn_open # neural network open skill
+    - nn_close # neural network close skill
+    - nn_rearrange # neural network rearrange skill
+    - nn_explore # explore skill that calls neural network point nav skill
+    - wait
+  - /tools/perception@tools.perception:
+    - find_receptacle_tool
+    - find_object_tool
+    - find_agent_action_tool
+    - find_room_tool
+
+env: habitat

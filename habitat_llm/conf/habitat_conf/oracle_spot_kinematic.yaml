@@ -1,0 +1,62 @@
+# @package _global_
+
+defaults:
+  - /habitat: habitat_config_base
+  - /habitat_conf/habitat_agent@habitat.simulator.agents.main_agent: rgbd_head_rgbd_arm_rgbd_jaw_agent_vis
+  - /habitat_conf/dataset: collaboration_hssd
+  - _self_
+
+habitat:
+  gym:
+    # auto_name: RearrangeEasy
+    obs_keys:
+      - third_rgb
+      - articulated_agent_arm_depth
+      - articulated_agent_arm_rgb
+      - articulated_agent_arm_panoptic
+      - articulated_agent_jaw_depth
+      - articulated_agent_jaw_rgb
+      - articulated_agent_jaw_panoptic
+      - head_depth
+      - head_rgb
+      - relative_resting_position
+      - joint
+      - ee_pos
+      - is_holding
+      - dynamic_obj_goal_sensor
+      - dynamic_goal_to_agent_gps_compass
+      - dynamic_obj_start_sensor
+  environment:
+    max_episode_steps: 20000
+  simulator:
+    type: CollaborationSim-v0
+    additional_object_paths:
+      - "data/objects/ycb/configs/"
+      - "data/objects_ovmm/train_val/ai2thorhab/configs/objects"
+      - "data/objects_ovmm/train_val/amazon_berkeley/configs"
+      - "data/objects_ovmm/train_val/google_scanned/configs"
+      - "data/objects_ovmm/train_val/hssd/configs/objects"
+    concur_render: False
+    auto_sleep: True
+    agents:
+      main_agent:
+        radius: 0.3
+        articulated_agent_urdf: ./data/robots/hab_spot_arm/urdf/hab_spot_arm.urdf
+        articulated_agent_type: SpotRobot
+        joint_start_noise: 0.0
+        sim_sensors:
+          arm_rgb_sensor:
+            height: 480
+            width: 640
+            hfov: 55
+          arm_depth_sensor:
+            height: 480
+            width: 640
+            hfov: 55
+    kinematic_mode: True
+    step_physics: False
+    habitat_sim_v0:
+      allow_sliding: True
+      enable_physics: True
+  dataset:
+    data_path: data/datasets/replica_cad/rearrange/v1/{split}/rearrange.json.gz

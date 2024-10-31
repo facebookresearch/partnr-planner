@@ -1,0 +1,122 @@
+<s>[INST] <<SYS>>
+You are a system that generates tasks for robots to perform with humans.
+Do not be verbose. Answer the question with no added qualifications or caveats. Just directly provide the answer in JSON.
+<</SYS>>
+
+You will be given a description of a house with objects and furniture and your task is to provide instructions for tasks that a robot and a human could be doing together in that house, using the objects and furniture.
+
+For each task, provide the initial state of objects in the house, the instruction that should be performed, and final state of the objects after the instruction is performed.
+The inital and final state will contain a list of dictionaries, each with an object type, the number of objects of that type, their location on a furniture or floor, and the region of the house where they are in e.g., bedroom.
+
+Follow the next principles:
+
+1. The instruction should be given as if the human doing the task wanted the robot to perform part of it. In some cases the task will be done together, in other cases, the human and robot will be doing different tasks.
+2. The initial and final state should contain objects of different types, and sometimes multiple objects of a type.
+3. The human and robot can only rearrange objects and open containers.
+4. The instruction should contain a clear goal and atleast two steps STRICTLY relevant and associated with the goal.
+5. Ensure that instructions are diverse from each other.
+6. All the instructions should contain atleast one of the spatial specifiers from this list: "next to", "beside", "near", "side". These specifiers should be used in reference to objects and furniture only. For instance, "put knife next to the apple on the counter", "set spectacles besides the book on the table".
+
+
+You will be given all the pieces of furniture in the house.
+You will also be given all the different types of objects that you can use. You can specify multiple instances of an object type.
+Make sure you instruction includes the object types and furniture present in the list below.
+
+The house has the following rooms, each with the following furniture:
+{house_furniture}
+
+
+
+You can use the following objects:
+{objects_list}
+
+
+Here is an example with two instructions:
+
+JSON_OUTPUT: [
+{{
+    "initial state": [
+        {{
+            "object_type": "lamp",
+            "how_many": 1,
+            "furniture_name": "table_10",
+            "region": "living_room_0"
+        }},
+        {{
+            "object_type": "toy_airplane",
+            "how_many": 2,
+            "furniture_name": "floor",
+            "region": "bedroom_2"
+        }},
+        {{
+            "object_type": "book",
+            "how_many": 1,
+            "furniture_name": "chest_of_drawers_2",
+            "region": "bedroom_1"
+        }}
+    ],
+    "final state": [
+        {{
+            "object_type": "lamp",
+            "how_many": 1,
+            "furniture_name": "shelves_2",
+            "region": "living_room_0"
+        }},
+        {{
+            "object_type": "book",
+            "how_many": 1,
+            "furniture_name": "shelves_2",
+            "region": "living_room_0"
+        }},
+        {{
+            "object_type": "toy_airplane",
+            "how_many": 1,
+            "furniture_name": "shelves_2",
+            "region": "living_room_0"
+        }}
+    ],
+    "instruction": "Let's create a cozy reading nook! Move the lamp to the shelf and place the book on the shelf beside the lamp. Then, set the toy airplane on the shelf next to the book.",
+}},
+
+{{
+    "initial state": [
+        {{
+            "object_type": "kettle",
+            "how_many": 1,
+            "furniture_name": "cabinet_0",
+            "region": "kitchen_0"
+        }},
+        {{
+            "object_type": "cup",
+            "how_many": 4,
+            "furniture_name": "cabinet_0",
+            "region": "kitchen_0"
+        }}
+    ],
+    "final state": [
+        {{
+            "object_type": "kettle",
+            "how_many": 1,
+            "furniture_name": "table_1",
+            "region": "living_room_0"
+        }},
+        {{
+            "object_type": "cup",
+            "how_many": 2,
+            "furniture_name": "table_1",
+            "region": "living_room_0"
+        }}
+    ],
+    "instruction": "Help me set up table for a tea party. Can you please put the kettle on the table in living room and two cups next to it?",
+}}
+]
+
+
+Generate a JSON list with {k} instructions like the example above.
+Your output should only be:
+JSON_OUTPUT: result_list
+where result_list should be a JSON list with the instructions.
+Let's think through this carefully, step by step.
+…
+
+[/INST]

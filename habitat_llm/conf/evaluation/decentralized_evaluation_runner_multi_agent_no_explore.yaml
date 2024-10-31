@@ -1,0 +1,17 @@
+defaults:
+  - /agent/@agents.agent_0.config: oracle_rearrange_agent_no_explore
+  - /agent/@agents.agent_1.config: oracle_rearrange_agent_no_explore
+
+  - /planner/@agents.agent_1.planner: llm_planner
+  - /planner/@agents.agent_0.planner: llm_planner
+
+type: "decentralized"
+truncate_length: 50  # max characters in file name, long files names can raise OS errors
+save_video: True
+output_dir: ${hydra:runtime.output_dir}
+
+agents:
+  agent_0:
+    uid: 0
+  agent_1:
+    uid: 1

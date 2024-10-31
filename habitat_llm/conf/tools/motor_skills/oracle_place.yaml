@@ -1,0 +1,20 @@
+oracle_place:
+  _target_                     : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                  : False
+
+  skill_config                  :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OraclePlaceSkill"
+      _partial_                : True
+
+    name                       : 'Place'
+    description                : 'Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.'
+
+    max_skill_steps            : 25
+    force_end_on_timeout       : True
+
+    wait_time_for_obj_to_place : 10    # in steps
+    placing_distance           : 2.0
+    thresh_for_art_state         : 0.01  # Threshold to determine whether the receptacle is closed
+
+    enable_exploration         : False # Disable exploration

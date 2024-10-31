@@ -1,0 +1,8 @@
+# The tag below must match file name!
+find_receptacle_tool:
+  _target_   : habitat_llm.tools.perception.FindReceptacleTool
+  _recursive_: False
+  skill_config:
+    description: 'Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])'
+    name: FindReceptacleTool
+    prompt: FRT_FEW_SHOT

@@ -1,0 +1,34 @@
+ # @package _global_
+
+defaults:
+  - /habitat: habitat_config_base
+  - /habitat/simulator/agents@habitat.simulator.agents.main_agent: depth_head_agent_vis
+  - /habitat/dataset/rearrangement: replica_cad
+  - _self_
+
+# Config for empty task to explore the scene.
+habitat:
+  gym:
+    obs_keys:
+      - is_holding
+      - relative_resting_position
+  environment:
+    max_episode_steps: 0
+  simulator:
+    type: CollaborationSim-v0
+    seed: 100
+    additional_object_paths:
+      - "data/objects/ycb/configs/"
+    agents:
+      main_agent:
+        radius: 0.3
+        sim_sensors:
+          head_depth_sensor:
+            height: 256
+            width: 256
+    habitat_sim_v0:
+      allow_sliding: False
+      enable_physics: True
+  dataset:
+    #data_path: data/datasets/replica_cad/rearrange/v1/{split}/rearrange.json.gz
+    data_path: data/datasets/replica_cad/rearrange/v1/val/rearrange_easy.json.gz

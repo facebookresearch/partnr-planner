@@ -1,0 +1,44 @@
+# @package _global_
+defaults:
+  - /training@             : base_train
+  - /habitat_conf          : oracle_spot_kinematic
+  - /habitat_conf/task     : rearrange_single_agent_mapping
+  - /evaluation            : centralized_evaluation_runner_single_agent
+  - /world_model@world_model: gt_graph
+  - /trajectory@trajectory : trajectory_logger
+
+  - /wandb_conf@           : own
+  - override /hydra/output : output
+  - _self_
+
+world_model:
+  partial_obs: False
+robot_agent_uid: 0
+human_agent_uid: 1
+agent_asymmetry: False
+paths:
+  results_dir: ${hydra:runtime.output_dir}/results
+  epi_result_file_path: "${paths.results_dir}/episode_result_log.csv"
+  run_result_file_path: "${paths.results_dir}/run_result_log.csv"
+  end_result_file_path: "${paths.results_dir}/end_result_log.csv"
+
+device      : cuda
+instruction : ''
+mode: "dataset" # cli / dataset
+env: habitat
+num_runs_per_episode: 1
+dry_run: False
+perception:
+  models: []
+evaluation:
+  do_print: True
+  save_video: True
+habitat:
+  task:
+    pddl_domain_def: fp
+hydra:
+  job:
+    name: 'habitat_llm'
+    chdir: False
+  run:
+    dir: outputs/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}-${file_stem:${habitat.dataset.data_path}}

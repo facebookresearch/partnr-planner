@@ -1,0 +1,99 @@
+defaults:
+  - object: default
+
+object:
+  text_margin: -150 # This controls the space from the center position for the text label for the object
+  empty_state_linewidth: 3
+  bottom_text_extra_margin: 100 # This controls the height from the receptacle at which objects are placed
+  width: 100
+  height: 100
+  text_size: 14
+  rounding_size: 10
+  max_chars_per_line: 8
+  on_floor_linewidth: 3
+  on_floor_line_length_ratio: 1.2
+  extra_space_between_objects: 50
+
+
+receptacle:
+  state_text_relative_height: 70
+  horizontal_margin: 5
+  target_height: 500 # 0.35 * full_height
+  placeholder:
+    width: 100
+    height: 100
+    rounding_size: 10
+  placeholder_margin: 60
+
+room:
+  placeholder:
+    width: 100
+    height: 100
+    rounding_size: 10
+  box_alpha: 1.0
+  horizontal_margin: 10
+  vertical_margin: 10
+  top_pad: 100
+  bottom_pad: 175
+  left_pad: 20
+  right_pad: 20
+  placeholder_height: 0.75 # of room height
+  objects_height: 0.85 # of full height above bottom pad
+  min_width: 450
+  min_height: 700
+  object_horizontal_margin_fraction: 0.05 # Fraction on each side to skip
+  receptacle_horizontal_margin_fraction: 0.025 # Fraction on each side to skip
+  text_size: 14
+  border_width: 2
+  max_chars_per_line: 13
+  min_width_per_object: 6
+  disable_in_proposition_room_border: true
+  per_receptacle_state_padding: 100
+
+scene:
+  is_next_to:
+    legend_margin: 50
+    text_size: 13
+    linewidth: 2
+    endpoint_size: 50
+    top_pad: 80
+    bottom_pad: 80
+    width: 1500
+    height: 1000
+    horizontal_margin: 300
+    around_entity_spacing: 300
+    object:
+      text_margin: -150
+      bottom_text_extra_margin: 50
+      width: 100
+      height: 100
+      text_size: 13
+      rounding_size: 10
+      max_chars_per_line: 9
+    receptacle:
+      horizontal_margin: 5
+      target_height: 200 # 0.35 * full_height
+      placeholder:
+        width: 80
+        height: 80
+        rounding_size: 10
+      placeholder_margin: 0
+    room:
+      width: 300
+      height: 200
+      text_size: 13
+      text_margin: -150
+  arrow:
+    head_length: 25
+    head_width: 50
+    linewidth: 2
+    overhang: 0.9
+    label_fontsize: 12
+  target_width: 6000
+  temporal_scene_margin: 100
+  instruction_text_size: 22
+  per_instruction_line_height: 100
+  max_chars_per_line: 100
+
+width_inches: 20
+show_instruction: false

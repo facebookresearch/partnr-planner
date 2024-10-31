@@ -1,0 +1,22 @@
+oracle_nav:
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleNavSkill"
+      _partial_                : True
+
+    name                       : 'Navigate'
+    description                : 'Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])'
+    max_skill_steps            : 600
+    force_end_on_timeout       : True
+
+    dist_thresh                : 0.2
+    turn_thresh                : 0.45
+    forward_velocity           : 10.0
+    turn_velocity              : 10.0
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False

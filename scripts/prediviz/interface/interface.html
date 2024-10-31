@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Annotation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            background-color: #3E4C60;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 100%;
+            height: 100vh;
+            background-color: #3E4C60;
+            color: white;
+            padding: 1%;
+            box-shadow: none;
+            overflow: auto;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 2%;
+        }
+
+        .image {
+            max-width: 100%;
+        }
+
+        .button,
+        .button.is-large {
+            font-size: 1vw;
+            color: white;
+        }
+
+        /* Correct/Incorrect Buttons */
+        input[type="radio"] {
+            display: none;
+        }
+
+        .correctness-radio-buttons {
+            display: flex;
+            justify-content: space-between;
+            /* Even spacing */
+            align-items: center;
+            gap: 0vw;
+            /* Add space between buttons */
+            padding: 0.5vw 0.5vw;
+            /* Add padding to center the buttons */
+        }
+
+        .radio-label {
+            color: #2F3743;
+            background-color: white;
+            border: 0px solid #ccc;
+            border-radius: 0.2vw;
+            cursor: pointer;
+            font-size: 1vw;
+            width: 49%;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .span-radio {
+            display: block;
+            padding: 0.25vw 0.5vw;
+            border-radius: 0.2vw;
+            width: 100%;
+        }
+
+        input[type="radio"]:checked+.span-radio {
+            background-color: rgb(148, 202, 255);
+            color: #2F3743;
+        }
+
+        .radio-label:hover {
+            background-color: #4a90e2;
+            color: #2F3743;
+        }
+
+        .remarks-label,
+        .task-correctness-label,
+        .eval-correctness-label {
+            margin-top: 1vw;
+            font-size: 1vw;
+            font-weight: bold;
+            color: white;
+        }
+
+        .scrollable-options {
+            /* max-height: 7vh; */
+            height: 65%;
+            /* padding: 2vw 2vh 2vw 2vh; */
+            padding-left: 1vw;
+            padding-top: 0.75vh;
+            padding-bottom: 0.75vh;
+            /* overflow: auto; */
+            background-color: #2F3743;
+            width: 100%;
+            text-align: left;
+            margin-top: 1vw;
+            margin-bottom: 1vw;
+            font-size: 1vw;
+        }
+
+        .checkbox {
+            display: block;
+            position: relative;
+            margin-bottom: 0.5vw;
+            padding-left: 2vw;
+            cursor: pointer;
+            font-size: 1vw;
+            user-select: none;
+        }
+
+        .checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Custom checkboxes */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1vw;
+            width: 1vw;
+            background-color: #eee;
+            border-radius: 0.25vw;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .checkbox:hover input~.checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background color */
+        .checkbox input:checked~.checkmark {
+            background-color: #4a90e2;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .checkbox input:checked~.checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .checkbox .checkmark:after {
+            left: 0.35vw;
+            top: 0.15vw;
+            width: 0.35vw;
+            height: 0.67vw;
+            border: solid #2F3743;
+            border-width: 0 0.25vw 0.25vw 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox:hover {
+            color: #3273dc;
+        }
+
+        /* Input field */
+        .field {
+            width: 90%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        /* Episode Info Main (Top)*/
+        #episodeInfoMain {
+            font-size: 1.2vw;
+            text-align: center;
+            font-weight: bold;
+            margin: 0.5vw 0;
+            color: #ccc;
+        }
+
+        /* Episode Info */
+        #episodeInfo {
+            font-size: 1vw;
+            text-align: center;
+            font-weight: bold;
+            margin: 1vw 0;
+            color: #ccc;
+        }
+
+        /* Nav buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            /* Even spacing */
+            align-items: center;
+            gap: 0vw;
+            /* Add space between buttons */
+            padding: 0.5vw 0.5vw;
+            /* Add padding to center the buttons */
+        }
+
+        .button-nav {
+            color: #2F3743;
+            background-color: white;
+            padding: 0.5vw 1vw;
+            border: 0px solid #ccc;
+            border-radius: 0.2vw;
+            cursor: pointer;
+            font-size: 1vw;
+            font-weight: bold;
+            text-align: center;
+            width: 49%;
+        }
+
+        .button-nav:hover {
+            background-color: #4a90e2;
+            color: #2F3743;
+        }
+
+        /* Auxiliary Nav buttons */
+        .nav-buttons-aux {
+            display: flex;
+            justify-content: space-between;
+            /* Even spacing */
+            align-items: center;
+            gap: 0.2vw;
+            /* Add space between buttons */
+            padding: 0.5vw 0.5vw;
+            /* Add padding to center the buttons */
+        }
+
+        .go-to-container {
+            display: flex;
+            align-items: center;
+            gap: 0.0vw;
+            /* Spacing between the Go To button and input */
+        }
+
+        .button-nav-aux {
+            color: white;
+            background-color: #5A6978;
+            padding: 0.5vw 0.5vw;
+            /* Larger padding for uniform button size */
+            border: 0px solid #ccc;
+            border-radius: 0.2vw;
+            cursor: pointer;
+            font-size: 0.8vw;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .button-nav-aux:hover {
+            background-color: #4a90e2;
+            color: #2F3743;
+        }
+
+        #episodeInput {
+            font-size: 0.8vw;
+            color: white;
+            width: 5vw;
+            /* Adjust width to fit with the buttons */
+            background-color: #2F3743;
+            border: 0px;
+            padding: 0.5vw;
+        }
+
+        .instruction-text {
+            font-size: 1.5vw;
+            font-weight: bold;
+            text-align: center;
+            margin: 0.5vw auto;
+            width: 70%;
+        }
+
+        .other-comment-input {
+            background-color: #5A6978;
+            color: white;
+            font-size: 1vw;
+            width: 90%;
+            border: 0px;
+            border-radius: 0.2vw;
+            padding: 0.75vh 1vw;
+        }
+
+        .other-comment-input::placeholder {
+            color: white;
+            /* Change this to your desired placeholder color */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="instruction-text">
+            <p id="instructionText"></p>
+        </div>
+        <div class="episode-info-main">
+            <p id="episodeInfoMain"></p>
+        </div>
+
+        <div class="columns is-mobile">
+            <!--Image Column-->
+            <div class="column is-two-thirds">
+                <div class="image-container">
+                    <img id="currentImage" src="" alt="Image" class="image">
+                </div>
+            </div>
+            <!--Input Fields Column-->
+            <div class="column is-one-third">
+                <div class="field">
+
+                    <!-- Task buttons column -->
+                    <label class="task-correctness-label">Task:</label>
+                    <div class="correctness-radio-buttons">
+                        <label class="radio-label">
+                            <input type="radio" name="task_correctness" id="task_correctness_no" value="no">
+                            <span class="span-radio">Incorrect</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="task_correctness" id="task_correctness_yes" value="yes">
+                            <span class="span-radio">Correct</span>
+                        </label>
+                    </div>
+
+
+                    <label class="remarks-label">Remarks:</label>
+
+                    <div class="scrollable-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="task_remarks[]" value="Hallucination"> <span
+                                class="checkmark"></span>
+                            Hallucination
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="task_remarks[]" value="Already satisfied"> <span
+                                class="checkmark"></span>
+                            Already satisfied
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="task_remarks[]" value="Unresolvable ambiguity"> <span
+                                class="checkmark"></span>
+                            Unresolvable ambiguity
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="task_remarks[]" value="Contradiction"> <span
+                                class="checkmark"></span>
+                            Contradiction
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="task_remarks[]" value="Other"
+                                onchange="toggleOtherInput(this, 'task')"> <span class="checkmark"></span> Other
+                        </label>
+                        <input type="text" name="task_other_comment" class="other-comment-input"
+                            placeholder="Please specify..." style="display:none;" />
+                    </div>
+
+                    <!-- Evaluation function buttons -->
+
+                    <label class="eval-correctness-label">Evaluation Function:</label>
+                    <div class="correctness-radio-buttons">
+                        <label class="radio-label">
+                            <input type="radio" name="eval_correctness" value="no">
+                            <span class="span-radio">Incorrect</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="eval_correctness" value="yes">
+                            <span class="span-radio">Correct</span>
+                        </label>
+                    </div>
+
+                    <label class="remarks-label">Remarks:</label>
+                    <div class="scrollable-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Missing placement relation">
+                            <span class="checkmark"></span>
+                            Missing placement relation
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]"
+                                value="Incorrect relation (furniture should have been room)">
+                            <span class="checkmark"></span>
+                            Incorrect relation (furniture should have been room)
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Incorrect relation (other)">
+                            <span class="checkmark"></span>
+                            Incorrect relation (other)
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Incorrect ambiguity">
+                            <span class="checkmark"></span>
+                            Incorrect ambiguity
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Incorrect object/furniture/room">
+                            <span class="checkmark"></span>
+                            Incorrect object/furniture/room
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Incorrect/missing &quot;next-to&quot;">
+                            <span class="checkmark"></span>
+                            Incorrect/missing "next-to"
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]"
+                                value="Incorrect/missing same/different constraint">
+                            <span class="checkmark"></span>
+                            Incorrect/missing same/different constraint
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Incorrect temporal grouping">
+                            <span class="checkmark"></span>
+                            Incorrect temporal grouping
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="eval_remarks[]" value="Other"
+                                onchange="toggleOtherInput(this, 'eval')">
+                            <span class="checkmark"></span>
+                            Other
+                        </label>
+                        <input type="text" name="eval_other_comment" class="other-comment-input"
+                            placeholder="Please specify..." style="display:none;" />
+                    </div>
+
+                    <!-- Episode Information Paragraph (step x of y thing)-->
+                    <p id="episodeInfo"></p>
+                    <div class="nav-buttons-aux">
+                        <div class="go-to-container">
+                            <!-- Go To Button -->
+                            <button id="goToEpisodeBtn" class="button-nav-aux">Go To Episode</button>
+                            <input type="number" id="episodeInput" class="input" placeholder="Episode Number">
+                        </div>
+                        <!-- Save Button -->
+                        <button id="saveBtn" class="button-nav-aux">Save Now (&darr;)</button>
+                        <!-- Skip Button -->
+                        <button id="skipToNextBtn" class="button-nav-aux">Next Empty Step</button>
+                    </div>
+                    <div class="nav-buttons">
+                        <button id="prevBtn" class="button-nav">Previous (&larr;)</button>
+                        <button id="nextBtn" class="button-nav">Next (&rarr;)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let episodes = [];
+        let instructions = [];
+        let imageData = {};
+        let currentEpisodeIndex = 0;
+        let currentStepIndex = 0;
+        let autoSaveInterval;
+        let totalSteps = 0; // To store total number of steps
+        let annotatedSteps = {}; // To store annotated steps count
+
+        async function loadJSONData() {
+            const response = await fetch('/sample_episodes.json');
+            const jsonData = await response.json();
+
+            jsonData.episodes.forEach((episode, episodeIndex) => {
+                let steps = [];
+                for (let step in episode.viz_paths) {
+                    steps.push(episode.viz_paths[step]);
+                }
+                instructions.push(episode.instruction);
+                episodes.push(steps);
+            });
+
+            totalSteps = episodes.flat().length; // Calculate the total number of steps
+            initializeAnnotatedSteps(); // Initialize annotated steps
+
+            // Load saved annotations
+            await loadSavedAnnotations();
+
+            loadImage(currentEpisodeIndex, currentStepIndex); // Load the first image once JSON is loaded
+        }
+
+        function initializeAnnotatedSteps() {
+            episodes.forEach((episode, episodeIndex) => {
+                annotatedSteps[episodeIndex] = {};
+                episode.forEach((_, stepIndex) => {
+                    annotatedSteps[episodeIndex][stepIndex] = false;
+                });
+            });
+        }
+
+
+        async function loadSavedAnnotations() {
+            try {
+                const response = await fetch('./annotations.json');
+                if (response.ok) {
+                    const savedData = await response.json();
+                    imageData = savedData;
+
+                    // Update annotated steps from saved data
+                    for (const episodeIndex in imageData) {
+                        if (imageData.hasOwnProperty(episodeIndex)) {
+                            for (const stepIndex in imageData[episodeIndex]) {
+                                if (imageData[episodeIndex].hasOwnProperty(stepIndex)) {
+                                    let data = imageData[episodeIndex][stepIndex];
+                                    if (data.task_correctness && data.eval_correctness) {
+                                        annotatedSteps[episodeIndex][stepIndex] = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    console.log('No annotations file found, starting fresh.');
+                }
+            } catch (error) {
+                console.log('No annotations file found, starting fresh.');
+            }
+        }
+
+        function updateEpisodeInfo(episodeIndex, stepIndex) {
+            document.getElementById("episodeInfo").textContent = `Episode ${episodeIndex + 1}/${episodes.length} • Step ${stepIndex + 1}/${episodes[episodeIndex].length}`;
+            document.getElementById("episodeInfoMain").textContent = `${stepIndex + 1}/${episodes[episodeIndex].length}`;
+        }
+
+        function updateInstructionText(episodeIndex) {
+            document.getElementById("instructionText").textContent = "Task Instruction: " + instructions[episodeIndex];
+        }
+
+        function loadImage(episodeIndex, stepIndex) {
+            document.getElementById("currentImage").src = episodes[episodeIndex][stepIndex];
+            currentEpisodeIndex = episodeIndex;
+            currentStepIndex = stepIndex;
+            updateInputFields(currentEpisodeIndex, currentStepIndex);
+            updateEpisodeInfo(currentEpisodeIndex, currentStepIndex);
+            updateInstructionText(currentEpisodeIndex);
+        }
+
+        function goToEpisode() {
+            let episodeInput = document.getElementById("episodeInput").value;
+            if (episodeInput !== "") {
+                let episodeNumber = parseInt(episodeInput);
+                if (!isNaN(episodeNumber) && episodeNumber >= 1 && episodeNumber <= episodes.length) {
+                    saveData(currentEpisodeIndex, currentStepIndex);
+                    loadImage(episodeNumber - 1, 0); // Load the first step of the specified episode
+                    document.querySelector('.box').scrollTop = 0;
+                } else {
+                    alert("Invalid episode number. Please enter a number between 1 and " + episodes.length);
+                }
+            } else {
+                alert("Please enter an episode number.");
+            }
+        }
+
+        function updateInputFields(episodeIndex, stepIndex) {
+            let data = (imageData[episodeIndex] && imageData[episodeIndex][stepIndex]) || {};
+            let taskCorrectnessValue = data.task_correctness || "";
+            let taskRadioButtons = document.querySelectorAll('input[name="task_correctness"]');
+            taskRadioButtons.forEach(button => {
+                if (button.value === taskCorrectnessValue) {
+                    button.checked = true;
+                } else {
+                    button.checked = false;
+                }
+            });
+
+            let evalCorrectnessValue = data.eval_correctness || "";
+            let evalRadioButtons = document.querySelectorAll('input[name="eval_correctness"]');
+            evalRadioButtons.forEach(button => {
+                if (button.value === evalCorrectnessValue) {
+                    button.checked = true;
+                } else {
+                    button.checked = false;
+                }
+            });
+
+            let taskRemarks = data.task_remarks || [];
+            let taskRemarkCheckboxes = document.querySelectorAll('input[name="task_remarks[]"]');
+            taskRemarkCheckboxes.forEach(checkbox => {
+                checkbox.checked = taskRemarks.includes(checkbox.value);
+            });
+
+            let evalRemarks = data.eval_remarks || [];
+            let evalRemarkCheckboxes = document.querySelectorAll('input[name="eval_remarks[]"]');
+            evalRemarkCheckboxes.forEach(checkbox => {
+                checkbox.checked = evalRemarks.includes(checkbox.value);
+            });
+
+            if (taskRemarks.some(remark => typeof remark === 'object' && remark.comment)) {
+                document.querySelector('input[name="task_other_comment"]').value = taskRemarks.find(remark => typeof remark === 'object').comment;
+                document.querySelector('input[name="task_other_comment"]').style.display = "block";
+            }
+            else {
+                document.querySelector('input[name="task_other_comment"]').value = "";
+                document.querySelector('input[name="task_other_comment"]').style.display = "none";
+            }
+
+            if (evalRemarks.some(remark => typeof remark === 'object' && remark.comment)) {
+                document.querySelector('input[name="eval_other_comment"]').value = evalRemarks.find(remark => typeof remark === 'object').comment;
+                document.querySelector('input[name="eval_other_comment"]').style.display = "block";
+            }
+            else {
+                document.querySelector('input[name="eval_other_comment"]').value = "";
+                document.querySelector('input[name="eval_other_comment"]').style.display = "none";
+            }
+
+        }
+
+        function saveData(episodeIndex, stepIndex) {
+            let taskCorrectness = document.querySelector('input[name="task_correctness"]:checked')?.value;
+            let evalCorrectness = document.querySelector('input[name="eval_correctness"]:checked')?.value;
+            let taskRemarks = Array.from(document.querySelectorAll('input[name="task_remarks[]"]:checked')).map(checkbox => checkbox.value);
+            let evalRemarks = Array.from(document.querySelectorAll('input[name="eval_remarks[]"]:checked')).map(checkbox => checkbox.value);
+
+            let taskOtherComment = document.querySelector('input[name="task_other_comment"]').value;
+            if (taskRemarks.includes("Other") && taskOtherComment) {
+                taskRemarks.push({ "comment": taskOtherComment });
+            }
+
+            let evalOtherComment = document.querySelector('input[name="eval_other_comment"]').value;
+            if (evalRemarks.includes("Other") && evalOtherComment) {
+                evalRemarks.push({ "comment": evalOtherComment });
+            }
+
+            let data = {
+                episode: episodeIndex,
+                step: stepIndex,
+                image: episodes[episodeIndex][stepIndex],
+                task_correctness: taskCorrectness,
+                eval_correctness: evalCorrectness,
+                task_remarks: taskRemarks,
+                eval_remarks: evalRemarks,
+            };
+            if (!imageData[episodeIndex]) {
+                imageData[episodeIndex] = {};
+            }
+            imageData[episodeIndex][stepIndex] = data;
+            if (taskCorrectness && evalCorrectness) {
+                annotatedSteps[episodeIndex][stepIndex] = true; // Mark this step as annotated
+            }
+        }
+
+        async function saveImageDataToJSON(showAlert = true) {
+            saveData(currentEpisodeIndex, currentStepIndex);
+            // go over image data and remove steps where both task_correctness and eval_correctness are not set
+            for (const episodeIndex in imageData) {
+                if (imageData.hasOwnProperty(episodeIndex)) {
+                    for (const stepIndex in imageData[episodeIndex]) {
+                        if (imageData[episodeIndex].hasOwnProperty(stepIndex)) {
+                            let data = imageData[episodeIndex][stepIndex];
+                            if (!data.task_correctness && !data.eval_correctness) {
+                                delete imageData[episodeIndex][stepIndex];
+                            }
+                        }
+                    }
+                }
+            }
+            let jsonData = JSON.stringify(imageData, null, 2);
+
+            try {
+                const response = await fetch('/save_annotations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: jsonData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to save annotations');
+                }
+
+                if (showAlert) {
+                    alert('Annotations saved successfully');
+                }
+                else {
+                    console.log('Autosave triggered. Saved annotations.')
+                }
+            } catch (error) {
+                console.error('Error saving annotations:', error);
+                if (showAlert) {
+                    alert('Failed to save annotations');
+                }
+            }
+        }
+
+        function prevImage() {
+            saveData(currentEpisodeIndex, currentStepIndex);
+            if (currentStepIndex > 0) {
+                loadImage(currentEpisodeIndex, currentStepIndex - 1);
+            } else if (currentEpisodeIndex > 0) {
+                loadImage(currentEpisodeIndex - 1, episodes[currentEpisodeIndex - 1].length - 1);
+            }
+            document.querySelector('.box').scrollTop = 0;
+        }
+
+        function nextImage() {
+            saveData(currentEpisodeIndex, currentStepIndex);
+            if (currentStepIndex < episodes[currentEpisodeIndex].length - 1) {
+                loadImage(currentEpisodeIndex, currentStepIndex + 1);
+            } else if (currentEpisodeIndex < episodes.length - 1) {
+                loadImage(currentEpisodeIndex + 1, 0);
+            }
+            document.querySelector('.box').scrollTop = 0;
+        }
+
+        function skipToNextStep() {
+            let found = false;
+
+            // Iterate over all episodes and steps to find the next step to annotate
+            for (let episodeIndex = currentEpisodeIndex; episodeIndex < episodes.length; episodeIndex++) {
+                let startStep = (episodeIndex === currentEpisodeIndex) ? currentStepIndex + 1 : 0;
+                for (let stepIndex = startStep; stepIndex < episodes[episodeIndex].length; stepIndex++) {
+                    let data = imageData[episodeIndex] && imageData[episodeIndex][stepIndex];
+                    if (!data || (!data.task_correctness && !data.eval_correctness)) {
+                        loadImage(episodeIndex, stepIndex);
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) break;
+            }
+
+            // If no more steps found in the current episode, move to the next episode
+            if (!found) {
+                for (let episodeIndex = currentEpisodeIndex + 1; episodeIndex < episodes.length; episodeIndex++) {
+                    for (let stepIndex = 0; stepIndex < episodes[episodeIndex].length; stepIndex++) {
+                        let data = imageData[episodeIndex] && imageData[episodeIndex][stepIndex];
+                        if (!data || (!data.task_correctness && !data.eval_correctness)) {
+                            loadImage(episodeIndex, stepIndex);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
+            }
+
+            if (!found) {
+                alert("All steps are fully annotated.");
+            }
+        }
+        function startAutosave() {
+            // Save data every 5 seconds (5000 milliseconds)
+            autosaveInterval = setInterval(async () => {
+                await saveImageDataToJSON(false);
+            }, 5000);
+        }
+
+        function stopAutosave() {
+            if (autosaveInterval) {
+                clearInterval(autosaveInterval);
+            }
+        }
+
+        function toggleOtherInput(checkbox, type) {
+            let inputField = document.querySelector(`input[name="${type}_other_comment"]`);
+            if (checkbox.checked) {
+                inputField.style.display = "block"; // Show the input field
+            } else {
+                inputField.style.display = "none";  // Hide the input field
+                inputField.value = "";  // Clear the input field
+            }
+        }
+
+        document.getElementById("prevBtn").addEventListener("click", prevImage);
+        document.getElementById("nextBtn").addEventListener("click", nextImage);
+        document.getElementById("goToEpisodeBtn").addEventListener("click", goToEpisode);
+        document.getElementById("skipToNextBtn").addEventListener("click", skipToNextStep);
+        document.getElementById("saveBtn").addEventListener("click", function () {
+            saveImageDataToJSON(true); // Show alert on explicit save
+        });
+        window.onload = function () {
+            loadJSONData();
+            startAutosave();
+
+            // Event listener for arrow key navigation
+            document.addEventListener("keydown", function (event) {
+                if (event.keyCode === 37) {
+                    // Left arrow key pressed
+                    prevImage();
+                } else if (event.keyCode === 39) {
+                    // Right arrow key pressed
+                    nextImage();
+                }
+                else if (event.keyCode === 40) {
+                    // Down arrow key pressed
+                    saveImageDataToJSON(true);
+                }
+            });
+        };
+        window.onbeforeunload = function () {
+            stopAutosave();
+        };
+    </script>
+
+</body>
+
+</html>

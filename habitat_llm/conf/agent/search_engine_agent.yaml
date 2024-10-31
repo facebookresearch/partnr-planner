@@ -1,0 +1,7 @@
+defaults:
+  - /llm: openai
+
+  - /tools/general:
+    - search_engine_tool
+
+  - /llm/instruct: zero_shot

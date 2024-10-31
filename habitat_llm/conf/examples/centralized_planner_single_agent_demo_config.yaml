@@ -1,0 +1,30 @@
+# @package _global_
+defaults:
+  - _self_
+  - /training@             : base_train
+  - /habitat_conf          : oracle_spot_kinematic_single_agent
+  - /habitat_conf/task     : rearrange_easy_single_agent
+  - /planner               : habitat_centralized_planner_single_agent
+
+  - /wandb_conf@           : own
+  - override /hydra/output : output
+  - override /habitat/dataset/rearrangement: hssd
+
+partial_obs : False
+gt_mode : True
+
+device      : cuda
+instruction : ''
+mode: "dataset" # cli / dataset
+env: habitat
+num_runs_per_episode: 1
+
+habitat:
+  task:
+    pddl_domain_def: fp
+  dataset:
+    data_path: data/datasets/hssd_test/hssd_ycb_llm.json.gz
+
+hydra:
+  job:
+    name: 'habitat_llm'

@@ -1,0 +1,17 @@
+defaults:
+  - /llm@plan_config.llm: llama
+  - /instruct@plan_config.instruct: few_shot_decentralized_partial_obs_uncoordinated_spatial
+
+_target_: 'habitat_llm.planner.LLMPlanner'
+_recursive_: False
+_partial_: True
+
+plan_config:
+    replanning_threshold: 25 # max number of times the LLM is allowed to plan to finish the task
+    planning_mode: "cot"
+    constrained_generation: False
+    enable_rag: False # If we want to use RAG or not
+    rag_dataset_dir: "" # The path to the rag_data_source_name folder
+    rag_data_source_name: "" # rag_data_source_name folder itself
+    example_type: "react" # The prompting format
+    centralized: False

@@ -1,0 +1,133 @@
+You are a system that generates tasks for robots to perform with humans.
+Do not be verbose. Answer the question with no added qualifications or caveats. Directly provide the answer in JSON.
+
+You will be given a description of a house with objects and furniture. You will also be given a sample task. Your job is to modify this sample task so that it is applicable to this house.
+
+Here is an example:
+
+Task: [
+{{
+    "instruction": "Move the kettle and the jug from the living room to the kitchen and fill the kettle with water, then turn on the kettle. Finally clean the living room table.",
+    "initial_state": [
+        {{
+            "number": 1,
+            "object_classes": [
+                "kettle"
+            ],
+            "furniture_names": [
+                "table_0"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }},
+        {{
+            "number": 1,
+            "object_classes": [
+                "jug"
+            ],
+            "furniture_names": [
+                "table_1"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }}
+    ]
+}}
+]
+
+JSON_OUTPUT: [
+{{
+    "instruction": "Move the jug, kettle, teapot, and cup from the dining table to the kitchen and fill all with water. Turn on the lamp, and clean the dining table.",
+    "initial_state": [
+        {{
+            "number": 1,
+            "object_classes": [
+                "jug"
+            ],
+            "furniture_names": [
+                "table_1"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }},
+        {{
+            "number": 1,
+            "object_classes": [
+                "kettle"
+            ],
+            "furniture_names": [
+                "table_1"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }},
+        {{
+            "number": 1,
+            "object_classes": [
+                "teapot"
+            ],
+            "furniture_names": [
+                "table_1"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }},
+        {{
+            "number": 1,
+            "object_classes": [
+                "cup"
+            ],
+            "furniture_names": [
+                "table_0"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }},
+        {{
+            "number": 1,
+            "object_classes": [
+                "lamp"
+            ],
+            "furniture_names": [
+                "table_1"
+            ],
+            "allowed_regions": [
+                "living_room_0"
+            ]
+        }}
+    ]
+}}
+]
+
+The house has the following rooms, each with the following furniture:
+{house_furniture}
+
+You can use the following objects:
+{objects_list}
+
+Here is the task:
+Task: [
+{task}
+]
+
+Modify this task to generate a JSON list of tasks, using the rooms and furniture from this house.
+
+Just change the objects and furniture.
+
+Make sure initial and final locations of objects are different.
+
+Include actions such as turn on/off, fill and clean.
+
+Make tasks multi-step, consisting of more than one object and action.
+
+Your output should only be:
+JSON_OUTPUT: result_list
+where result_list should be a JSON list with the tasks.
+
+Generate {k} tasks.

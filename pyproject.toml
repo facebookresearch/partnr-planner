@@ -1,0 +1,38 @@
+[tool.isort]
+skip_glob = ["*/third_party/*"]
+profile = 'black'
+treat_comments_as_code = "# %%"
+
+[tool.ruff]
+exclude = [
+    ".git",
+    "__pycache__",
+    "data",
+    "docs",
+    "third_party",
+    "*__init__.py*"
+]
+ignore = [
+    "A003",
+    "B018",
+    "B9",
+    "C401",
+    "C402",
+    "C408",
+    "RET504",
+    "RET505",
+    "SIM105",
+    "PERF2",
+    "PERF4",
+]
+line-length = 88
+select = [
+    "A",
+    "B",
+    "C4",
+    "F",
+    "RET",
+    "SIM",
+    "W",
+    "PERF",
+]

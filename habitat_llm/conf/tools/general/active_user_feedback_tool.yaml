@@ -1,0 +1,7 @@
+# The tag below must match file name!
+active_user_feedback_tool:
+  _target_   : habitat_llm.tools.general.ActiveUserFeedbackTool
+  _recursive_: False
+  tool_config:
+    name: 'Ask User'
+    description: "Ask feedback from the user, you can ask the user to clarify when a goal isn't clear or whenever you've tried to do something several times without success, the user might also ask you to stop"

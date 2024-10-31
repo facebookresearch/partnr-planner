@@ -1,0 +1,19 @@
+oracle_open:
+  _target_                     : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                  : False
+
+  skill_config                  :
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleOpenSkill"
+      _partial_                : True
+
+    name                       : 'Open'
+    description                : 'Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])'
+
+    max_skill_steps            : 10
+    at_resting_threshold       : 0.15
+    force_end_on_timeout       : True
+
+    max_dis_interact_art       : 2.0  # the max distance for opening the door
+
+    enable_exploration         : False # whether to enable exploration

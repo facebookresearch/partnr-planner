@@ -1,0 +1,64 @@
+oracle_rearrange:
+
+  _target_                   : 'habitat_llm.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+
+    skill                      :
+      _target_                 : "habitat_llm.tools.motor_skills.OracleRearrangeSkill"
+      _partial_                : True
+
+    name                       : 'Rearrange'
+    # description                : 'Used for moving an object from its current location to the target furniture. You need to provide the names of the object and target furniture. "Used for placing an object, you must provide the name of the furniture where you want to place the object. Here are how you call skills: (1) place apple_0 on floor: do rearrange[apple_0, floor]; (2) place apple_0 on floor next to table_0: do rearrange[apple_0, floor, next to, table_0]; (3) place apple_0 on table_0 next to orange_0, you do rearrange[apple_0, table_0, next to, orange_0]; (4) place apple_0 on table_0, you do rearrange[apple_0, table_0]; (5) place apple_0 inside chest_of_drawers_52, you do rearrange[apple_0, chest_of_drawers_52, inside]; (6) place apple_0 on chest_of_drawers_52, you do rearrange[apple_0, chest_of_drawers_52]; (7) place apple_0 inside chest_of_drawers_52 next to orange_0, you do rearrange[apple_0, chest_of_drawers_52, inside, next to, orange_0]; (8) place apple_0 on chest_of_drawers_52 next to orange_0, you do rearrange[apple_0, chest_of_drawers_52, on, next to, orange_0];"'
+    description                : 'Used for moving an object from its current location to the target location. You need to provide the name of the object to be moved, the name of the furniture where is should be moved, spatial relation ("on" or "within") describing the relation between the object and furniture. This will automatically pick the specified object and move to the target furniture and attempt to place it. In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template Rearrange[<object_to_be_moved>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.'
+    max_skill_steps            : 1000
+    force_end_on_timeout       : True
+
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False
+
+    nav_skill_config:
+      name                       : 'Navigate'
+      description                : 'Used for navigating to an entity. You must provide the name of the entity you want to navigate to.'
+      max_skill_steps            : 600
+      force_end_on_timeout       : True
+
+      dist_thresh                : 0.2
+      turn_thresh                : 0.45
+      forward_velocity           : 10.0
+      turn_velocity              : 10.0
+      navmesh_offset             : [[0.0,0.0]]
+      sim_freq                   : 120 # Hz
+      enable_backing_up          : False
+      # Disable exploration
+      enable_exploration         : False
+
+    pick_skill_config:
+      name                       : 'Pick'
+      description                : 'Used for picking up an object. You must provide the name of the object to be picked.'
+
+      max_skill_steps            : 25
+      force_end_on_timeout       : True
+
+      wait_time_for_obj_to_grasp : 10    # in steps
+      thresh_for_art_state         : 0.01  # Threshold to determine whether the receptacle is closed
+      grasping_distance          : 2.0   # Distance threshold of picking up the object
+
+      enable_exploration         : False # Disable exploration
+
+
+    place_skill_config:
+      name                       : 'Place'
+      description                : "Used for placing an object, you must provide the name of the furniture where you want to place the object."
+
+      max_skill_steps            : 25
+      force_end_on_timeout       : True
+
+      wait_time_for_obj_to_place : 10    # in steps
+      placing_distance           : 2.0
+      thresh_for_art_state         : 0.01  # Threshold to determine whether the receptacle is closed
+
+      enable_exploration         : False # Disable exploration

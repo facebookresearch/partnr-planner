@@ -1,0 +1,5 @@
+# The tag below must match file name!
+calculator_tool:
+  _target_   : habitat_llm.tools.general.CalculatorTool
+  _recursive_: False
+  llm_config  : ${agent.llm}
