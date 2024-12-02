@@ -156,7 +156,7 @@ jobs:
     - name: run tests
       run: |-
         export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
-        conda activate parntr
+        conda activate partnr
         cd partnr-planner
         python -m pytest habitat_llm/tests
         python -m pytest dataset_generation/tests
