@@ -6,8 +6,8 @@ runs:
     # OpenEXR requires CMake 3.12.
     run: |
       echo $(date +%F) > ./date
-      echo $(git ls-remote https://github.com/facebookresearch/habitat-llm.git HEAD | awk '{ print $1}') > ./habllm_sha
-      cat ./habllm_sha
+      echo $(git ls-remote https://github.com/facebookresearch/partnr-planner.git HEAD | awk '{ print $1}') > ./partnr_sha
+      cat ./partnr_sha
       wget https://cmake.org/files/v3.12/cmake-3.12.4-Linux-x86_64.sh
       sudo mkdir /opt/cmake312
       sudo sh ./cmake-3.12.4-Linux-x86_64.sh --prefix=/opt/cmake312 --skip-license
