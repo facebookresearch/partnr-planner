@@ -1,0 +1,165 @@
+name: Install and test
+on:
+  pull_request: {}
+  push:
+    branches:
+    - main
+    tags: [ "v*" ]
+  schedule:
+    - cron: "0 5 * * *"
+    #this is 9PM PST
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.1
+    - name: Setup python
+      uses: actions/setup-python@v5.0.0
+      with:
+        python-version: '3.9.16'
+    - name: install dependencies
+      run: |-
+        pip install -U pip setuptools pre-commit
+        # Install the hooks now so that they'll be cached
+        pre-commit install-hooks
+    - name: Check Code Style using pre-commit
+      run: |-
+        SKIP=eslint pre-commit run --show-diff-on-failure --all-files
+
+  python_lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.1
+    - name: Setup python
+      uses: actions/setup-python@v5.0.0
+      with:
+        python-version: '3.9.16'
+    - name: setup
+      run: |-
+        pip install black==23.1.0 --progress-bar off
+        pip install "isort[pyproject]" numpy --progress-bar off
+        pip install mypy==0.991 types-mock types-Pillow types-tqdm types-PyYAML --progress-bar off
+        pip install -r requirements.txt --progress-bar off
+    - name: run black
+      run: |-
+        black --version
+        ls -la
+        black --exclude '/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist)' habitat_llm/ dataset_generation/ --diff
+        black --exclude '/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist)' habitat_llm/ dataset_generation/ --check
+    - name: run isort
+      run: |-
+        isort --version
+        isort habitat_llm/. dataset_generation/. --diff
+        isort habitat_llm/. dataset_generation/. --check-only
+
+  install_and_test_ubuntu:
+    runs-on: 4-core-ubuntu-gpu-t4
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+    - uses: actions/checkout@v4.1.1
+      with:
+        path: "./partnr-planner"
+    - uses: "./partnr-planner/.github/actions/install_ubuntu_deps"
+    - uses: "./partnr-planner/.github/actions/install_ubuntu_gpu_deps"
+    - name: Install pytorch
+      run: |-
+        export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
+        conda activate partnr
+        conda install -y pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=12.4 -c pytorch -c nvidia
+        echo "Validating Pytorch Installation"
+        # Check that pytorch is installed with CUDA.
+        python -c 'import torch; torch.cuda.set_device(0)'
+    - name: Install habitat-sim version tag
+      run: |-
+        #give cmake ownership to the runner for installation
+        sudo chown runner -R /opt/cmake312/
+        #activate conda env
+        export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
+        conda activate partnr
+        conda install habitat-sim=0.3.2 withbullet headless -c conda-forge -c aihabitat -y
+    - name: Download test data
+      run: |-
+        # Disable clone protection for git lfs
+        export GIT_CLONE_PROTECTION_ACTIVE=false
+
+        git --version
+        git-lfs --version
+        export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
+        conda init
+        source ~/.bashrc
+        conda activate partnr
+        conda install -y gitpython git-lfs
+        cd partnr-planner
+        git lfs install
+
+        # get the standard test assets from the downloader
+        python -m habitat_sim.utils.datasets_download --uids ci_test_assets hab_spot_arm rearrange_task_assets hab3_bench_assets --data-path data/ --no-replace --no-prune
+        ls -la data/scene_datasets/habitat-test-scenes/
+        ln -s versioned_data/hab3_bench_assets/humanoids/ data/humanoids
+
+        #TODO: replace these specific downloads with dataset downloader calls with next version update
+        # Get HSSD mini dataset and OVMM_objects for testing
+        git clone https://huggingface.co/datasets/ai-habitat/OVMM_objects data/objects_ovmm --recursive
+        cd data/objects_ovmm
+        git lfs pull
+        cd ../..
+        git clone https://huggingface.co/datasets/ai-habitat/hssd-partnr-ci data/versioned_data/hssd-partnr-ci
+        cd data/versioned_data/hssd-partnr-ci
+        git lfs pull
+        cd ../../..
+        ln -s versioned_data/hssd-partnr-ci data/hssd-partnr-ci
+        # Get skills and the episode dataset for testing
+        git clone --single-branch --branch ci https://huggingface.co/datasets/ai-habitat/partnr_episodes data/versioned_data/partnr_episodes
+        cd data/versioned_data/partnr_episodes
+        git lfs pull
+        cd ../../..
+
+        #post process symblinking for convenience
+        cd data
+        # Create a folder for skills
+        ln -s versioned_data/partnr_episodes/checkpoints models
+        # Create a folder for RAG dataset to set RAG
+        ln -s versioned_data/partnr_episodes/test_rag test_rag
+        # Create a folder for episode datasets
+        mkdir -p datasets
+        ln -s ../versioned_data/partnr_episodes datasets/partnr_episodes
+        cd ..
+
+    - name: Install submodules and partnr
+      run: |-
+
+        #give cmake ownership to the runner for installation
+        sudo chown runner -R /opt/cmake312/
+        #activate conda env
+        export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
+        conda activate partnr
+        cd partnr-planner
+
+        #clone submodules
+        git submodule sync
+        git submodule update --init --recursive
+
+        # Install submodules
+        pip install -e third_party/habitat-lab/habitat-lab
+        pip install -e third_party/habitat-lab/habitat-baselines
+        pip install -e third_party/transformers-CFG
+
+        # Install requirements
+        pip install -r requirements.txt
+
+        # install the library
+        pip install -e .
+
+    - name: run tests
+      run: |-
+        export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
+        conda activate partnr
+        cd partnr-planner
+        python -m pytest habitat_llm/tests
+        python -m pytest dataset_generation/tests
+    #NOTE: use the below to debug with ssh: simply move this "job" just before the crashing job to intercept the workflow
+    #- name: Debugging with tmate
+    #  uses: mxschmitt/action-tmate@v3.18

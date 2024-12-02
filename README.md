@@ -16,13 +16,13 @@ If you use our codebase or dataset in your research, please cite the [PARTNR](ht
 
 ```
 @misc{chang2024partnrbenchmarkplanningreasoning,
-      title={PARTNR: A Benchmark for Planning and Reasoning in Embodied Multi-agent Tasks}, 
+      title={PARTNR: A Benchmark for Planning and Reasoning in Embodied Multi-agent Tasks},
       author={Matthew Chang and Gunjan Chhablani and Alexander Clegg and Mikael Dallaire Cote and Ruta Desai and Michal Hlavac and Vladimir Karashchuk and Jacob Krantz and Roozbeh Mottaghi and Priyam Parashar and Siddharth Patki and Ishita Prasad and Xavier Puig and Akshara Rai and Ram Ramrakhya and Daniel Tran and Joanne Truong and John M. Turner and Eric Undersander and Tsung-Yen Yang},
       year={2024},
       eprint={2411.00081},
       archivePrefix={arXiv},
       primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2411.00081}, 
+      url={https://arxiv.org/abs/2411.00081},
 }
 ```
 
