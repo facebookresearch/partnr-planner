@@ -1,0 +1,3 @@
+_target_: 'habitat_llm.planner.random_rearrange_planner.RandomRearrangePlanner'
+_recursive_: True
+_partial_: True

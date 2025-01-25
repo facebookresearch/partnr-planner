@@ -184,20 +184,20 @@ def run_verifier(config, dataset: CollaborationDatasetV0 = None, conn=None):
         return
 
     # Setup interface with the simulator if the planner depends on it
-    if config.env == "habitat":
-        # Remove sensors if we are not saving video
-        remove_visual_sensors(config)
 
-        # We register the dynamic habitat sensors
-        register_sensors(config)
+    # Remove sensors if we are not saving video
+    remove_visual_sensors(config)
 
-        # We register custom actions
-        register_actions(config)
+    # We register the dynamic habitat sensors
+    register_sensors(config)
 
-        # We register custom measures
-        register_measures(config)
+    # We register custom actions
+    register_actions(config)
 
-        # Initialize the environment interface for the agent
+    # We register custom measures
+    register_measures(config)
+
+    # Initialize the environment interface for the agent
     env_interface = EnvironmentInterface(config, dataset=dataset, init_wg=False)
 
     try:

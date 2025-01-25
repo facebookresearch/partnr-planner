@@ -12,6 +12,7 @@ to infer the next action.
 
 from typing import TYPE_CHECKING, Dict, Optional
 
+from habitat.core.logging import logger
 from hydra.utils import instantiate
 from omegaconf import DictConfig
 
@@ -121,7 +122,7 @@ class Agent:
 
         for tool_category in self.agent_conf.tools:
             for tool_name in self.agent_conf.tools[tool_category]:
-                print(f'processing tool: "{tool_name}"')
+                logger.debug(f'processing tool: "{tool_name}"')
                 tool_config = self.agent_conf.tools[tool_category][tool_name]
                 tool = instantiate(tool_config)
                 tool.agent_uid = self.uid
@@ -137,7 +138,7 @@ class Agent:
 
                 # Make sure tool is not already added in the set
                 if tool in tools:
-                    print(f'tools already contains an instance of "{tool_name}"')
+                    logger.debug(f'tools already contains an instance of "{tool_name}"')
                     raise ValueError(
                         f'tools already contains an instance of "{tool_name}"'
                     )

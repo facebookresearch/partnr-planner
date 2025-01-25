@@ -4,8 +4,16 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree
 
+"""Implements non-privileged perception class PerceptionObs. This class is responsible
+for taking in observations from the simulator and returning object-centric detections
+based on GT panoptic sensors coupled with depth images of the observations."""
+
+
 import re
-from typing import Any, Dict, List
+from typing import TYPE_CHECKING, Any, Dict, List
+
+if TYPE_CHECKING:
+    from habitat_sim import Simulator
 
 import cv2
 import numpy as np
@@ -14,10 +22,14 @@ from habitat_sim.utils.viz_utils import depth_to_rgb
 from habitat_llm.perception.perception_sim import PerceptionSim
 
 
-def as_intrinsics_matrix(intrinsics):
+def as_intrinsics_matrix(intrinsics: list) -> np.ndarray:
     """
     Get matrix representation of intrinsics.
-    input: fx, fy, cx, cy
+
+    :param intrinsics: An ordered list of float. The list should contain
+    [focal_length_x, focal_length_y, image_center_x, image_center_y]
+
+    :return K: 3x3 matrix form of camera intrinsics
 
     """
     K = np.eye(3)
@@ -30,12 +42,8 @@ def as_intrinsics_matrix(intrinsics):
 
 class PerceptionObs(PerceptionSim):
     """
-    This class uses only the simulated panoptic sensors to detect objects and then
-    ground there location based on depth images being streamed by the agents. Note that
-    no other privileged information about the state of the world is used to enhance
-    object location or inter-object relations. We use previously detected objects
-    and furniture through CG to ground properties of newer objects detected through
-    panoptic sensors.
+    This class uses only the simulated panoptic sensors to detect objects and
+    grounds the location based on depth images being streamed by the agents.
     """
 
     def __init__(self, sim, metadata_dict: Dict[str, str], *args, **kwargs):
@@ -46,12 +54,23 @@ class PerceptionObs(PerceptionSim):
         self._verbose = True
 
     def preprocess_obs_for_non_privileged_graph_update(
-        self, sim, obs: Dict[str, Any], single_agent_mode: bool = False
+        self,
+        sim: "Simulator",
+        obs: Dict[str, Any],
+        single_agent_mode: bool = False,
     ) -> List[Dict[str, Any]]:
         """
         ONLY FOR NON-PRIVILEGED GRAPH SETTING
         Creates a list of observations for each agent in the scene. Each observation
         contains the RGB, depth, masks, camera intrinsics and camera pose for the agent.
+
+        :param sim: Simulator instance
+        :param obs: A dictionary mapping agent-specific sensors to their observations
+        :param single_agent_mode: Whether the current instance of task is being run with single or multiple agent
+
+        :return: preprocessed_obs: Structured dictionary mapping agent-uid to a dict containing that agent's
+        camera information, sensor outputs, etc.
+
         """
         processed_obs = []
 
@@ -89,7 +108,6 @@ class PerceptionObs(PerceptionSim):
                     camera_spec = (
                         sim.agents[0]._sensors["agent_1_head_depth"].specification()
                     )
-                    # breakpoint()
                 except ValueError:
                     raise ValueError(
                         f"Expecting `agent_1_head_depth` in obs-keys in multi-agent mode, received: {sim.agent[1]._sensors.keys()=}"
@@ -138,8 +156,15 @@ class PerceptionObs(PerceptionSim):
         self, obs: np.ndarray
     ) -> Dict[int, str]:
         """
-        This method uses the instance segmentation output to
-        create a list of handles of all objects present in given agent's FOV
+        This method uses the instance segmentation output to create a list of handles of all
+        objects present in given agent's FOV. In conjunction with _sim_handles_to_categories
+        this method is a way to assign a category to each instance segmentation found in the
+        panoptic image
+
+        :param obs: Panoptic sensor output from an agent's sensor
+
+        :return idx_to_handle_map: A dictionary mapping object-index found in the panoptic
+        image to its sim-handle registered in Habitat.
         """
 
         idx_to_handle_map: Dict[int, str] = {}
@@ -157,9 +182,17 @@ class PerceptionObs(PerceptionSim):
 
         return idx_to_handle_map
 
-    def _sim_handles_to_categories(self, id_to_handle_mapping: Dict[int, str]):
+    def _sim_handles_to_categories(
+        self, id_to_handle_mapping: Dict[int, str]
+    ) -> Dict[int, str]:
         """
         This method maps the object handles to their name
+
+        :param id_to_handle_mapping: Dict mapping object-index found in panoptic image to
+        object's sim-handle registered in Habitat
+
+        :return id_to_object_mapping: Dict mapping object-index found in panoptic image to
+        category of that segmented object
         """
         pop_list = []
         id_to_object_mapping: dict[int, str] = {}
@@ -183,6 +216,11 @@ class PerceptionObs(PerceptionSim):
         """
         ONLY FOR NON-PRIVILEGED GRAPH SETTING
         Use the panoptic sensor to detect objects in the agent's FOV
+
+        :param input_obs: Structured observations as returned by preprocess_obs_for_non_privileged_graph_update
+
+        :return object_detections: A dictionary mapping agent-uid to description of all object detected
+        in agent's FoV
 
         NOTE: We calculate location for objects seen by robot using RGB-D images and
         camera intrinsics + extrinsics. For Human we use sim information as there is a

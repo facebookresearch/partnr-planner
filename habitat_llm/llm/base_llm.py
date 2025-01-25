@@ -2,9 +2,11 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree
 
-from typing import Optional
+from typing import List, Optional, Tuple, Union
 
 from omegaconf import DictConfig
+
+Prompt = Union[str, List[Tuple[str, str]]]
 
 
 class BaseLLM:
@@ -22,7 +24,7 @@ class BaseLLM:
 
     def generate(
         self,
-        prompt: str,
+        prompt: Prompt,
         stop: Optional[str] = None,
         max_length: Optional[int] = None,
         generation_args=None,

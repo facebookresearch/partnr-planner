@@ -64,7 +64,16 @@ def run_skills(config: omegaconf.DictConfig) -> None:
 
     assert config.env == "habitat", "Only valid for Habitat skill testing."
 
-    if not config.evaluation.save_video:
+    # whether or not to show blocking videos after each command call
+    show_command_videos = (
+        config.skill_runner_show_videos
+        if hasattr(config, "skill_runner_show_videos")
+        else True
+    )
+    # make videos only if showing or saving them
+    make_video = config.evaluation.save_video or show_command_videos
+
+    if not make_video:
         remove_visual_sensors(config)
 
     # We register the dynamic habitat sensors
@@ -119,13 +128,14 @@ def run_skills(config: omegaconf.DictConfig) -> None:
     if hasattr(config, "skill_runner_show_topdown"):
         dbv = DebugVisualizer(sim, config.paths.results_dir)
         dbv.create_dbv_agent(resolution=(1000, 1000))
-        dbv.peek("stage").show()
+        top_down_map = dbv.peek("stage")
+        if show_command_videos:
+            top_down_map.show()
+        if config.evaluation.save_video:
+            top_down_map.save(output_path=config.paths.results_dir, prefix="topdown")
         dbv.remove_dbv_agent()
         dbv.create_dbv_agent()
         dbv.remove_dbv_agent()
-
-    # get make video flag from config if set
-    make_video = config.get("skill_runner_make_video", True)
 
     ############################
     # done with setup, prompt the user and start running skills
@@ -155,11 +165,27 @@ def run_skills(config: omegaconf.DictConfig) -> None:
     print_furniture_entity_handles(env_interface.perception.gt_graph)
     print_object_entity_handles(env_interface.perception.gt_graph)
 
-    help_text = f"Available skills are {skills}. Type a skill to begin.\n alternatively type one of: \n  '{exit_skill}' - exit the program \n  '{help_skill}' - display help text \n  '{entity_skill}' - display all available entities"
+    help_text = f"Available skills are {skills}. Type a skill to begin.\n alternatively type one of: \n  '{exit_skill}' - exit the program \n  '{help_skill}' - display help text \n  '{entity_skill}' - display all available entities \n  '{pdb_skill}' - enter pdb breakpoint for interactive debugging \n  '{cumulative_video_skill}' - make a single cumulative video out of all individual command clips"
     cprint(help_text, "green")
 
     # setup a sequence of commands to run immediately without manual input
     scripted_commands: List[str] = []
+    if hasattr(config, "skill_runner_scripted_commands"):
+        scripted_commands = config.skill_runner_scripted_commands
+        # we need special handling for "Place" skill because arguements are comma separated and need to be joined
+        place_indices = [i for i, x in enumerate(scripted_commands) if "Place" in x]
+        for i, place_ix in enumerate(place_indices):
+            corrected_ix = place_ix - i * 4  # account for removed elements
+            for j in range(1, 5):
+                # concat the elements
+                scripted_commands[corrected_ix] += (
+                    "," + scripted_commands[corrected_ix + j]
+                )
+            scripted_commands = (
+                scripted_commands[: corrected_ix + 1]
+                + scripted_commands[corrected_ix + 5 :]
+            )
+    print(scripted_commands)
 
     # collect debug frames to create a final video
     cumulative_frames: List[Any] = []
@@ -203,7 +229,7 @@ def run_skills(config: omegaconf.DictConfig) -> None:
                     env_interface, env_interface.conf.paths.results_dir
                 )
                 dvu.frames = cumulative_frames
-                dvu._make_video(postfix="cumulative", play=True)
+                dvu._make_video(postfix="cumulative", play=show_command_videos)
         elif user_input in skills:
             # fill information piece by piece
             selected_skill = user_input
@@ -239,6 +265,7 @@ def run_skills(config: omegaconf.DictConfig) -> None:
                     planner,
                     vid_postfix=f"{command_index}_",
                     make_video=make_video,
+                    play_video=show_command_videos,
                 )
                 command_history.append((user_input, responses[int(agent_ix)]))
                 skill_name = high_level_skill_actions[int(agent_ix)][0]
@@ -250,7 +277,7 @@ def run_skills(config: omegaconf.DictConfig) -> None:
                 failure_string = f"Failed to execute skill with exception: {str(e)}"
                 print(failure_string)
                 command_history.append((user_input, failure_string))
-            command_index += 1
+        command_index += 1
 
 
 ##########################################
@@ -259,6 +286,7 @@ def run_skills(config: omegaconf.DictConfig) -> None:
 # or
 # python habitat_llm/examples/skill_runner.py
 #
+# NOTE: conf/examples/skill_runner_default_config.yaml is consumed to initialize parameters
 ##########################################
 # Script Specific CLI overrides:
 #
@@ -266,7 +294,13 @@ def run_skills(config: omegaconf.DictConfig) -> None:
 # - '+skill_runner_episode_index=0' - initialize the episode with the specified index within the dataset
 # - '+skill_runner_episode_id=' - initialize the episode with the specified "id" within the dataset
 #
-# - '+skill_runner_show_topdown=True' - show a topdown view of the scene upon initialization for context
+# - '+skill_runner_show_topdown=True' - (default False) show a topdown view of the scene upon initialization for context
+#
+# (output control options)
+# - '+skill_runner_show_videos=False' - (default True) turn off showing videos immediately after running a command
+# - 'evaluation.save_video=False' - (default True) option to save videos to files. Also affects cumulative videos produced with "make_video" command.
+# NOTE: videos are made only if either of the above options are True
+# - 'paths.results_dir=<relative_path>' (default './results/') relative path to desired output directory for evaluation
 #
 ##########################################
 # Other useful CLI overrides:

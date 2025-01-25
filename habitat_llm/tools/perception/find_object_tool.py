@@ -4,6 +4,18 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree
 
+"""
+This module contains FindObjectTool, a PerceptionTool, used by tool-based LLM to
+find exact identifier for an object in the world-graph given some natural language
+description as input.
+"""
+
+from typing import TYPE_CHECKING, List, Tuple
+
+if TYPE_CHECKING:
+    from habitat_llm.agent.env.environment_interface import EnvironmentInterface
+    from habitat_llm.llm.base_llm import BaseLLM
+
 import numpy as np
 
 from habitat_llm.tools import PerceptionTool, get_prompt
@@ -12,6 +24,11 @@ from habitat_llm.world_model import Furniture, Human, Receptacle, Room, SpotRobo
 
 
 class FindObjectTool(PerceptionTool):
+    """
+    PerceptionTool used by tool-based LLM planner to get the exact identifier for an
+    object node given natural language description of the object.
+    """
+
     def __init__(self, skill_config):
         super().__init__(skill_config.name)
         self.llm = None
@@ -19,18 +36,38 @@ class FindObjectTool(PerceptionTool):
         self.skill_config = skill_config
         self.prompt_maker = None
 
-    def set_environment(self, env_interface):
+    def set_environment(self, env_interface: "EnvironmentInterface") -> None:
+        """
+        Sets the tool's environment_interface var
+        :param env: EnvironmentInterface instance associated with episode
+        """
         self.env_interface = env_interface
 
-    def set_llm(self, llm):
+    def set_llm(self, llm: "BaseLLM"):
+        """
+        Sets the tool's LLM interface object
+
+        :param llm: LLM object to be used for generating responses
+        """
         self.llm = llm
         self.prompt_maker = get_prompt(self.skill_config.prompt, self.llm.llm_conf)
 
     @property
     def description(self) -> str:
+        """
+        property to return the description of this tool as provided in configuration
+        :return: tool description
+        """
         return self.skill_config.description
 
-    def _get_object_list(self, add_state_info=True):
+    def _get_object_list(self, add_state_info: bool = True) -> str:
+        """
+        Helper function to extract object-name list from the world-graph stored in self.env_interface
+
+        :param add_state_info: whether to add current state of the object to the output
+
+        :return: object-name list as a string from the world-graph stored in self.env_interface.
+        """
         output = ""
 
         # Get articulated agent
@@ -94,7 +131,19 @@ class FindObjectTool(PerceptionTool):
             output = "No objects found yet."
         return output
 
-    def process_high_level_action(self, input_query, observations):
+    def process_high_level_action(
+        self, input_query: str, observations: dict
+    ) -> Tuple[None, str]:
+        """
+        Main entry-point, takes the natural language object query as input and the latest
+        observation. Returns the exact name of the object node matchinf query.
+
+        :param input_query: Natural language description of object of interest
+        :param observations: Dict of agent's observations
+
+        :return: Tuple[None, str], where the 2nd element is the exact name of the node matching
+        input-query, or a message explaining such object was not found.
+        """
         super().process_high_level_action(input_query, observations)
         if not self.llm:
             raise ValueError(f"LLM not set in the {self.__class__.__name__}")
@@ -117,7 +166,7 @@ class FindObjectTool(PerceptionTool):
         return None, answer
 
     @property
-    def argument_types(self):
+    def argument_types(self) -> List[str]:
         """
         Returns the types of arguments required for the FindObjectTool.
 

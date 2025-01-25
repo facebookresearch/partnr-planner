@@ -7,6 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import torch
+from habitat.core.logging import logger
 
 from habitat_llm.tools.motor_skills.nav.nn_nav_skill import NavSkillPolicy
 from habitat_llm.tools.motor_skills.pick.nn_pick_skill import PickSkillPolicy
@@ -167,7 +168,7 @@ class RearrangeSkillPolicy(OracleRearrangeSkill):
                     skill_termination_message,
                 ),
             }
-            print(
+            logger.debug(
                 f"[RearrangeSkillPolicy] Skill {self.active_skill} is done. Response: {self.env._composite_action_response}"
             )
 

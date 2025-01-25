@@ -4,12 +4,24 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree
 
-from typing import List
+"""Implements FindAgentActionTool which is used by tool-based LLM planner
+ to gather information about other agent's actions during planning """
+
+from typing import TYPE_CHECKING, List, Tuple
+
+if TYPE_CHECKING:
+    from habitat_llm.agent.env.environment_interface import EnvironmentInterface
+    from habitat_llm.llm.base_llm import BaseLLM
 
 from habitat_llm.tools import PerceptionTool, get_prompt
 
 
 class FindAgentActionTool(PerceptionTool):
+    """
+    A PerceptionTool designed to be used by an agent's LLM planner to gather information
+    about other agent's actions during the episode
+    """
+
     def __init__(self, skill_config):
         super().__init__(skill_config.name)
         self.llm = None
@@ -18,18 +30,33 @@ class FindAgentActionTool(PerceptionTool):
         self.prompt_maker = None
         self.wait_count = 0
 
-    def set_environment(self, env):
+    def set_environment(self, env: "EnvironmentInterface") -> None:
+        """
+        Sets the tool's environment_interface var
+
+        :param env: EnvironmentInterface instance associated with episode
+        """
         self.env_interface = env
 
-    def set_llm(self, llm):
+    def set_llm(self, llm: "BaseLLM") -> None:
+        """
+        Sets the tool's LLM interface object
+
+        :param llm: LLM object to be used for generating responses
+        """
         self.llm = llm
         self.prompt_maker = get_prompt(self.skill_config.prompt, self.llm.llm_conf)
 
     @property
     def description(self) -> str:
+        """
+        Property to return the description of this tool as provided in configuration.
+
+        :return: The description of this tool provided in figuration.
+        """
         return self.skill_config.description
 
-    def _get_state_history(self):
+    def _get_state_history(self) -> str:
         """Method to get state history of the other agent"""
 
         # Set other agent id - assumes there are only two agents named 0 and 1
@@ -43,7 +70,20 @@ class FindAgentActionTool(PerceptionTool):
         # Construct the state history
         return ", ".join(states)
 
-    def process_high_level_action(self, input_query, observation):
+    def process_high_level_action(
+        self, input_query: str, observations: dict
+    ) -> Tuple[None, str]:
+        """
+        Main entry-point method, containing logic to gather relevant information from
+        episode-state, create a prompt for LLM, generate and parse response to return
+        the summarized history of actions taken by the other agent
+
+        :param input_query: Action inputs
+        :param observation: Observation dict
+
+        :return: The summarized history of actions taken by the other agent
+        """
+
         if not self.env_interface:
             raise ValueError("Environment Interface not set, use set_environment")
 
@@ -79,8 +119,8 @@ class FindAgentActionTool(PerceptionTool):
     @property
     def argument_types(self) -> List[str]:
         """
-        Returns the types of arguments required for the FindObjectTool.
+        Returns the types of arguments required for this tool
 
         :return: List of argument types.
         """
-        return []
+        return []  # NOTE: Empty as this tool is state-based, not input-based

@@ -28,7 +28,7 @@ class CentralizedLLMPlanner(LLMPlanner):
         super().__init__(plan_config, env_interface)
 
     def prepare_prompt(
-        self, instruction: str, world_graph: "WorldGraph"
+        self, input_instruction: str, world_graph: "WorldGraph", **kwargs
     ) -> Tuple[str, Dict[str, Any]]:
         """
         Prepare the prompt for the LLM by adding the input and agent descriptions.
@@ -44,7 +44,7 @@ class CentralizedLLMPlanner(LLMPlanner):
             )
 
         params = {
-            "input": instruction,
+            "input": input_instruction,
             "tool_list": self.tool_list,
             "world_graph": world_graph,
         }

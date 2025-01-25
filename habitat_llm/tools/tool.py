@@ -16,7 +16,7 @@ outputs are in LANGUAGE so that it can be sent to the LLM.
 """
 
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Tuple
 
 
 class Tool(ABC):
@@ -85,11 +85,12 @@ class PerceptionTool(Tool):
         pass
 
     @abstractmethod
-    def process_high_level_action(self, input_query, observations):
+    def process_high_level_action(self, input_query, observations) -> Tuple[None, str]:
         if not self.env_interface:
             raise ValueError(
                 f"Environment interface not set in the {self.__class__.__name__}"
             )
+        return None, ""
 
     def get_state_description(self):
         """Method to get a string describing the state for this tool"""

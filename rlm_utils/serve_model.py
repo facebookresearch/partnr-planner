@@ -14,19 +14,22 @@ import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import submitit
 import torch
+from hydra.utils import instantiate
 from omegaconf import OmegaConf
-from rlm.llm import RemoteLanguageModel
+from rlm.llm import AbstractLanguageModel, RemoteLanguageModel
 from rlm.transformers_llm import TransformersLanguageModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from rlm_utils.gpt_fast.grammar_sampler import GrammarSampler
 
 RLM_RESPONSE = "RLM_RESPONSE"
+
+Prompt = Union[str, List[Tuple[str, str]]]
 
 
 class FastGPTLanguageModel(TransformersLanguageModel):
@@ -284,6 +287,36 @@ class AutoTransformersLanguageModel(TransformersLanguageModel):
         return batch_out
 
 
+## This class wraps a language model so that it can be sent remotely in other APIs.
+## TODO: Do the same for AutoTransformersLanguageModel
+class VisionLanguageModelContainer(AbstractLanguageModel):
+    def __init__(self, model):
+        self.model = model
+
+    @classmethod
+    def from_config(cls, conf):
+        model = instantiate(conf.llm)
+        model = model(conf)
+        return cls(model)
+
+    def batch_generate(
+        self,
+        prompts: List[Prompt],
+        max_new_tokens: int,
+        temperature: float = 1.0,
+        sampling: bool = False,
+        generation_args: Optional[Dict] = None,
+    ) -> List[Dict[str, Any]]:
+        assert len(prompts) == 1, "In VLMs we only support a batch of 1"
+        resp = self.model.generate(
+            prompts[0],
+            stop=None,
+            max_length=max_new_tokens,
+            generation_args=generation_args,
+        )
+        return [{"prompt": prompts[0], "generation": resp, "mean_prob": 0.0}]
+
+
 def setup_llm(config):
     engine_name = config.engine_name
     print(engine_name)
@@ -303,8 +336,9 @@ def setup_llm(config):
             max_context_length=config.max_context_length,
         )
     else:
-        model = AutoTransformersLanguageModel(engine_name)
-
+        # model = AutoTransformersLanguageModel(engine_name)
+        llm_config = OmegaConf.load(config.llm_config)
+        model = VisionLanguageModelContainer.from_config(llm_config)
     model.serve(config.ip, config.port)
 
 
@@ -426,6 +460,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--max_context_length", default=4000, type=int, help="maximum context length"
     )
+    parser.add_argument(
+        "--llm_config", default="", type=str, help="path to the llm config"
+    )
     args = parser.parse_args()
     config_name = f"rlm/slurm/{args.exp_name}/config.yaml"
     args_dict = vars(args)
@@ -463,6 +500,7 @@ if __name__ == "__main__":
                 slurm_time=int(24 * 60 * args.days),
                 slurm_job_name=f"{prepend_str}{args.exp_name}",
                 slurm_account="siro",
+                qos="siro_high",
             )
 
             try:
@@ -478,6 +516,7 @@ if __name__ == "__main__":
                         slurm_time=int(24 * 60 * args.days),
                         slurm_job_name="keep_alive",
                         slurm_account="siro",
+                        qos="siro_high",
                     )
                 # try:
                 with executor.batch():

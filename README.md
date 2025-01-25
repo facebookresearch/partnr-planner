@@ -61,7 +61,7 @@ For installation, refer to [INSTALLATION.md](INSTALLATION.md)
 
 ## Quickstart
 
-Baselines for a variety of agent configuration are runnable with the provided configurations. Select any of the baselines from [habitat_llm/conf/baselines](./habitat_llm/conf/baselines/). You may need to specify one or two LLMs based on the baseline. Set the inference mode to `hf` and specify the huggingface model to use for inference. Model weights will be downloaded automatically if they are not found. Below are examples using Llama-3.1-8B running on the `val_mini` data split. Replace `val_mini` with one of `[train_2k, val, train, val_mini]` to run other splits.
+Baselines for a variety of agent configuration are runnable with the provided configurations. Select any of the baselines from [habitat_llm/conf/baselines](./habitat_llm/conf/baselines/). You may need to specify one or two LLMs based on the baseline. Set the inference mode to `hf` and specify the huggingface model to use for inference. Model weights will be downloaded automatically if they are not found. Below are examples using Llama-3.1-8B running on the `val_mini` data split. Replace `val_mini` with one of `[train_2k, val, train, val_mini]` to run other splits. If you are using local custom path to the weights of the LLM instead of only the huggingface ID for llama 3 models, make sure the string "Llama-3" appears in the path to the weights. The grammar constraining code looks for this string in the path to determine how to load the tokenizer.
 
 ### Decentralized Multi Agent React Summary
 ```bash
@@ -192,8 +192,6 @@ See detailed doc [here](./habitat_llm/finetuning/README.md)
 ## Extending the environment
 
 For additional details about adding new agents, tools and custom actions see [here](./docs/extending.md)
-
-
 
 ## License
 

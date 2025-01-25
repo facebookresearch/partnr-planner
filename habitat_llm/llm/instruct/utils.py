@@ -9,10 +9,13 @@ from typing import Dict, List, Tuple
 
 import regex as re
 
-from habitat_llm.world_model.entity import Room
-
 if typing.TYPE_CHECKING:
     from habitat_llm.evaluation.evaluation_runner import ActionHistoryElement
+
+import base64
+import io
+
+from PIL import Image
 
 from habitat_llm.world_model.world_graph import WorldGraph
 
@@ -91,6 +94,10 @@ def get_objects_descr(
     :param world_graph: The world graph representing the environment.
     :return: A string description of objects, including their locations.
     """
+
+    # lazy import to avoid importing habitat module if not necessary
+    from habitat_llm.world_model.entity import Room
+
     all_objs = world_graph.get_all_objects()
     if not all_objs:
         return "No objects found yet"
@@ -530,3 +537,27 @@ def finetuned_actions_parser(
         return {}
     else:
         return {agent_id: (matches[1], matches[2], None)}
+
+
+def image_data_to_pil(data: str):
+    header = "data:image/png;base64,"
+    return Image.open(
+        io.BytesIO(base64.decodebytes(bytes(data.split(header)[1], "utf-8")))
+    )
+
+
+def pil_image_to_data_url(image: Image):
+    """
+    Convert array to numpy64
+    """
+    # Guess the MIME type of the image based on the file extension
+    # Note this can be obtained using pil_image = Image.fromarray(image_file)
+    buffered = io.BytesIO()
+    image.save(buffered, format="png")
+    img_byte = buffered.getvalue()
+    base64_encoded_data = base64.b64encode(img_byte).decode("utf-8")
+
+    mime_type = "image/png"
+
+    # Construct the data URL
+    return f"data:{mime_type};base64,{base64_encoded_data}"

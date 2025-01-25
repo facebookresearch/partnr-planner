@@ -155,16 +155,18 @@ def sample_position_on_furniture(
         raise ValueError("spatial constraint can only be 'next_to'")
 
     # Get fur to rec map
-    fur_to_rec_map = env_interface.perception.fur_to_rec
+    fur_obj_handle_to_recs_map = env_interface.perception.fur_obj_handle_to_recs
 
-    # Make sure that the furniture is in the fur_to_rec_map
-    if place_entity.sim_handle not in fur_to_rec_map:
+    # Make sure that the furniture is in the fur_obj_handle_to_recs_map
+    if place_entity.sim_handle not in fur_obj_handle_to_recs_map:
         raise ValueError(
-            f"Entity with handle {place_entity.sim_handle} not found in fur_to_rec_map"
+            f"Entity with handle {place_entity.sim_handle} not found in fur_obj_handle_to_recs_map"
         )
 
     # Get the list of all receptacle which satisfy given spatial relationship
-    candidate_rec = fur_to_rec_map[place_entity.sim_handle][spatial_relation]
+    candidate_rec = fur_obj_handle_to_recs_map[place_entity.sim_handle][
+        spatial_relation
+    ]
 
     # Throw if no valid rec are found
     if len(candidate_rec) == 0:

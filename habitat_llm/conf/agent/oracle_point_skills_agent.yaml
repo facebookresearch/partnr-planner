@@ -1,0 +1,6 @@
+defaults:
+
+  - /tools/motor_skills@tools.motor_skills:
+    - oracle_point_nav
+    - oracle_point_pick
+env: habitat

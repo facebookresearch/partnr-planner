@@ -56,17 +56,13 @@ def init_agents(
 
 def get_receptacle_dict(
     sim: habitat_sim.Simulator,
-    filter_receptacles: bool = True,
-    cached_receptacles: List[HabReceptacle] = None,
+    cached_receptacles: List[HabReceptacle],
 ) -> Dict[str, Dict[str, List[HabReceptacle]]]:
     """
-    Get a dictionary from Furniture to (Hab)Receptacles, where the key is the furniture name (ManagedObject.handle) and the
-    value is a dictionary two keys, "on" and "within" with the (Hab)Receptacles for each relationship.
+    Get a dictionary from parent ManagedObject handle to lists of child (Hab)Receptacles keyed by relationship name "on" or "within".
     "Within" objects are those which can only be accessed by opening the "default_link" of the parent ArticulatedObject.
 
-    :param filter_receptacles: If true, apply the rec_filter_file for the scene during (Hab)Receptacle parsing. Only accessible and valid receptacles
-    (as annotated in the filter file) will be available if this option is used.
-    :param cached_receptacles: optionally provide an existing list of (Hab)Receptacles. If not provided, they will be re-imported from disk (warning: this is wasteful, provide whenever possible).
+    :param cached_receptacles: a list of (Hab)Receptacles.
 
     :return: A dict mapping parent ManagedObject instance handles to separate "on" and "within" subsets of (Hab)Receptacles.
     """
@@ -75,20 +71,16 @@ def get_receptacle_dict(
     scene_filter_filepath = hab_receptacle.get_scene_rec_filter_filepath(
         sim.metadata_mediator, sim.curr_scene_name
     )
-    if cached_receptacles is None:
-        all_recs = find_receptacles(sim, filter_receptacles)
-    else:
-        all_recs = cached_receptacles
     within_recs = hab_receptacle.get_recs_from_filter_file(
         scene_filter_filepath, filter_types=["within_set"]
     )
-    for rec in all_recs:
-        parent_obj = rec.parent_object_handle
+    for rec in cached_receptacles:
+        parent_obj_handle = rec.parent_object_handle
         rel_name = "within" if rec.unique_name in within_recs else "on"
 
-        if parent_obj not in rec_dict:
-            rec_dict[parent_obj] = {"on": [], "within": []}
-        rec_dict[parent_obj][rel_name].append(rec)
+        if parent_obj_handle not in rec_dict:
+            rec_dict[parent_obj_handle] = {"on": [], "within": []}
+        rec_dict[parent_obj_handle][rel_name].append(rec)
 
     return rec_dict
 
@@ -363,7 +355,8 @@ def check_if_the_object_is_inside_furniture(
     if (
         rec is not None
         and fur.is_articulated()
-        and rec.sim_handle in env.perception.fur_to_rec[fur.sim_handle]["within"]
+        and rec.sim_handle
+        in env.perception.fur_obj_handle_to_recs[fur.sim_handle]["within"]
         and (not is_open(fur, env, threshold_for_ao_state))
     ):
         termination_message = "Failed to pick! Object is in a closed furniture, you need to open the furniture first."

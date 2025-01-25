@@ -1,0 +1,11 @@
+# @package _global_
+
+defaults:
+  - /examples/planner_multi_agent_demo_config
+  - override /evaluation: centralized_evaluation_runner_multi_agent
+
+world_model:
+  partial_obs: False
+
+evaluation:
+  type: centralized

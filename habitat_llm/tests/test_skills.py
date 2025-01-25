@@ -379,8 +379,8 @@ def test_object_state_skills(skill_config):
                 f"evaluation={skill_config}",
                 "device=cpu",
                 "habitat_conf/task=rearrange_easy_multi_agent_nn",
-                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",
-                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",
+                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
+                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
                 "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",
                 "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
                 "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
@@ -833,6 +833,101 @@ def test_floors(skill_config):
         containers[0]
     )
     assert furn.name == counter_name
+
+    # Destroy envs
+    env_interface.env.close()
+    del planner
+    del env_interface
+
+
+@pytest.mark.parametrize(
+    "skill_config",
+    [
+        "centralized_evaluation_runner_multi_agent_nn_skills",
+        "centralized_evaluation_runner_multi_agent",
+    ],
+)
+def test_oracle_point_skills(skill_config):
+    """Test for oracle point navigation skill specifically.
+    Tests navigation to multiple points in sequence.
+    """
+    # Set up hydra config
+    with initialize(version_base=None, config_path="../conf"):
+        config = compose(
+            config_name=config_path,
+            overrides=[
+                f"evaluation={skill_config}",
+                "device=cpu",
+                "habitat_conf/task=rearrange_easy_multi_agent_nn",
+                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",
+                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",
+                "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",
+                "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
+                "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
+                "habitat.environment.iterator_options.shuffle=False",
+                "llm@evaluation.planner.plan_config.llm=mock",
+                "agent@evaluation.agents.agent_0.config=oracle_point_skills_agent",
+            ],
+        )
+
+    if not CollaborationDatasetV0.check_config_paths_exist(config.habitat.dataset):
+        pytest.skip("Test skipped as dataset files are missing.")
+
+    config = setup_config(config, seed)
+
+    # Set up habitat config env
+    register_sensors(config)
+    register_actions(config)
+    register_measures(config)
+
+    # Set up the env
+    env_interface = EnvironmentInterface(config)
+
+    # Initialize the base environment interface
+    planner_conf = config.evaluation.planner
+    planner = instantiate(planner_conf)
+
+    planner = planner(env_interface=env_interface)
+    agent_config = config.evaluation.agents
+    planner.agents = init_agents(agent_config, env_interface)
+
+    planner.reset()
+
+    # Naviate to living_room_1
+    high_level_nav_actions = {0: ("Navigate", "-5.14, -3.94, 0", None)}
+    execute_skill(high_level_nav_actions, planner)
+
+    # Check the agent's position and rotation match the expected values
+    base_pos = env_interface.sim.agents_mgr[0].articulated_agent.base_pos
+    assert (
+        np.linalg.norm(np.array([base_pos[0], base_pos[2]]) - np.array([-5.14, -3.94]))
+        < 1.5
+    )
+    assert abs(env_interface.sim.agents_mgr[0].articulated_agent.base_rot) < 0.45
+
+    # Navigate to cushion location
+    high_level_nav_actions = {0: ("Navigate", "-13.72, -6.78, 1.4", None)}
+    execute_skill(high_level_nav_actions, planner)
+    base_pos = env_interface.sim.agents_mgr[0].articulated_agent.base_pos
+    assert (
+        np.linalg.norm(np.array([base_pos[0], base_pos[2]]) - np.array([-13.72, -6.78]))
+        < 1.5
+    )
+    assert abs(env_interface.sim.agents_mgr[0].articulated_agent.base_rot - 1.4) < 0.45
+
+    # Execute point pick too far from the cushion location
+    high_level_pick_actions = {0: ("Pick", "-15.72, 0.61, -6.78", None)}
+    res, _ = execute_skill(high_level_pick_actions, planner)
+    # It should fail because the target point is too far from the cushion
+    assert res[0] == "Unexpected failure! - No object found near the target position"
+
+    # Execute point pick on the cushion location
+    high_level_pick_actions = {0: ("Pick", "-13.72, 0.61, -6.78", None)}
+    execute_skill(high_level_pick_actions, planner)
+
+    # Pick succeeds now that the target pick point is close to the object
+    cushion_obj = sutils.get_obj_from_handle(env_interface.sim, "pillow_9_:0000")
+    assert env_interface.sim.agents_mgr[0].grasp_mgr.snap_idx == cushion_obj.object_id
 
     # Destroy envs
     env_interface.env.close()

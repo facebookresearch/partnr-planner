@@ -14,6 +14,7 @@ import json
 import shutil
 from omegaconf import OmegaConf
 
+
 # append the path of the
 # parent directory
 sys.path.append("..")
@@ -104,8 +105,9 @@ def write_config(config):
     suffixes = []
     if "planner" in config.evaluation:
         # Centralized
-        planner_configs = [config.evaluation.planner.plan_config]
-        suffixes = [""]
+        if "plan_config" in config.evaluation.planner is not None:
+            planner_configs = [config.evaluation.planner.plan_config]
+            suffixes = [""]
     else:
         for agent_name in config.evaluation.agents:
             suffixes.append(f"_{agent_name}")
@@ -248,15 +250,18 @@ def run_planner(config, dataset: CollaborationDatasetV0 = None, conn=None):
     if config.env == "habitat":
         # Remove sensors if we are not saving video
 
-        if not config.evaluation.save_video:
+        # TODO: have a flag for this, or some check
+        keep_rgb = False
+        if "use_rgb" in config.evaluation:
+            keep_rgb = config.evaluation.use_rgb
+        if not config.evaluation.save_video and not keep_rgb:
             remove_visual_sensors(config)
 
+        # TODO: Can we move this inside the EnvironmentInterface?
         # We register the dynamic habitat sensors
         register_sensors(config)
-
         # We register custom actions
         register_actions(config)
-
         # We register custom measures
         register_measures(config)
 
