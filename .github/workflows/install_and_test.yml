@@ -79,7 +79,7 @@ jobs:
         #activate conda env
         export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
         conda activate partnr
-        conda install habitat-sim=0.3.2 withbullet headless -c conda-forge -c aihabitat -y
+        conda install habitat-sim=0.3.3 withbullet headless -c conda-forge -c aihabitat -y
     - name: Download test data
       run: |-
         # Disable clone protection for git lfs
@@ -96,41 +96,29 @@ jobs:
         git lfs install
 
         # get the standard test assets from the downloader
-        python -m habitat_sim.utils.datasets_download --uids ci_test_assets hab_spot_arm rearrange_task_assets hab3_bench_assets --data-path data/ --no-replace --no-prune
+        python -m habitat_sim.utils.datasets_download --uids ci_test_assets hab_spot_arm rearrange_task_assets hab3_bench_assets partnr_episodes_ci hssd_partnr_ci ovmm_objects --data-path data/ --no-replace --no-prune
         ls -la data/scene_datasets/habitat-test-scenes/
         ln -s versioned_data/hab3_bench_assets/humanoids/ data/humanoids
-
-        #TODO: replace these specific downloads with dataset downloader calls with next version update
-        # Get HSSD mini dataset and OVMM_objects for testing
-        git clone https://huggingface.co/datasets/ai-habitat/OVMM_objects data/objects_ovmm --recursive
-        cd data/objects_ovmm
-        git lfs pull
-        cd ../..
-        git clone https://huggingface.co/datasets/ai-habitat/hssd-partnr-ci data/versioned_data/hssd-partnr-ci
-        cd data/versioned_data/hssd-partnr-ci
-        git lfs pull
-        cd ../../..
-        ln -s versioned_data/hssd-partnr-ci data/hssd-partnr-ci
-        # Get skills and the episode dataset for testing
-        git clone --single-branch --branch ci https://huggingface.co/datasets/ai-habitat/partnr_episodes data/versioned_data/partnr_episodes
-        cd data/versioned_data/partnr_episodes
-        git lfs pull
-        cd ../../..
+        ln -s versioned_data/ovmm_objects/ data/objects_ovmm
 
         #post process symblinking for convenience
         cd data
         # Create a folder for skills
-        ln -s versioned_data/partnr_episodes/checkpoints models
+        ln -s versioned_data/partnr_episodes_ci/checkpoints models
         # Create a folder for RAG dataset to set RAG
-        ln -s versioned_data/partnr_episodes/test_rag test_rag
-        # Create a folder for episode datasets
-        mkdir -p datasets
-        ln -s ../versioned_data/partnr_episodes datasets/partnr_episodes
-        cd ..
+        ln -s versioned_data/partnr_episodes_ci/test_rag test_rag
 
+    - name: Set up SSH
+      run: |-
+        mkdir -p ~/.ssh
+        echo "${{ secrets.KEY_GITHUB2_SSH }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
     - name: Install submodules and partnr
       run: |-
-
+        #start ssh agent and add the key
+        eval `ssh-agent -s`
+        ssh-add ~/.ssh/id_ed25519
         #give cmake ownership to the runner for installation
         sudo chown runner -R /opt/cmake312/
         #activate conda env
