@@ -14,4 +14,3 @@ from habitat_llm.planner.thoughtless_llm_planner import (  # noqa: F401
     ThoughtlessLLMPlanner,
 )
 from habitat_llm.planner.zero_shot_react_planner import ZeroShotReactPlanner
-from habitat_llm.planner.zero_shot_vlm_planner import ZeroShotVLMPlanner
