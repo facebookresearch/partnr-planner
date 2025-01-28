@@ -108,17 +108,8 @@ jobs:
         # Create a folder for RAG dataset to set RAG
         ln -s versioned_data/partnr_episodes_ci/test_rag test_rag
 
-    - name: Set up SSH
-      run: |-
-        mkdir -p ~/.ssh
-        echo "${{ secrets.KEY_GITHUB2_SSH }}" > ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
     - name: Install submodules and partnr
       run: |-
-        #start ssh agent and add the key
-        eval `ssh-agent -s`
-        ssh-add ~/.ssh/id_ed25519
         #give cmake ownership to the runner for installation
         sudo chown runner -R /opt/cmake312/
         #activate conda env
