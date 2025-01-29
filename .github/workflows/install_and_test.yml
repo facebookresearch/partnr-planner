@@ -97,7 +97,6 @@ jobs:
 
         # get the standard test assets from the downloader
         python -m habitat_sim.utils.datasets_download --uids ci_test_assets hab_spot_arm rearrange_task_assets hab3_bench_assets partnr_episodes_ci hssd_partnr_ci ovmm_objects --data-path data/ --no-replace --no-prune
-        ls -la data/scene_datasets/habitat-test-scenes/
         ln -s versioned_data/hab3_bench_assets/humanoids/ data/humanoids
         ln -s versioned_data/ovmm_objects/ data/objects_ovmm
 
@@ -107,6 +106,11 @@ jobs:
         ln -s versioned_data/partnr_episodes_ci/checkpoints models
         # Create a folder for RAG dataset to set RAG
         ln -s versioned_data/partnr_episodes_ci/test_rag test_rag
+
+        ls -la data/
+        ls -la data/humanoids/
+        ls -la data/ovmm_objects/
+        ls -la data/hssd-partnr-ci/
 
     - name: Install submodules and partnr
       run: |-
@@ -137,7 +141,8 @@ jobs:
         export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
         conda activate partnr
         cd partnr-planner
-        python -m pytest habitat_llm/tests
+        python -m pytest -s habitat_llm/tests/test_constrained_generation.py
+        python -m pytest -s habitat_llm/tests
         python -m pytest dataset_generation/tests
     #NOTE: use the below to debug with ssh: simply move this "job" just before the crashing job to intercept the workflow
     #- name: Debugging with tmate
