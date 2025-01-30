@@ -108,7 +108,7 @@ jobs:
 
         ls -la data/
         ls -la data/humanoids/
-        ls -la data/ovmm_objects/
+        ls -la data/objects_ovmm/
         ls -la data/hssd-partnr-ci/
 
     - name: Install submodules and partnr
