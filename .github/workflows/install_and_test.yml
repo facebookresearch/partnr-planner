@@ -106,11 +106,6 @@ jobs:
         # Create a folder for RAG dataset to set RAG
         ln -s versioned_data/partnr_episodes_ci/test_rag data/test_rag
 
-        ls -la data/
-        ls -la data/humanoids/
-        ls -la data/objects_ovmm/
-        ls -la data/hssd-partnr-ci/
-
     - name: Install submodules and partnr
       run: |-
         #give cmake ownership to the runner for installation
@@ -140,7 +135,6 @@ jobs:
         export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
         conda activate partnr
         cd partnr-planner
-        python -m pytest -s habitat_llm/tests/test_constrained_generation.py
         python -m pytest -s habitat_llm/tests
         python -m pytest dataset_generation/tests
     #NOTE: use the below to debug with ssh: simply move this "job" just before the crashing job to intercept the workflow
