@@ -4,10 +4,17 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree
 
+import gc
+import random
 from typing import Tuple
 
+import habitat.sims.habitat_simulator.sim_utilities as sutils
+import magnum as mn
 import pytest
 
+from habitat_llm.agent.env.dataset import CollaborationDatasetV0
+from habitat_llm.tests.test_planner import get_config, setup_env
+from habitat_llm.utils import setup_config
 from habitat_llm.world_model import (
     Furniture,
     House,
@@ -18,6 +25,15 @@ from habitat_llm.world_model import (
     SpotRobot,
 )
 from habitat_llm.world_model.world_graph import WorldGraph
+
+DATASET_OVERRIDES = [
+    "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",  # We test with a specific dataset
+    "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
+    "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
+    "habitat.environment.iterator_options.shuffle=False",
+    "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
+    "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
+]
 
 
 def util_add_nodes(graph) -> Tuple[WorldGraph, list]:
@@ -299,3 +315,151 @@ def test_find_furniture_for_receptacle():
 
     with pytest.raises(ValueError):
         graph3.find_furniture_for_receptacle(receptacle)
+
+
+def test_bad_object_transform_in_unknown_room():
+    object_handle = "CREATIVE_BLOCKS_35_MM_:0000"
+    config = get_config(
+        "examples/planner_multi_agent_demo_config.yaml",
+        overrides=[
+            "evaluation=decentralized_evaluation_runner_multi_agent",
+            "planner@evaluation.agents.agent_0.planner=llm_planner",
+            "agent@evaluation.agents.agent_0.config=oracle_rearrange_object_states_agent",
+            "llm@evaluation.agents.agent_0.planner.plan_config.llm=mock",
+            "planner@evaluation.agents.agent_1.planner=llm_planner",
+            "llm@evaluation.agents.agent_1.planner.plan_config.llm=mock",
+        ]
+        + DATASET_OVERRIDES,
+    )
+
+    if not CollaborationDatasetV0.check_config_paths_exist(config.habitat.dataset):
+        pytest.skip("Test skipped as dataset files are missing.")
+
+    config = setup_config(config, 0)
+    env_interface = setup_env(config)
+
+    # assert object is attached to expected receptacle
+    sim_object = sutils.get_obj_from_handle(env_interface.sim, object_handle)
+    obj_in_world_graph = env_interface.full_world_graph.get_node_from_sim_handle(
+        object_handle
+    )
+    graph_path = env_interface.full_world_graph.find_path(obj_in_world_graph)
+    assert graph_path is not None
+    rec_for_object = list(graph_path[obj_in_world_graph].keys())[0]
+    assert rec_for_object.name == "rec_table_25_0"
+
+    # get the object by handle and change transformation
+    sim_object.translation = [100.0, 100.0, 100.0]
+
+    # re-initialize the world-graph
+    env_interface.initialize_perception_and_world_graph()
+
+    # assert object is in unknown room
+    obj_in_world_graph = env_interface.full_world_graph.get_node_from_sim_handle(
+        object_handle
+    )
+    graph_path = env_interface.full_world_graph.find_path(obj_in_world_graph)
+    assert graph_path is not None
+    rec_for_object = list(graph_path[obj_in_world_graph].keys())[0]
+    assert rec_for_object.name == "unknown_room"
+
+    # Destroy envs
+    env_interface.env.close()
+    del env_interface
+    gc.collect()
+
+
+def test_object_placement_in_region():
+    # load episode as usual
+    object_handle = "CREATIVE_BLOCKS_35_MM_:0000"
+    config = get_config(
+        "examples/planner_multi_agent_demo_config.yaml",
+        overrides=[
+            "evaluation=decentralized_evaluation_runner_multi_agent",
+            "planner@evaluation.agents.agent_0.planner=llm_planner",
+            "agent@evaluation.agents.agent_0.config=oracle_rearrange_object_states_agent",
+            "llm@evaluation.agents.agent_0.planner.plan_config.llm=mock",
+            "planner@evaluation.agents.agent_1.planner=llm_planner",
+            "llm@evaluation.agents.agent_1.planner.plan_config.llm=mock",
+        ]
+        + DATASET_OVERRIDES,
+    )
+
+    if not CollaborationDatasetV0.check_config_paths_exist(config.habitat.dataset):
+        pytest.skip("Test skipped as dataset files are missing.")
+
+    config = setup_config(config, 0)
+    env_interface = setup_env(config)
+
+    # assert object is attached to expected receptacle
+    sim_object = sutils.get_obj_from_handle(env_interface.sim, object_handle)
+    assert sim_object is not None, "Object does not exist"
+    obj_in_world_graph: Object = (
+        env_interface.full_world_graph.get_node_from_sim_handle(object_handle)
+    )
+    graph_path = env_interface.full_world_graph.find_path(obj_in_world_graph)
+    assert graph_path is not None
+    rec_for_object = list(graph_path[obj_in_world_graph].keys())[0]
+    assert rec_for_object.name == "rec_table_25_0"
+
+    # move the object to be on the floor of a randomly chosen region
+    chosen_room = None
+    while True:
+        chosen_room = random.choice(env_interface.full_world_graph.get_all_rooms())
+        room_point = chosen_room.properties.get("translation", None)
+        if room_point is not None:
+            sim_object.translation = (
+                mn.Vector3(room_point)
+                + env_interface.sim.get_gravity().normalized()
+                * -sutils.get_obj_size_along(
+                    env_interface.sim,
+                    sim_object.object_id,
+                    env_interface.sim.get_gravity().normalized(),
+                )[0]
+            )
+            break
+
+    # re-initialize the world-graph
+    env_interface.initialize_perception_and_world_graph()
+
+    # confirm receptacle returned is the floor for the region-ID of the chosen region
+    obj_neighbors = env_interface.full_world_graph.get_neighbors(obj_in_world_graph)
+    assert len(obj_neighbors) == 1, "An edge should be created for this object."
+    assert (
+        "floor_" + chosen_room.name == list(obj_neighbors.keys())[0].name
+    ), "floor_<region_id> should be the matching node"
+
+    # one more time with the object off the floor but in the region
+    # technically the object is not on the floor but WG shd show it attached to floor
+    # of the chosen region since every object needs a Furniture (Floor is inherited from Furniture)
+    sim_object.translation += mn.Vector3(0, 1.0, 0)
+    env_interface.initialize_perception_and_world_graph()
+    obj_neighbors = env_interface.full_world_graph.get_neighbors(obj_in_world_graph)
+    assert len(obj_neighbors) == 1, "An edge should be created for this object."
+    assert (
+        "floor_" + chosen_room.name == list(obj_neighbors.keys())[0].name
+    ), "floor_<region_id> should be the matching node"
+
+    # one more time with the object off the floor but within tolerance
+    # WG should show it being attached to the floor
+    sim_object.translation = (
+        mn.Vector3(room_point)
+        + env_interface.sim.get_gravity().normalized()
+        * -sutils.get_obj_size_along(
+            env_interface.sim,
+            sim_object.object_id,
+            env_interface.sim.get_gravity().normalized(),
+        )[0]
+    )
+    sim_object.translation += mn.Vector3(0, 0.149, 0)
+    env_interface.initialize_perception_and_world_graph()
+    obj_neighbors = env_interface.full_world_graph.get_neighbors(obj_in_world_graph)
+    assert len(obj_neighbors) == 1, "An edge should be created for this object."
+    assert (
+        "floor_" + chosen_room.name == list(obj_neighbors.keys())[0].name
+    ), "floor_<region_id> should be the matching node"
+
+    # Destroy envs
+    env_interface.env.close()
+    del env_interface
+    gc.collect()

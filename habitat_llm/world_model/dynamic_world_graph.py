@@ -387,7 +387,9 @@ class DynamicWorldGraph(WorldGraph):
         all_gt_entities = perception.gt_graph.get_all_nodes_of_type(Furniture)
         # only keep furniture with placeable receptacle
         all_gt_entities = [
-            ent for ent in all_gt_entities if ent.sim_handle in perception.fur_to_rec
+            ent
+            for ent in all_gt_entities
+            if ent.sim_handle in perception.fur_obj_handle_to_recs
         ]
         # only keep entities that have a translation property
         all_gt_entities = [

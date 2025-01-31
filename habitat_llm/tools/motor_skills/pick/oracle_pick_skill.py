@@ -5,6 +5,7 @@
 
 from typing import List
 
+import habitat.sims.habitat_simulator.sim_utilities as sutils
 import numpy as np
 import torch
 
@@ -113,6 +114,8 @@ class OraclePickSkill(SkillPolicy):
 
         # Declare container for storing action values
         action = torch.zeros(prev_actions.shape, device=masks.device)
+        if self.failed:
+            return action, None
 
         # Early return if the gripper is already full.
         action, self.termination_message, self.failed = check_if_gripper_is_full(
@@ -154,11 +157,15 @@ class OraclePickSkill(SkillPolicy):
             return action, None
 
         # Get the object index.
-        rom = self.env.sim.get_rigid_object_manager()
-        obj_idx = rom.get_object_id_by_handle(self.target_handle)
+        obj = sutils.get_obj_from_handle(self.env.sim, self.target_handle)
+        if obj is None or obj.is_articulated:
+            raise ValueError(
+                f"Cannot find rigid object with name {self.target_handle} for picking."
+            )
         # Early exit if the object is out of reach.
         ee_pos = np.array(self.articulated_agent.ee_transform().translation)
-        target_pos = self.target_pos
+        target_pos = obj.translation
+        # TODO: picking through walls is possible here without occlusion check
         ee_dist_to_target = np.linalg.norm(ee_pos - target_pos)
         if ee_dist_to_target > self._config.grasping_distance:
             self.failed = True
@@ -167,7 +174,7 @@ class OraclePickSkill(SkillPolicy):
 
         # If all preconditions are met, populate the action vector
         action[cur_batch_idx, self.grip_index] = 1
-        action[cur_batch_idx, self.object_index] = obj_idx
+        action[cur_batch_idx, self.object_index] = obj.object_id
 
         # Set the flag indicating success of grasp to true
         self._is_action_issued[cur_batch_idx] = True

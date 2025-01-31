@@ -6,7 +6,9 @@
 
 from typing import Optional
 
+import magnum as mn
 import numpy as np
+import numpy.typing as npt
 import torch
 
 
@@ -63,7 +65,71 @@ def unproject_masked_depth_to_xyz_coordinates(
     ]
     xyz = xyz.squeeze(1)
 
+    return xyz[:, :3]
+
+
+def unproject_coordinates(
+    im_coordinates: npt.NDArray[np.float64],
+    depth: npt.NDArray[np.float64],
+    camera_matrix: mn.Matrix4,
+    projection_matrix: mn.Matrix4,
+    im_size: npt.NDArray[np.float64],
+):
+    """
+    Unproject from image coordinates to 3D. Input are the coordinates in image space ([0, W], [0, H])
+    and metric depth. Output are the xyz coordinates in world_space.
+    :param im_coordinates: [B,2] coordinates we want to project in image space.
+    :param depth: [B,1] metric depth.
+    :param camera_matrix: 4x4 pose matrix
+    :param projection_matrix: 4x4 projection matrix in OpenGL format.
+    :param im_size: [1, 2] array containing image W, H
+    """
+    ndc = im_coordinates * 2.0 / im_size - 1.0
+    ndc[:, 1] *= -1
+    # Convert Z to normalized device coordinates
+    b = depth.shape[0]
+    zvec = np.zeros((b, 4))
+    zvec[:, -1] = -1
+    zvec[:, 2] = depth[:, 0]
+    zclip = (np.array(projection_matrix) @ zvec.transpose()).transpose()
+    zndc = (zclip[:, 2] / zclip[:, -1])[..., None]
+    ndc = np.concatenate([ndc, zndc, np.ones((b, 1))], 1)
+
+    # Unproject
+    xyz = (
+        np.array(camera_matrix.inverted() @ projection_matrix.inverted())
+        @ ndc.transpose()
+    ).transpose()
+
+    xyz = (xyz / xyz[:, [-1]])[:, :3]
     return xyz
+
+
+def project_to_im_coordinates(
+    xyz: npt.NDArray[np.float64],
+    camera_matrix: mn.Matrix4,
+    projection_matrix: mn.Matrix4,
+    im_size: npt.NDArray[np.float64],
+):
+    """
+    Projects a batch of world coordinates to image coordinates. Input is XYZ with Y corresponding to height.
+    output is an array [X,Y] where X is in range [0,W] and Y in range [0, H]
+    :param xyz: array of size Bx3 with the world coordinates
+    :param camera_matrix: 4x4 extrinsics matrix
+    :param projection_matrx: 4x4 intrinsics matrix using OpenGL
+    :projection_size: tuple with the camera projection_size. Typically 2, 2
+    :param im_size: the target image size (width, height)
+    """
+    point_homog = np.concatenate([xyz, np.ones((xyz.shape[0], 1))], 1)
+    point_cam_coord = (np.array(camera_matrix) @ point_homog.transpose()).transpose()
+    point_cam_coord = (
+        np.array(projection_matrix) @ point_cam_coord.transpose()
+    ).transpose()
+    im_coord = point_cam_coord / point_cam_coord[:, [-2]]
+    im_coord = im_coord[:, :2] / 2.0 + 0.5
+    im_coord[:, 1] = 1 - im_coord[:, 1]
+    im_coord = im_coord * im_size
+    return im_coord
 
 
 def opengl_to_opencv(pose):

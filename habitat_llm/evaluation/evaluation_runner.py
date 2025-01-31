@@ -4,6 +4,12 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree
 
+"""
+This module contains the base EvaluationRunner class and related utilities for running evaluations of LLM-based agents in Habitat environments.
+It provides functionality for initializing agents, running episodes, collecting metrics, and storing evaluation results.
+The module includes classes for tracking action and state history during evaluation runs.
+"""
+
 import copy
 import json
 import os
@@ -31,7 +37,10 @@ class ActionHistoryElement:
 
     :param action: A tuple representing the action taken of format (Action Type, Action Args).
     :param timestamp: The timestamp at which the action was taken.
-    :param agent_uid: The unique identifier of the agent who took the action
+    :param agent_uid: The unique identifier of the agent who took the action.
+    :param response: The response or feedback received after taking the action.
+    :param world_graph: A dictionary mapping agent IDs to their world graph states at this point.
+    :param info: Additional information dictionary containing metadata about the action.
     """
 
     action: tuple
@@ -41,7 +50,12 @@ class ActionHistoryElement:
     world_graph: Dict[int, WorldGraph] = None
     info: dict = attr.ib(factory=dict)
 
-    def to_string(self):
+    def to_string(self) -> str:
+        """
+        Convert the state history element to a string representation.
+
+        :return: A string representation of the agent's state.
+        """
         return f"{self.action[0]}[{self.action[1]}]"
 
 
@@ -59,7 +73,12 @@ class StateHistoryElement:
     timestamp: int
     agent_uid: int
 
-    def to_string(self):
+    def to_string(self) -> str:
+        """
+        Convert the state history element to a string representation.
+
+        :return: A string representation of the agent's state.
+        """
         return self.state
 
 
@@ -75,8 +94,10 @@ class EvaluationRunner:
     ):
         """
         Initialize EvaluationRunner
+
         :param evaluation_runner_config_arg: The experiment configuration, including config of the agents and planners.
-        :param env_interface_arg: The environment
+        :param env_interface_arg: The environment instance
+        :param dump_world_graph: Whether to dump the world graph to a file.
         """
         self.env_interface = env_interface_arg
         self.evaluation_runner_config = evaluation_runner_config_arg
@@ -92,7 +113,7 @@ class EvaluationRunner:
         self.object_nodes: List[Entity] = []
 
         # Declare a container for storing unique agents
-        self.agents: Dict[str, Agent] = {}
+        self.agents: Dict[int, Agent] = {}
 
         self.episode_filename = ""
         self.current_instruction = ""
@@ -115,7 +136,7 @@ class EvaluationRunner:
         raise NotImplementedError
 
     # Method to initialize the agents based in the config
-    def __initialize_agents(self):
+    def __initialize_agents(self) -> None:
         """
         Initialize agents based on config.
         """
@@ -127,7 +148,7 @@ class EvaluationRunner:
         print("finished initializing agents!")
 
     # Method to print the object
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Return string with state of the evaluator
         """
@@ -137,21 +158,24 @@ class EvaluationRunner:
         return out
 
     @property
-    def agent_list(self):
+    def agent_list(self) -> str:
         """Returns a string listing the agent's uid"""
         return str([agent.uid for agent in self.agents.values()])
 
     @property
-    def tool_list(self):
-        """Returns a string listing the agents tools"""
+    def tool_list(self) -> List[str]:
+        """Returns a list of unique tool names across all agents.
+
+        :return: List of tool names as strings
+        """
         tool_set = set()
         for agent in self.agents.values():
-            for tool in agent.tools:
+            for tool in agent.tools.values():
                 tool_set.add(tool.name)
 
         return list(tool_set)
 
-    def reset(self):
+    def reset(self) -> None:
         """Reset metrics and stats to be ready for the next episode."""
 
         # Clear the frames to make sure that
@@ -171,22 +195,24 @@ class EvaluationRunner:
         # make eval runner ready for next episode
         self.reset_planners()
 
-        return
-
     @property
     def agent_descriptions(self) -> str:
-        """Returns a string listing the descriptions of all agents"""
+        """Returns a string listing the descriptions of all agents
 
+        :return: A concatenated string of all agent descriptions
+        """
         out = ""
         for agent in self.agents.values():
             out += agent.agent_description
-
         return out
 
-    def _update_td(self, frame, ax):
+    def _update_td(self, frame, ax) -> None:
         """
         Function to update the top down plot for each robot position
         and detected objects over time.
+
+        :param frame: Current animation frame number
+        :param ax: Matplotlib axis object to draw on
         """
         # Clear the current plot
         ax.clear()
@@ -225,9 +251,12 @@ class EvaluationRunner:
         # Set aspect ratio to be equal
         ax.set_aspect("equal")
 
-        return
+    def _store_for_top_down_viz(self, agent_uid: Optional[int] = None) -> None:
+        """
+        Stores agent position and world graph object data for top-down visualization.
 
-    def _store_for_top_down_viz(self, agent_uid: Optional[int] = None):
+        :param agent_uid: Optional ID of agent whose perspective to use. If None, uses full observability.
+        """
         world_graph = None
         if agent_uid is not None:
             world_graph = self.env_interface.world_graph[agent_uid]
@@ -243,9 +272,12 @@ class EvaluationRunner:
 
         self.object_nodes.append(world_graph.get_all_objects())
 
-        return
+    def _log_planner_data(self, planner_infos: List[Dict[str, Any]]) -> None:
+        """
+        Logs planner data including prompts, traces and other info to files.
 
-    def _log_planner_data(self, planner_infos):
+        :param planner_infos: List of dictionaries containing planner information at each step
+        """
         # Print logging
         print("\nLogging planner data ...")
 
@@ -306,7 +338,10 @@ class EvaluationRunner:
         os.makedirs(os.path.dirname(file_path_json), exist_ok=True)
 
         # Dictionary to store final log
-        planner_log = {"task": self.current_instruction, "steps": []}
+        planner_log: Dict[str, Any] = {
+            "task": self.current_instruction,
+            "steps": [],
+        }
 
         # Declare keys to exclude
         keys_to_exclude = ["prompts", "traces", "print", "print_no_tags"]
@@ -327,13 +362,11 @@ class EvaluationRunner:
         print("Successfully logged planner data!")
         if self.evaluation_runner_config.log_detailed_traces:
             self._save_detailed_traces()
-        return
 
-    def _save_detailed_traces(self):
+    def _save_detailed_traces(self) -> None:
         """
-        Save detailed traces to a pickle file.
+        Save detailed traces to a pickle file containing instruction, action history and state history.
         """
-
         for actions in self.env_interface.agent_action_history.values():
             # don't check the last action because if you hit the max sim step count no result will be logged
             for action in actions[:-1]:
@@ -361,9 +394,11 @@ class EvaluationRunner:
         with open(file_path_detailed_trace, "wb") as file:
             pickle.dump(result, file)
 
-    def _make_td_video(self, instruction):
+    def _make_td_video(self) -> None:
         """
-        Make video for the episode
+        Creates a top-down video visualization of the episode.
+
+        :param instruction: Task instruction being executed
         """
         os.makedirs(f"{self.output_dir}/videos", exist_ok=True)
         td_video_name = f"{self.output_dir}/videos/video-td-{self.episode_filename}.mp4"
@@ -382,11 +417,14 @@ class EvaluationRunner:
         # Save the animation as a video file (e.g., .mp4)
         animation.save(td_video_name, writer="ffmpeg", fps=30)
 
-        return
-
-    def initialize_instruction_metadata(self, instruction: str, output_name: str):
+    def initialize_instruction_metadata(
+        self, instruction: str, output_name: str
+    ) -> None:
         """
         Start folders where the outputs will be stored.
+
+        :param instruction: The natural language instruction for the task to be executed. If None, uses the instruction from the current episode.
+        :param output_name: Name to use for output files. If empty string, generates name from instruction text.
         """
         if instruction is None:
             # Get the instruction from the episode
@@ -410,14 +448,16 @@ class EvaluationRunner:
             self.episode_filename = self.episode_filename[: self.TRUNCATE_LENGTH]
 
     def get_low_level_actions(
-        self, instruction: str, observations: dict, world_graph: WorldGraph
+        self, instruction: str, observations: dict, world_graph: Dict[int, WorldGraph]
     ):
         """
         Given a set of observations, gets a vector of low level actions, an info dictionary and a boolean indicating that
         the run should end.
+
         :param instruction: String with the instruction to execute
         :param observations: Dictionary of habitat observations
-        :param world_graph: The world graph from the agent. TODO: this should probably be stored in the agent planner.
+        :param world_graph: The world graph from the agent.
+
         :return: tuple low_level_actions, info, should_end indicating 1) a dictionary from agent id to a low level action vector
         2) a dictionary with info about high level actions, an indicator of whether the task was ended.
         """
@@ -429,10 +469,12 @@ class EvaluationRunner:
         """
         raise NotImplementedError
 
-    def update_agent_state_history(self, planner_info):
+    def update_agent_state_history(self, planner_info: Dict[str, Any]) -> None:
         """
-        This method updates the state history stored in env_interface based on planner info.
-        This includes logging states like, "standing" "walking" "picking X" "placing on Y" etc.
+        Updates the state history stored in env_interface based on planner info.
+        This includes logging states like "standing", "walking", "picking X", "placing on Y" etc.
+
+        :param planner_info: Dictionary containing planner state information
         """
         # # Update the agent states in environment interface
         if "agent_states" in planner_info:
@@ -459,13 +501,15 @@ class EvaluationRunner:
                         )
                     )
 
-        return
+    def update_agent_action_history(self, planner_info: Dict[str, Any]) -> None:
+        """
+        Updates the actions history stored in env_interface based on planner info.
+        This includes logging actions like "Navigate[object_id]", "Pick[object_id]" etc.
 
-    def update_agent_action_history(self, planner_info):
+        :param planner_info: Dictionary containing planner action information
         """
-        This method updates the actions history stored in env_interface based on planner info.
-        This includes logging actions like, "Navigate[object_id]", "Pick[object_id] etc.
-        """
+        if "replan_required" not in planner_info:
+            return
         # Update the agent states in environment interface
         for agent_id, value in planner_info["replanned"].items():
             if value:
@@ -503,11 +547,18 @@ class EvaluationRunner:
                         raise ValueError(
                             f"Agent {agent_id} has a null response on {ah.action}"
                         )
-        return
 
-    def run_instruction(self, instruction=None, output_name=""):
+    def run_instruction(
+        self, instruction: Optional[str] = None, output_name: str = ""
+    ) -> Dict[str, Any]:
         """
-        Runs a single instruction through the planner, taking steps until the task is done. Stores the information in output name
+        Runs a single instruction through the planner, taking steps until the task is done.
+        Stores the information using the provided output name.
+
+        :param instruction: Optional instruction to execute. If None, uses episode instruction.
+        :param output_name: Name to use for output files. If empty, derives from instruction.
+
+        :return: Dictionary containing execution information and metrics
         """
         # Log start time
         t_0 = time.time()
@@ -539,8 +590,8 @@ class EvaluationRunner:
 
         # List to store planner logs at each step
         planner_infos = []
-        planner_info = {}
-        low_level_actions = []
+        planner_info: Dict[str, Any] = {}
+        low_level_actions: List[Dict[str, Any]] = []
         should_end = False
 
         # Plan until required
@@ -611,7 +662,8 @@ class EvaluationRunner:
             # Add world description to planner_info
             # on every replanning step and at the end of planning
             if (
-                planner_info["replan_required"]
+                "replan_required" in planner_info
+                and planner_info["replan_required"]
                 and any(planner_info["replan_required"].values())
             ) or should_end:
                 planner_info["curr_graph"] = {

@@ -24,7 +24,7 @@ scikit-image
 sentence-transformers==2.7.0
 tiktoken
 tqdm>=4.0.0
-transformers==4.44.0
+transformers==4.46.2
 trl==0.11.2
 typing_extensions
 uvicorn==0.22.0

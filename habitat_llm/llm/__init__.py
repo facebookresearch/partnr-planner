@@ -12,6 +12,7 @@ import habitat_llm
 from habitat_llm.llm.base_llm import BaseLLM
 from habitat_llm.llm.hf_model import HFModel  # noqa: F401
 from habitat_llm.llm.llama import Llama  # noqa: F401
+from habitat_llm.llm.multimodal_llama import MultiModalLlama  # noqa: F401
 from habitat_llm.llm.openai_chat import OpenAIChat  # noqa: F401
 
 

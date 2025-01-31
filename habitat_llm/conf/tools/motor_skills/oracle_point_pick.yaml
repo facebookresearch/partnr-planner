@@ -1,0 +1,11 @@
+defaults:
+  - oracle_pick
+  - _self_
+
+oracle_pick:
+  skill_config:
+    skill:
+      _target_: "habitat_llm.tools.motor_skills.pick.oracle_point_pick_skill.OraclePointPickSkill"
+
+    description: "Used for picking up an object at a specific point in the environment. You must provide the target position coordinates."
+    selection_snap_distance: 0.1   # Distance threshold to snap to the object

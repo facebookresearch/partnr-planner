@@ -10,7 +10,25 @@ from typing import Dict, List, Optional
 from omegaconf import DictConfig, OmegaConf
 from openai import AzureOpenAI
 
-from habitat_llm.llm.base_llm import BaseLLM
+from habitat_llm.llm.base_llm import BaseLLM, Prompt
+
+
+def generate_message(multimodal_prompt, image_detail="auto"):
+    # Converts the multimodal prompt to the OpenAI format.
+    content = []
+    for prompt_type, prompt_value in multimodal_prompt:
+        if prompt_type == "text":
+            message_item = {"type": "text", "text": prompt_value}
+        else:
+            message_item = {
+                "type": "image_url",
+                "image_url": {
+                    "url": prompt_value,
+                    "detail": image_detail,
+                },
+            }
+        content.append(message_item)
+    return {"role": "user", "content": content}
 
 
 class OpenAIChat(BaseLLM):
@@ -23,12 +41,12 @@ class OpenAIChat(BaseLLM):
         self.generation_params = self.llm_conf.generation_params
         try:
             api_key = os.getenv("OPENAI_API_KEY")
-            assert len(api_key) > 0, ValueError("No OPENAI API keys provided")
+            assert len(api_key) > 0, ValueError("No OPENAI_API_KEY keys provided")
         except Exception:
             raise ValueError("No OPENAI API keys provided")
         try:
             endpoint = os.getenv("OPENAI_ENDPOINT")
-            assert len(endpoint) > 0, ValueError("No OPENAI endpoint keys provided")
+            assert len(endpoint) > 0, ValueError("No OPENAI_ENDPOINT keys provided")
         except Exception:
             raise ValueError("No OPENAI endpoint keys provided")
         self.client = AzureOpenAI(
@@ -49,7 +67,7 @@ class OpenAIChat(BaseLLM):
     # @retry(Timeout, tries=3)
     def generate(
         self,
-        prompt: str,
+        prompt: Prompt,
         stop: Optional[str] = None,
         max_length: Optional[int] = None,
         generation_args=None,
@@ -58,6 +76,7 @@ class OpenAIChat(BaseLLM):
         """
         Generate a response autoregressively.
         :param prompt: A string with the input to the language model.
+        :param image: Image input
         :param stop: A string that determines when to stop generation
         :param max_length: The max number of tokens to generate.
         :param request_timeout: maximum time before timeout.
@@ -67,7 +86,7 @@ class OpenAIChat(BaseLLM):
         params = OmegaConf.to_object(self.generation_params)
 
         # Override stop if provided
-        if stop is None:
+        if stop is None and len(self.generation_params.stop) > 0:
             stop = self.generation_params.stop
         params["stop"] = stop
 
@@ -80,20 +99,21 @@ class OpenAIChat(BaseLLM):
         if len(messages) == 0:
             messages.append({"role": "system", "content": self.llm_conf.system_message})
 
-        # Add current message
-        messages.append({"role": "user", "content": prompt})
-        params["messages"] = messages
-
         params["request_timeout"] = request_timeout
+        if type(prompt) is str:
+            # Add current message
+            messages.append({"role": "user", "content": prompt})
 
-        try:
-            response = self.client.chat.completions.create(
-                model=params["model"], messages=params["messages"]
-            )
-            text_response = response.choices[0].message.content
-            self.response = text_response
-        except BaseException:
-            print("call to openAI API failed")
+        else:
+            # Multimodal prompt
+            image_detail = "low"  # high/low/auto
+            messages.append(generate_message(prompt, image_detail=image_detail))
+
+        text_response = self.client.chat.completions.create(
+            model=params["model"], messages=messages
+        )
+        text_response = text_response.choices[0].message.content
+        self.response = text_response
 
         # Update message history
         if self.keep_message_history:

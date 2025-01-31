@@ -8,6 +8,7 @@ from enum import Enum
 from typing import TYPE_CHECKING, List
 
 import torch
+from habitat.core.logging import logger
 
 from habitat_llm.tools.motor_skills.nav.oracle_nav_skill import OracleNavSkill
 from habitat_llm.tools.motor_skills.pick.oracle_pick_skill import OraclePickSkill
@@ -199,7 +200,7 @@ class OracleRearrangeSkill(SkillPolicy):
                     skill_termination_message,
                 ),
             }
-            print(
+            logger.debug(
                 f"[OracleRearrangeSkill] Skill {self.active_skill} is done. Response: {self.env._composite_action_response}"
             )
             # Mark end of rearrangement

@@ -216,7 +216,7 @@ class LLMPlanner(Planner):
         self.latest_agent_response = {}
 
     def prepare_prompt(
-        self, input_instruction: str, world_graph: "WorldGraph"
+        self, input_instruction: str, world_graph: "WorldGraph", **kwargs
     ) -> Tuple[str, Dict[str, Any]]:
         """
         Prepare the prompt for the LLM.
@@ -283,7 +283,13 @@ class LLMPlanner(Planner):
             )
             params["world_description"] = world_description
 
-        return self.prompt.format(**params), params
+        if "should_format" in kwargs and not kwargs["should_format"]:
+            # In some cases a subclass may want to fill the extra arguments here, so we don't format
+            # because those arguments would be missing.
+            output_prompt = ""
+        else:
+            output_prompt = self.prompt.format(**params)
+        return output_prompt, params
 
     @property
     def tool_list(self) -> List[str]:
@@ -537,6 +543,36 @@ class LLMPlanner(Planner):
                     break
         return print_str
 
+    def replan(
+        self,
+        instruction: str,
+        observations: Dict[str, Any],
+        world_graph: Dict[int, "WorldGraph"],
+    ):
+        """
+        Replan a high level action using the LLM/VLM
+        """
+        # Generate response
+        if self.planner_config.get("constrained_generation", False):
+            llm_response = self.llm.generate(
+                self.curr_prompt,
+                self.stopword,
+                generation_args={
+                    "grammar_definition": self.build_response_grammar(
+                        world_graph[self._agents[0].uid]
+                    )
+                },
+            )
+        else:
+            llm_response = self.llm.generate(self.curr_prompt, self.stopword)
+
+        # Format the response
+        # This removes extra text followed by end expression when needed.
+        llm_response = self.format_response(llm_response, self.end_expression)
+
+        info = {"llm_response": llm_response}
+        return info
+
     def get_next_action(
         self,
         instruction: str,
@@ -576,7 +612,7 @@ class LLMPlanner(Planner):
         if self.curr_prompt == "":
             # Prepare prompts
             self.curr_prompt, self.params = self.prepare_prompt(
-                instruction, world_graph[self._agents[0].uid]
+                instruction, world_graph[self._agents[0].uid], observations=observations
             )
             self.curr_obj_states = get_objects_descr(
                 world_graph[self._agents[0].uid],
@@ -597,24 +633,9 @@ class LLMPlanner(Planner):
             if verbose:
                 # calculate the total time of response generation
                 start_time = time.time()
-            # Generate response
-            if self.planner_config.get("constrained_generation", False):
-                llm_response = self.llm.generate(
-                    self.curr_prompt,
-                    self.stopword,
-                    generation_args={
-                        "grammar_definition": self.build_response_grammar(
-                            world_graph[self._agents[0].uid]
-                        )
-                    },
-                )
-            else:
-                llm_response = self.llm.generate(self.curr_prompt, self.stopword)
 
-            # Format the response
-            # This removes extra text followed by end expression when needed.
-            llm_response = self.format_response(llm_response, self.end_expression)
-
+            response_info = self.replan(instruction, observations, world_graph)
+            llm_response = response_info["llm_response"]
             # parse thought from the response
             thought = self.parse_thought(llm_response)
 

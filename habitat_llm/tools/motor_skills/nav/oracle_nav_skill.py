@@ -76,6 +76,9 @@ class OracleNavSkill(SkillPolicy):
         self.articulated_agent = self.env.sim.agents_mgr[
             self.agent_uid
         ].articulated_agent
+        # by default we ignore the computed target rotation and instead face the navigation point
+        # override this to respect the initial computed rotation
+        self.face_object = config.get("face_object", True)
 
         self.do_teleport = False
         if "teleport" in config:
@@ -165,6 +168,16 @@ class OracleNavSkill(SkillPolicy):
             self.articulated_agent.params.leg_init_params
         )
 
+    def get_agent_object_ids(self) -> tuple[list[int], list[int]]:
+        agent_object_ids: list[int] = []
+        other_agent_object_ids: list[int] = []
+        for articulated_agent in self.env.sim.agents_mgr.articulated_agents_iter:
+            agent_object_ids.extend(
+                [articulated_agent.sim_obj.object_id]
+                + [*articulated_agent.sim_obj.link_object_ids.keys()]
+            )
+        return agent_object_ids, other_agent_object_ids
+
     def set_target(self, target_name: str, env):
         """
         Identify the target Entity (Receptacle, Object, Furniture) for the navigation skill and generate a target pose for the agent to reach the Entity.
@@ -188,17 +201,7 @@ class OracleNavSkill(SkillPolicy):
 
         target_object_ids = []
         # get the object_id for all links associated with all articulated agents so they can be ignored in navigation placement sampling
-        agent_object_ids = []
-        other_agent_object_ids = []
-        for articulated_agent in self.env.sim.agents_mgr.articulated_agents_iter:
-            agent_object_ids.extend(
-                [articulated_agent.sim_obj.object_id]
-                + [*articulated_agent.sim_obj.link_object_ids.keys()]
-            )
-            if articulated_agent != self.articulated_agent:
-                other_agent_object_ids = [articulated_agent.sim_obj.object_id] + [
-                    *articulated_agent.sim_obj.link_object_ids.keys()
-                ]
+        agent_object_ids, other_agent_object_ids = self.get_agent_object_ids()
 
         self.target_pos = None
         furniture_parent_handle = None
@@ -497,24 +500,29 @@ class OracleNavSkill(SkillPolicy):
         if len(curr_path_points) == 1:
             curr_path_points += curr_path_points
 
-        cur_nav_targ = curr_path_points[1]
+        cur_nav_targ = np.array(curr_path_points[1])
         forward = np.array([1.0, 0, 0])
         robot_forward = np.array(base_T.transform_vector(forward))
 
         # Compute relative target
         rel_targ = cur_nav_targ - robot_pos
-
         # Compute heading angle (2D calculation)
         robot_forward = robot_forward[[0, 2]]
         rel_targ = rel_targ[[0, 2]]
         rel_pos = (obj_targ_pos - robot_pos)[[0, 2]]
-        # Get the angles
+        dist_to_final_nav_targ = np.linalg.norm(
+            (np.array(self.target_base_pos) - robot_pos)[[0, 2]],
+        )
+        if not self.face_object and dist_to_final_nav_targ < self.dist_thresh:
+            # if we want to use the target rotation instead of facing the object
+            # set the angle to target_base_rot only if we are already close to the nav goal
+            rel_pos = np.array(
+                [np.cos(self.target_base_rot), -np.sin(self.target_base_rot)]
+            )
+            rel_targ = rel_pos
         angle_to_target = get_angle(robot_forward, rel_targ)
         angle_to_obj = get_angle(robot_forward, rel_pos)
         # Compute the distance
-        dist_to_final_nav_targ = np.linalg.norm(
-            (self.target_base_pos - robot_pos)[[0, 2]],
-        )
         at_goal = (
             dist_to_final_nav_targ < self.dist_thresh
             and angle_to_obj < self.turn_thresh

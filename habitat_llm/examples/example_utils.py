@@ -160,6 +160,7 @@ def execute_skill(
     llm_env,
     make_video: bool = True,
     vid_postfix: str = "",
+    play_video: bool = True,
 ) -> Tuple[Dict[Any, Any], Dict[Any, Any], List[Any]]:
     """
     Execute a high-level skill from a string (e.g. as produced by the planner).
@@ -169,6 +170,7 @@ def execute_skill(
     :param llm_env: The planner instance. TODO: typing
     :param make_video: whether or not to create, save, and display a video of the skill.
     :param vid_postfix: An optional postfix for the video file. For example, the action name.
+    :param play_video: Whether or not to immediately play the generated video.
     :return: A tuple with two dict(the first contains responses per-agent skill, the second contains the number of skill steps taken) and a list of frames.
     """
     dvu = DebugVideoUtil(
@@ -216,6 +218,6 @@ def execute_skill(
         skill_steps += 1
 
     if make_video and skill_steps > 1:
-        dvu._make_video(postfix=vid_postfix, play=True)
+        dvu._make_video(postfix=vid_postfix, play=play_video)
 
     return responses, {"skill_steps": skill_steps}, dvu.frames

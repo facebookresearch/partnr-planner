@@ -190,16 +190,14 @@ class EnvironmentInterface:
 
         # maintain a copy of fully-observable world-graph
         self.full_world_graph = WorldGraph()
-        most_recent_graph = self.perception.initialize(self.sim, False)
+        most_recent_graph = self.perception.initialize(False)
         self.full_world_graph.update(most_recent_graph, False, "gt", add_only=True)
 
         # based on the type of world-model being used, setup the data-source
         if self.conf.world_model.type == "concept_graph":
             self.world_graph[self.robot_agent_uid].world_model_type = "non_privileged"
             # initialize the human agent's world-graph from sim with partial observability
-            subgraph = self.perception.initialize(
-                self.sim, partial_obs=self.partial_obs
-            )
+            subgraph = self.perception.initialize(partial_obs=self.partial_obs)
             self.world_graph[self.conf.human_agent_uid].update(
                 subgraph, self.partial_obs, "gt", add_only=True
             )
@@ -243,7 +241,7 @@ class EnvironmentInterface:
                 self.robot_agent_uid
             ]._set_sim_handles_for_non_privileged_graph(self.perception)
         elif self.conf.world_model.type == "gt_graph":
-            subgraph = self.perception.initialize(self.sim, self.partial_obs)
+            subgraph = self.perception.initialize(self.partial_obs)
             # Get ground truth subgraph from the current observations.
             # since the graph is being initialized, we only add the new nodes and edges
             for agent_key in self.world_graph:
@@ -266,10 +264,27 @@ class EnvironmentInterface:
     def parse_observations(self, obs):
         return self.__parse_observations(obs)
 
-    def reset_environment(self):
+    def reset_environment(self, move_to_next_episode=True, episode_id=None):
         """
         Resets the environment, moving to the next episode and obtaining a new set of observations
+        :param move_to_next_episode: by default, reset moves to the next episode. If set to False, will reset the environment to the same episode.
+        :param episode_id: If set, reset the environment to a given episode id. Otherwise, moves to the next episode.
         """
+        if not move_to_next_episode:
+            # We set this variable to reset the environment but stay in the same episode
+            self.env.env.env._env.current_episode = (
+                self.env.env.env._env.current_episode
+            )
+
+        if episode_id is not None:
+            assert type(episode_id) == str
+            episode_interest = [
+                epi
+                for epi in self.env.env.env._env._dataset.episodes
+                if epi.episode_id == episode_id
+            ][0]
+            self.env.env.env._env.current_episode = episode_interest
+
         obs = self.env.reset()
         self.batch = self.__parse_observations(obs)
         self.initialize_perception_and_world_graph()
@@ -429,7 +444,7 @@ class EnvironmentInterface:
         # Update fully observed world graph (ground truth)
         # This graph is used when planner is working under full observability
         # THis graph is also used by skills to check if a certain furniture is articulated or not etc.
-        most_recent_graph = self.perception.get_recent_graph(self.sim)
+        most_recent_graph = self.perception.get_recent_graph()
         self.full_world_graph.update(
             most_recent_graph, partial_obs=False, update_mode="gt"
         )
@@ -468,7 +483,7 @@ class EnvironmentInterface:
         else:
             # Get robots subgraph using both human and robot observations
             most_recent_robot_subgraph = self.perception.get_recent_subgraph(
-                self.sim, [str(self.robot_agent_uid), str(self.human_agent_uid)], obs
+                [str(self.robot_agent_uid), str(self.human_agent_uid)], obs
             )
 
             # Get human subgraph using only human observations
@@ -483,7 +498,6 @@ class EnvironmentInterface:
                     str(self.human_agent_uid),
                 ]
             most_recent_human_subgraph = self.perception.get_recent_subgraph(
-                self.sim,
                 observation_sources,
                 obs,
             )
@@ -634,6 +648,13 @@ class EnvironmentInterface:
                 # inv_T = self.sim._default_agent.scene_node.transformation
                 # fixed_pose = inv_T @ fixed_pose
             self._trajectory_idx += 1
+
+    @property
+    def agents(self):
+        """
+        Return the agents defined in this environment
+        """
+        return self.sim.agents_mgr._all_agent_data
 
     def step(self, low_level_actions):
         """

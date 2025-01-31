@@ -6,7 +6,7 @@
 
 from typing import Optional
 
-from habitat_llm.llm.base_llm import BaseLLM
+from habitat_llm.llm.base_llm import BaseLLM, Prompt
 
 
 class MockLLM(BaseLLM):
@@ -23,7 +23,7 @@ class MockLLM(BaseLLM):
 
     def generate(
         self,
-        prompt: str,
+        prompt: Prompt,
         stop: Optional[str] = None,
         max_length: Optional[int] = None,
         generation_args=None,

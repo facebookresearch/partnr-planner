@@ -41,7 +41,7 @@ generation_params:
   stream        : False
 
   # up to 4 sequences that stop the generation
-  stop          : ''
+  stop          : "Assigned!"
 
   # Dictionary that can modify the likelihood of specified tokens appearing in the completion.
   # logit_bias: {}

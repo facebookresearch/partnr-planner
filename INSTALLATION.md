@@ -19,8 +19,8 @@ git submodule update --init --recursive
 ```bash
 # Adjust the cuda version depending on your hardware stack
 conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=12.4 -c pytorch -c nvidia -y
-# Install habitat-sim version 0.3.2
-conda install habitat-sim=0.3.2 withbullet headless -c conda-forge -c aihabitat -y
+# Install habitat-sim version 0.3.3
+conda install habitat-sim=0.3.3 withbullet headless -c conda-forge -c aihabitat -y
 # NOTE: If the above fails, packages may not be available for your system. Install from source (see https://github.com/facebookresearch/habitat-sim).
 pip install -e ./third_party/habitat-lab/habitat-lab
 pip install -e ./third_party/habitat-lab/habitat-baselines

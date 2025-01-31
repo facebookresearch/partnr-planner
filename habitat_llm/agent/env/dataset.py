@@ -69,8 +69,10 @@ class CollaborationDatasetV0(RearrangeDatasetV0):
         else:
             # Otherwise, init the dataset with the episode specified in config
             if config and not self.check_config_paths_exist(config):
+                data_p = config.data_path.format(split=config.split)
+                scenes_p = config.scenes_dir
                 raise ValueError(
-                    "Collaboration task assets are not downloaded locally."
+                    f"Collaboration task assets are not downloaded locally. Either {data_p} or {scenes_p} do not exist."
                 )
 
             check_and_gen_physics_config()

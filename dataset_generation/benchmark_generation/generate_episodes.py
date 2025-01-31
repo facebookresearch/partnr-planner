@@ -127,7 +127,7 @@ class LLMRearrangeEpisodeGenerator(RearrangeEpisodeGenerator):
         # each generation pass is indexed
         self.phase = 0
 
-    def reset_epsiode_state(self):
+    def reset_episode_state(self):
         """
         Reset the structures tracking content added to the current episode.
         """
@@ -287,7 +287,7 @@ class LLMRearrangeEpisodeGenerator(RearrangeEpisodeGenerator):
         Set the scene id and initialize a fresh Simulator instance with the specified scene.
         """
 
-        self.reset_epsiode_state()
+        self.reset_episode_state()
         self._reset_samplers()
         self._scene_sampler.scene = scene_id
         self.ep_scene_handle = self.generate_scene()
@@ -1223,6 +1223,8 @@ class LLMRearrangeEpisodeGenerator(RearrangeEpisodeGenerator):
         self.episode_data["info"]["object_labels"] = self.target_refs
         self.episode_data["info"]["extra_info"] = extra_info
 
+        self.num_ep_generated += 1
+
         # NOTE: directly creating a CollaborationEpisode for object states, but embedding no evaluation info so these will be partial and need to be post-processed
         # NOTE: mypy doesn't like the keyword args for auto_attribs so ignored
         return CollaborationEpisode(  # type: ignore
@@ -1661,17 +1663,16 @@ if __name__ == "__main__":
         with open(args.metadata_dict, "r") as f:
             metadata_dict = json.load(f)
     else:
-        # default
         metadata_dict = default_metadata_dict
 
     # load the initial state dicts for each episode
-    init_state_dicts = []
+    init_state_dicts: List[Dict[Any, Any]] = []
     if args.init_state_dicts is not None:
         with open(args.init_state_dicts, "r") as f:
             # NOTE: expected JSON is a list of structures
             # {
             #   "initial_state_dicts": [{<init_state_dict},...]
             # }
-            init_state_dicts = json.load(f)
+            init_state_dicts = json.load(f)["initial_state_dicts"]
 
     run_generation_over_proposals(gen_config, metadata_dict, init_state_dicts)

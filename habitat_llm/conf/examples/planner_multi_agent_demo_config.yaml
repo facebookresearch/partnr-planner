@@ -32,6 +32,13 @@ dry_run: False
 robot_agent_uid: 0
 human_agent_uid: 1
 
+# TODO: we should get rid of these uid. They are redundant.
+agents:
+  agent_0:
+    uid: 0
+  agent_1:
+    uid: 1
+
 paths:
   results_dir: ${hydra:runtime.output_dir}/results
   epi_result_file_path: "${paths.results_dir}/episode_result_log.csv"
@@ -43,6 +50,7 @@ evaluation:
   do_print: True
   save_video: False
   log_data: True
+  save_rgb: False
   log_detailed_traces: True
 
 habitat:

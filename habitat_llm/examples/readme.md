@@ -46,14 +46,14 @@ Since we want to exhaustively explore each scene for coverage, and not efficienc
 Provides a headless commandline interface (CLI) for running custom sequences of oracle skills within a sandbox environment for a given episode. See the primary [README.md](../../README.md) file for the repo for details.
 
 ## Validating and Fixing Episode Placements:
-`fix_episode_placements.py` script provides a tool for validating that Object->Receptacle relationships defined in the `CollaborationEpisode`.
+`fix_episode_placements.py` script provides a tool for validating the Object->Receptacle relationships defined in the `CollaborationEpisode`.
 
 For example to validate episode 0 of the PARTNR HSSD `val_mini` dataset:
 ```bash
 HYDRA_FULL_ERROR=1 python -m habitat_llm.examples.fix_episode_placements hydra.run.dir="." +validator_episode_indices=[0] +validator_operations=['ep_obj_rec_inits'] +validator_correction_level=0 habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/val_mini.json.gz
 ```
 
-- CLI option `+validator_episode_index=` can be provided instead of `+validator_episode_id=`, in which case the integer index will be used to query the episode from the dataset.
+- CLI options `+validator_episode_indices=` or `+validator_episode_ids=` specify which episodes to validate. If set, the integer indices or episode id strings respectively will be used to select the episode subset from the dataset. Otherwise all episodes in the dataset will be validated.
 
 - Validator operation `'ep_obj_rec_inits'` specifies that the Object->Receptacle relationships should be tested. Currently this is the only operation provided. In the future, more validator operations may be added.
 

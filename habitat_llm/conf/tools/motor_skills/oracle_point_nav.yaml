@@ -1,0 +1,11 @@
+defaults:
+  - oracle_nav
+  - _self_
+
+oracle_nav:
+  skill_config:
+    skill:
+      _target_: "habitat_llm.tools.motor_skills.nav.oracle_point_nav_skill.OraclePointNavSkill"
+
+    description: "Used for navigating to a specific point and rotation in the environment. You must provide the target position coordinates and rotation."
+    face_object: False

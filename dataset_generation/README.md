@@ -5,6 +5,7 @@
 - Symlink your habitat datafolder to this subfolder, e.g. `ln -s /path/to/habitat-data data`
 - Activate your conda environment with habitat (0.2.3) installed
 
+
 #### Generate dataset
 
 Run the following command:
