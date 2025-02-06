@@ -193,6 +193,19 @@ See detailed doc [here](./habitat_llm/finetuning/README.md)
 
 For additional details about adding new agents, tools and custom actions see [here](./docs/extending.md)
 
+## Citation
+
+```
+@inproceedings{PARTNR,
+  author = {Matthew Chang and Gunjan Chhablani and Alexander Clegg and Mikael Dallaire Cote and Ruta Desai and Michal Hlavac and Vladimir Karashchuk and Jacob Krantz and Roozbeh Mottaghi and Priyam Parashar and Siddharth Patki and Ishita Prasad and Xavier Puig and Akshara Rai and Ram Ramrakhya and Daniel Tran and Joanne Truong and John M. Turner and Eric Undersander and Tsung-Yen Yang},
+  title = {PARTNR: A Benchmark for Planning and Reasoning in Embodied Multi-agent Tasks},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  note = {alphabetical author order},
+  year = {2025}
+}
+```
+
+
 ## License
 
 partnr-planner is MIT licensed. See the [LICENSE](LICENSE) for details.
