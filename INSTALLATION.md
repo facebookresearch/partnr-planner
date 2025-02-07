@@ -104,3 +104,13 @@ ln -s versioned_data/partnr_episodes/test_rag data/test_rag
 # then, run the tests
 python -m pytest habitat_llm/tests [-v]
 ```
+
+#### Troubleshooting
+
+If the tests mentioned above fail due to scipy, numpy, pandas or opencv incompatibility, try installing the following alternate versions of selected packages which worked for us on Ubuntu 22.04.5 LTS:
+```
+pip install scipy==1.12.0 # make sure to run this before numpy or pandas install
+pip install numpy==1.22.0
+pip install pandas==2.0.3
+pip install opencv-python==4.10.0.82
+```
