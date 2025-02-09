@@ -49,7 +49,7 @@ Below are the details of various important directories and classes.
 
 ## Information Flow
 
-Below is a figure showing the flow of information through decentralized planners in PARTNR. Please note that at there is no explicit communication between the two decentralized planners. The [EnvironmentInterface](./habitat_llm/agent/env/environment_interface.py) reads observations for each agent and sends them to the [Perception Module](./habitat_llm/perception/perception_sim.py). The processed observations are used to update the [World Graph](./habitat_llm/world_model/world_graph.py) and the [Planner](./habitat_llm/planner/planner.py) (based on an LLM or other system) uses the world graph and the task description select a [Tool](./habitat_llm/tools/tool.py) to interact with the environment.
+Below is a figure showing the flow of information through decentralized planners in PARTNR. Please note that there is no explicit communication between the two decentralized planners. The [EnvironmentInterface](./habitat_llm/agent/env/environment_interface.py) reads observations for each agent and sends them to the [Perception Module](./habitat_llm/perception/perception_sim.py). The processed observations are used to update the [World Graph](./habitat_llm/world_model/world_graph.py) and the [Planner](./habitat_llm/planner/planner.py) (based on an LLM or other system) uses the world graph and the task description to select a [Tool](./habitat_llm/tools/tool.py) to interact with the environment.
 
 <p align="center">
   <img src="docs/planner_v3.png" width="65%"/>
@@ -107,7 +107,7 @@ python -m habitat_llm.examples.planner_demo --config-name baselines/single_agent
 ```
 
 ### OpenAI Backend
-To run with openai chat as the LLM backed instead set the `plan_config.llm=openai_chat`. Make sure your API keys have been set appropriately.
+To run with openai chat as the LLM backedend instead set the `plan_config.llm=openai_chat`. Make sure your API keys have been set appropriately.
 ```bash
 python -m habitat_llm.examples.planner_demo --config-name baselines/single_agent_zero_shot_react_summary.yaml \
     habitat.dataset.data_path="data/datasets/partnr_episodes/v0_0/val_mini.json.gz" \
