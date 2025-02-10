@@ -10,22 +10,6 @@ This is the official repository for the PARTNR benchmark. It includes instructio
 
 This codebase contains abstractions for enabling agents to follow free form natural language instructions in the Habitat simulator. The main abstractions are - **Agent**, **Planner**, **Tool**, and **Skill**. The agent has access to a set of tools which can allow it to perceive the state of the environment, or interact with the environment using low level skills. This repository also contains  the codebase for generating PARTNR datasets using LLMs.
 
-## Citing PARTNR
-
-If you use our codebase or dataset in your research, please cite the [PARTNR](https://arxiv.org/pdf/2411.00081) paper:
-
-```
-@misc{chang2024partnrbenchmarkplanningreasoning,
-      title={PARTNR: A Benchmark for Planning and Reasoning in Embodied Multi-agent Tasks},
-      author={Matthew Chang and Gunjan Chhablani and Alexander Clegg and Mikael Dallaire Cote and Ruta Desai and Michal Hlavac and Vladimir Karashchuk and Jacob Krantz and Roozbeh Mottaghi and Priyam Parashar and Siddharth Patki and Ishita Prasad and Xavier Puig and Akshara Rai and Ram Ramrakhya and Daniel Tran and Joanne Truong and John M. Turner and Eric Undersander and Tsung-Yen Yang},
-      year={2024},
-      eprint={2411.00081},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2411.00081},
-}
-```
-
 ## Code Organization
 
 Below are the details of various important directories and classes.
@@ -194,6 +178,8 @@ See detailed doc [here](./habitat_llm/finetuning/README.md)
 For additional details about adding new agents, tools and custom actions see [here](./docs/extending.md)
 
 ## Citation
+
+If you use our codebase or dataset in your research, please cite the [PARTNR](https://arxiv.org/pdf/2411.00081) paper:
 
 ```
 @inproceedings{PARTNR,
