@@ -107,7 +107,7 @@ python -m habitat_llm.examples.planner_demo --config-name baselines/single_agent
 ```
 
 ### OpenAI Backend
-To run with openai chat as the LLM backedend instead set the `plan_config.llm=openai_chat`. Make sure your API keys have been set appropriately.
+To run with openai chat as the LLM backend instead set the `plan_config.llm=openai_chat`. Make sure your API keys have been set appropriately.
 ```bash
 python -m habitat_llm.examples.planner_demo --config-name baselines/single_agent_zero_shot_react_summary.yaml \
     habitat.dataset.data_path="data/datasets/partnr_episodes/v0_0/val_mini.json.gz" \
