@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, List, Tuple
 
 import magnum as mn
 import torch
-
+import numpy as np
 from habitat_llm.agent.env.actions import find_action_range
 from habitat_llm.tools.motor_skills.skill import SkillPolicy
 from habitat_llm.utils.grammar import (
@@ -355,3 +355,214 @@ class OraclePlaceSkill(SkillPolicy):
         none = '("none" | "None")'
         optional_constraint = f'(({SPATIAL_CONSTRAINT} "," WS {OBJECT_OR_FURNITURE} )| ({none} WS "," WS {none}))'
         return [OBJECT, SPATIAL_RELATION, FURNITURE, optional_constraint]
+
+
+
+
+class OraclePlaceMovementSkill(OraclePlaceSkill):
+    def __init__(
+        self, config, observation_space, action_space, batch_size, env, agent_uid
+    ):
+        super().__init__(
+            config,
+            observation_space,
+            action_space,
+            batch_size,
+            env=env,
+            agent_uid=agent_uid,
+        )
+        self.coordinate_range_reach = find_action_range(
+            self.action_space, f"agent_{self.agent_uid}_oracle_reach_action"
+        )
+        self.ee_pos = None
+        self.range_steps = 20
+
+    def _is_skill_done(
+        self,
+        observations,
+        rnn_hidden_states,
+        prev_actions,
+        masks,
+        batch_idx,
+    ) -> torch.BoolTensor:
+        # For this skill to be done, two events need to happen
+        # 1. The pick action should be issued
+        # 2. The pick action should be executed
+
+        # Check if the pick action was issued
+        is_done = torch.zeros(masks.shape[0], dtype=torch.bool).to(self.device)
+        return self._cur_skill_step > self.range_steps
+        
+        # return (is_done).to(masks.device)
+    
+    def reset(self, batch_idxs):
+        super().reset(batch_idxs)
+        self._is_action_issued = torch.zeros(self._batch_size)
+        self.steps = 0
+
+
+    
+    
+    def _sample_pos(
+        self,
+        observations,
+        rnn_hidden_states,
+        prev_actions,
+        masks,
+        cur_batch_idx,
+        deterministic=False,
+    ):
+        
+        
+        # Early return if the arm doesn't contain any object
+        if not self.grasp_mgr.is_grasped:
+            self.termination_message = (
+                "Failed to place! The agent is not holding any object."
+            )
+            self.failed = True
+
+        # Early exit if the place_receptacle is not furniture or floor
+        # Check for floor as well
+        if not isinstance(self.place_entity, Furniture):
+            self.failed = True
+            self.termination_message = (
+                "Failed to place! Place receptacle is not furniture or floor."
+            )
+
+        # Early return if the furniture not within reach or occluded
+        max_distance = self._config.placing_distance
+        if isinstance(self.place_entity, Floor):
+            # get distance to the target location
+            cur_agent = self.env.sim.agents_mgr[self.agent_uid].articulated_agent
+            cur_agent_ee_pos = cur_agent.ee_transform().translation
+            ee_dist_to_target = (
+                mn.Vector3(cur_agent_ee_pos)
+                - mn.Vector3(self.place_entity.get_property("translation"))
+            ).length()
+        else:
+            # Furniture non-floor object
+            ee_dist_to_target = ee_distance_to_object(
+                self.env.sim,
+                self.env.sim.agents_mgr,
+                self.agent_uid,
+                self.place_entity.sim_handle,
+                max_distance=max_distance,
+            )
+
+        if ee_dist_to_target is None or ee_dist_to_target > max_distance:
+            self.failed = True
+            self.termination_message = f"Failed to place! Not close enough to {self.place_entity.name} or occluded."
+
+        # Sample place location
+        # The return of target_pos is a list
+        try:
+            target_poses: List[
+                Tuple[mn.Vector3, mn.Quaternion]
+            ] = self.place_entity.sample_place_location(
+                self.spatial_relation,
+                self.spatial_constraint,
+                self.reference_object,
+                self.env,
+                self.articulated_agent,
+                self.grasp_mgr,
+            )
+        except Exception as e:
+            # Return failure if the agent fails sampling
+            self.failed = True
+            self.termination_message = (
+                f"No valid placements found for entity due to {e}"
+            )
+
+        # Return with failure if no place location was found for that surface
+        if len(target_poses) == 0:
+            self.failed = True
+            if self.reference_object != None and self.spatial_constraint != None:
+                # Failed with spatial constraint (e.g. "next_to")
+                # NOTE: we can try sampling again without the spatial constraint to better establish causality.
+                target_poses_no_spatial_constraint: List[
+                    Tuple[mn.Vector3, mn.Quaternion]
+                ] = self.place_entity.sample_place_location(
+                    self.spatial_relation,
+                    None,
+                    None,
+                    self.env,
+                    self.articulated_agent,
+                    self.grasp_mgr,
+                )
+                if len(target_poses_no_spatial_constraint) > 0:
+                    # very likely the next_to was the problem
+                    self.termination_message = f"No valid placements found for entity {self.place_entity.name}. It looks like the spatial constraint {self.spatial_constraint} is not feasible because the reference object {self.reference_object.name} either does not exist or has not yet been placed on the {self.place_entity.name}. Try placing the grasped object {self.object_to_be_moved.name} on {self.place_entity.name} without the spatial constraint {self.spatial_constraint}."
+
+            self.termination_message = (
+                f"No valid placements found for entity {self.place_entity.name}."
+            )
+
+        # use the first pose in the list (closest to the agent)
+        target_pos, target_rot = target_poses[0]
+
+        # Convert the target pos into torch tensor
+        # target_pos = taget_po
+        self.target_pos = target_pos
+        self.target_rot = target_rot
+
+
+
+
+    def _internal_act(
+        self,
+        observations,
+        rnn_hidden_states,
+        prev_actions,
+        masks,
+        cur_batch_idx,
+        deterministic=False,
+    ):
+        # Pick object in the end
+        # Early exit if the object is out of reach.
+        # Declare container for actions
+        action = torch.zeros(prev_actions.shape, device=masks.device)
+
+        if self._cur_skill_step.item() == 1:
+            self.ee_pos = np.array(self.articulated_agent.ee_transform().translation)
+            self._sample_pos(observations, rnn_hidden_states, prev_actions, masks, cur_batch_idx, deterministic)
+
+            target_pos = self.target_pos
+        if self._cur_skill_step.item() == self.range_steps / 2:
+            # If all conditions are met, return action with True release flag and target position
+            
+            action = torch.zeros(prev_actions.shape, device=masks.device)
+            action[cur_batch_idx, self.release_flag_index] = 1
+            # Declare container for actions
+
+            action[
+                cur_batch_idx,
+                self.target_position_start_index + 0 : self.target_position_start_index + 3,
+            ] = torch.tensor(np.array(self.target_pos)).to(action.device)
+
+            # Set the flag indicating the object has been placed
+            self._is_action_issued[cur_batch_idx] = True
+
+            # NOTE: we set the object's orientation from the sampled state immediately because the place action doesn't take or modify the orientation
+            self.grasp_mgr.snap_rigid_obj.rotation = self.target_rot
+
+        else:
+            action = torch.zeros(prev_actions.shape, device=masks.device)
+        
+        
+        # remaps values in the 0..1 range to create a smoother 0..1 ramp
+        def smoothstep(x):
+            return 3 * x**2 - 2 * x**3            
+        # 0 for next to object, 1 for hand
+        alpha = smoothstep(np.abs(2 * (self._cur_skill_step[0].item() / self.range_steps) - 1))
+        # print(alpha)
+        hand_coordinates = (1-alpha) * np.array(self.target_pos) + (alpha) * self.ee_pos
+        coordinate_range_reach = torch.arange(*self.coordinate_range_reach)
+        
+        action[cur_batch_idx, coordinate_range_reach[1:4]] = torch.tensor(hand_coordinates).to(action.device).float()
+        
+        action[cur_batch_idx, coordinate_range_reach[0]] = 1.0
+        # Increase the step count of this action
+        self.steps += 1
+
+
+        return action, None

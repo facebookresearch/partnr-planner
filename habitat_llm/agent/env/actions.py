@@ -39,6 +39,8 @@ from hydra.core.config_store import ConfigStore
 from habitat_llm.utils.sim import ee_distance_to_object
 
 # Add your actions to the HabitatSimActions
+if not HabitatSimActions.has_action("oracle_reach_action"):
+     HabitatSimActions.extend_action_space("oracle_reach_action")
 if not HabitatSimActions.has_action("oracle_pick_action"):
     HabitatSimActions.extend_action_space("oracle_pick_action")
 if not HabitatSimActions.has_action("oracle_place_action"):
@@ -132,9 +134,9 @@ class HumanoidBaseVelAction(HumanoidJointAction):
             self.humanoid_controller.translate_and_rotate_with_gait(
                 lin_delta, rot_delta
             )
-        base_action = self.humanoid_controller.get_pose()
-        kwargs[f"{self._action_arg_prefix}human_joints_trans"] = base_action
-        HumanoidJointAction.step(self, *args, **kwargs)
+            base_action = self.humanoid_controller.get_pose()
+            kwargs[f"{self._action_arg_prefix}human_joints_trans"] = base_action
+            HumanoidJointAction.step(self, *args, **kwargs)
         return
 
     def reset(self, *args, **kwargs):
@@ -148,6 +150,83 @@ class HumanoidBaseVelAction(HumanoidJointAction):
                 self._action_arg_prefix
                 + "humanoid_base_vel": spaces.Box(
                     shape=(2,),
+                    low=np.finfo(np.float32).min,
+                    high=np.finfo(np.float32).max,
+                    dtype=np.float32,
+                )
+            }
+        )
+@registry.register_task_action
+class OracleReachAction(HumanoidJointAction):
+    def __init__(self, *args, task, **kwargs):
+        config = kwargs["config"]
+        HumanoidJointAction.__init__(self, *args, **kwargs)
+        self.humanoid_controller = self.lazy_inst_humanoid_controller(task, config)
+        self.initialized_pose = False
+    
+    def lazy_inst_humanoid_controller(self, task, config):
+        # Lazy instantiation of humanoid controller
+        # We assign the task with the humanoid controller, so that multiple actions can
+        # use it.
+
+        if not hasattr(task, "humanoid_controller") or task.humanoid_controller is None:
+            # Initialize humanoid controller
+            agent_name = self._sim.habitat_config.agents_order[self._agent_index]
+            walk_pose_path = self._sim.habitat_config.agents[
+                agent_name
+            ].motion_data_path
+
+            humanoid_controller = HumanoidRearrangeController(walk_pose_path)
+
+            task.humanoid_controller = humanoid_controller
+
+        return task.humanoid_controller
+
+    def reset_controller(self):
+        if not self.initialized_pose:
+            self.humanoid_controller.reset(
+                self.cur_articulated_agent.base_transformation
+            )
+            self.initialized_pose = True
+
+
+    def step(self, *args, **kwargs):
+
+        do_action = kwargs[self._action_arg_prefix + "do_action"]
+        hand_coord = kwargs[self._action_arg_prefix + "reach_coord"]
+        should_rest = kwargs[self._action_arg_prefix + "should_rest"]
+        if do_action != 0:
+            if should_rest:
+                self.humanoid_controller.calculate_stop_pose()
+            else:
+                self.humanoid_controller.calculate_reach_pose(hand_coord)
+            base_action = self.humanoid_controller.get_pose()
+            kwargs[f"{self._action_arg_prefix}human_joints_trans"] = base_action
+            HumanoidJointAction.step(self, *args, **kwargs)
+        # breakpoint()
+        return
+
+    @property
+    def action_space(self):
+        return spaces.Dict(
+            {
+                self._action_arg_prefix
+                + "reach_coord": spaces.Box(
+                    shape=(3,),
+                    low=np.finfo(np.float32).min,
+                    high=np.finfo(np.float32).max,
+                    dtype=np.float32,
+                ),
+                self._action_arg_prefix
+                + "should_rest": spaces.Box(
+                    shape=(1,),
+                    low=np.finfo(np.float32).min,
+                    high=np.finfo(np.float32).max,
+                    dtype=np.float32,
+                ),
+                self._action_arg_prefix
+                + "do_action": spaces.Box(
+                    shape=(1,),
                     low=np.finfo(np.float32).min,
                     high=np.finfo(np.float32).max,
                     dtype=np.float32,
@@ -765,6 +844,17 @@ class HumanoidBaseVelocityActionConfig(ActionConfig):
 
 
 @dataclass
+class OracleReachActionConfig(ActionConfig):
+    r"""
+    In Rearrangement tasks only, the action that will snap the object to robot arm
+    """
+    type: str = "OracleReachAction"
+    name: str = "oracle_reach_action"
+    dimensionality: int = 5
+    num_joints: int = 54
+
+
+@dataclass
 class OraclePickActionConfig(ActionConfig):
     r"""
     In Rearrangement tasks only, the action that will snap the object to robot arm
@@ -862,6 +952,7 @@ class OraclePourActionConfig(ActionConfig):
 ALL_ACTIONS: List[ActionConfig] = [
     OraclePickActionConfig,
     OraclePlaceActionConfig,
+    OracleReachActionConfig,
     OracleOpenActionConfig,
     OracleCloseActionConfig,
     OraclePowerOnActionConfig,

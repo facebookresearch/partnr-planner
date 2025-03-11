@@ -189,3 +189,81 @@ class OraclePickSkill(SkillPolicy):
         :return: List of argument types.
         """
         return [OBJECT]
+
+
+class OraclePickMovementSkill(OraclePickSkill):
+     def __init__(
+         self, config, observation_space, action_space, batch_size, env, agent_uid
+     ):
+         super().__init__(
+             config,
+             observation_space,
+             action_space,
+             batch_size,
+             env=env,
+             agent_uid=agent_uid,
+         )
+         self.coordinate_range_reach = find_action_range(
+             self.action_space, f"agent_{self.agent_uid}_oracle_reach_action"
+         )
+         self.ee_pos = None
+         self.range_steps = 20
+ 
+     def _is_skill_done(
+         self,
+         observations,
+         rnn_hidden_states,
+         prev_actions,
+         masks,
+         batch_idx,
+     ) -> torch.BoolTensor:
+         # For this skill to be done, two events need to happen
+         # 1. The pick action should be issued
+         # 2. The pick action should be executed
+ 
+         # Check if the pick action was issued
+         is_done = torch.zeros(masks.shape[0], dtype=torch.bool).to(self.device)
+         return self._cur_skill_step > self.range_steps
+         
+         # return (is_done).to(masks.device)
+     
+     def reset(self, batch_idxs):
+         super().reset(batch_idxs)
+         self._is_action_issued = torch.zeros(self._batch_size)
+         self.steps = 0
+ 
+     def _internal_act(
+         self,
+         observations,
+         rnn_hidden_states,
+         prev_actions,
+         masks,
+         cur_batch_idx,
+         deterministic=False,
+     ):
+         # Pick object in the end
+        rom = self.env.sim.get_rigid_object_manager()
+        # Early exit if the object is out of reach.
+        if self._cur_skill_step.item() == 1:
+            self.ee_pos = np.array(self.articulated_agent.ee_transform().translation)
+        target_pos = self.target_pos
+        if self._cur_skill_step.item() == self.range_steps / 2:
+            action, _ = super()._internal_act(observations, rnn_hidden_states, prev_actions, masks, cur_batch_idx, deterministic)
+        else:
+            action = torch.zeros(prev_actions.shape, device=masks.device)
+        
+        # remaps values in the 0..1 range to create a smoother 0..1 ramp
+        def smoothstep(x):
+            return 3 * x**2 - 2 * x**3            
+        # 0 for next to object, 1 for hand
+        alpha = smoothstep(np.abs(2 * (self._cur_skill_step[0].item() / self.range_steps) - 1))
+        # print(alpha)
+        hand_coordinates = (1-alpha) * np.array(self.target_pos) + (alpha) * self.ee_pos
+
+        coordinate_range_reach = torch.arange(*self.coordinate_range_reach)
+        
+        action[cur_batch_idx, coordinate_range_reach[1:4]] = torch.tensor(hand_coordinates).to(action.device).float()
+        
+        action[cur_batch_idx, coordinate_range_reach[0]] = 1.0
+        return action, None
+ 

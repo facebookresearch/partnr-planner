@@ -16,11 +16,11 @@ from habitat_llm.tools.motor_skills.nav.oracle_nav_skill import OracleNavSkill
 
 # Pick
 from habitat_llm.tools.motor_skills.pick.nn_pick_skill import PickSkillPolicy
-from habitat_llm.tools.motor_skills.pick.oracle_pick_skill import OraclePickSkill
+from habitat_llm.tools.motor_skills.pick.oracle_pick_skill import OraclePickSkill, OraclePickMovementSkill
 
 # Place
 from habitat_llm.tools.motor_skills.place.nn_place_skill import PlaceSkillPolicy
-from habitat_llm.tools.motor_skills.place.oracle_place_skill import OraclePlaceSkill
+from habitat_llm.tools.motor_skills.place.oracle_place_skill import OraclePlaceSkill, OraclePlaceMovementSkill
 from habitat_llm.tools.motor_skills.rearrange.nn_rearrange_skill import (
     RearrangeSkillPolicy,
 )
