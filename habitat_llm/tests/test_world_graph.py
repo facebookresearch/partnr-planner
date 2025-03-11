@@ -31,8 +31,8 @@ DATASET_OVERRIDES = [
     "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
     "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
     "habitat.environment.iterator_options.shuffle=False",
-    "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
-    "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
+    "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/humanoid_data/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
+    "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/humanoid_data/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
 ]
 
 
