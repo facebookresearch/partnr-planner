@@ -54,7 +54,7 @@ runs:
   - name: Install conda dependencies
     run: |-
       echo "Install conda and dependencies"
-      conda install -q -y mkl==2021.4.0
+      conda install -q -y mkl==2023.1.0
       conda install -q -y -c conda-forge ninja ccache
       conda install -q -y -c conda-forge libglib=2.76.1 glib=2.76.1 glib-tools=2.76.1
       conda install -y -c conda-forge numpy==1.26.4 pytest pytest-cov hypothesis pytest-mock
