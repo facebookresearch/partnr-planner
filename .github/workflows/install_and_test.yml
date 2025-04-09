@@ -96,8 +96,7 @@ jobs:
         git lfs install
 
         # get the standard test assets from the downloader
-        python -m habitat_sim.utils.datasets_download --uids ci_test_assets hab_spot_arm rearrange_task_assets hab3_bench_assets partnr_episodes_ci hssd_partnr_ci --data-path data/ --no-replace --no-prune
-        git clone https://huggingface.co/datasets/ai-habitat/OVMM_objects data/objects_ovmm --recursive
+        python -m habitat_sim.utils.datasets_download --uids ci_test_assets hab_spot_arm rearrange_task_assets hab3_bench_assets partnr_episodes_ci hssd_partnr_ci ovmm_objects --data-path data/ --no-replace --no-prune
         ln -s versioned_data/hab3_bench_assets/humanoids/ data/humanoids
         ln -s versioned_data/ovmm_objects/ data/objects_ovmm
 
