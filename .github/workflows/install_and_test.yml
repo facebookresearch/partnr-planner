@@ -135,7 +135,10 @@ jobs:
         export PATH=$HOME/miniconda/bin:/usr/local/cuda/bin:$PATH
         conda activate partnr
         cd partnr-planner
-        python -m pytest -s habitat_llm/tests
+        for test_file in habitat_llm/tests/*.py; do
+            echo ">>> Running test: $test_file"
+            python -m pytest -s "$test_file"
+        done
         python -m pytest dataset_generation/tests
     #NOTE: use the below to debug with ssh: simply move this "job" just before the crashing job to intercept the workflow
     #- name: Debugging with tmate
