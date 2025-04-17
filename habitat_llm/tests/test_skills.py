@@ -253,8 +253,8 @@ def test_neural_network_and_oracle_skills(skill_config):
                 f"evaluation={skill_config}",  # We test neural network/oracle skills
                 "device=cpu",  # We test cpu version of the skills
                 "habitat_conf/task=rearrange_easy_multi_agent_nn",  # We use the action space for nn skills
-                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
-                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
+                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/humanoid_data/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
+                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/humanoid_data/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
                 "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",  # We test with a specific dataset
                 "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
                 "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
@@ -379,8 +379,8 @@ def test_object_state_skills(skill_config):
                 f"evaluation={skill_config}",
                 "device=cpu",
                 "habitat_conf/task=rearrange_easy_multi_agent_nn",
-                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
-                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
+                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/humanoid_data/female_0/female_0.urdf",  # We change the config to human 0 since only human 0 in the CI testing dataset
+                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/humanoid_data/female_0/female_0_motion_data_smplx.pkl",  # We change the config to human 0 since only human 0 in the CI testing dataset
                 "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",
                 "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
                 "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
@@ -748,8 +748,8 @@ def test_floors(skill_config):
                 f"evaluation={skill_config}",
                 "device=cpu",
                 "habitat_conf/task=rearrange_easy_multi_agent_nn",
-                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",
-                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",
+                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/humanoid_data/female_0/female_0.urdf",
+                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/humanoid_data/female_0/female_0_motion_data_smplx.pkl",
                 "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",
                 "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
                 "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
@@ -859,8 +859,8 @@ def test_oracle_point_skills(skill_config):
                 f"evaluation={skill_config}",
                 "device=cpu",
                 "habitat_conf/task=rearrange_easy_multi_agent_nn",
-                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/female_0/female_0.urdf",
-                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/female_0/female_0_motion_data_smplx.pkl",
+                "habitat.simulator.agents.agent_1.articulated_agent_urdf=data/humanoids/humanoid_data/female_0/female_0.urdf",
+                "habitat.simulator.agents.agent_1.motion_data_path=data/humanoids/humanoid_data/female_0/female_0_motion_data_smplx.pkl",
                 "habitat.dataset.data_path=data/datasets/partnr_episodes/v0_0/ci.json.gz",
                 "habitat.dataset.scenes_dir=data/hssd-partnr-ci",
                 "+habitat.dataset.metadata.metadata_folder=data/hssd-partnr-ci/metadata",
