@@ -9,5 +9,5 @@ sentencepiece==0.1.96
 transformers==4.11.3
 datasets==2.1.0
 wandb==0.12.15
-protobuf==3.20.1
+protobuf==7.34.0rc1
 fastcoref==2.1.6
